@@ -2,7 +2,16 @@
   "name": "react-devkit",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/react-devkit.umd.js",
+  "module": "./dist/react-devkit.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-devkit.mjs",
+      "require": "./dist/react-devkit.umd.js"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
     "test": "vitest run",
     "build": "vite build",
@@ -12,6 +21,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
     "@emotion/react": "^11.14.0",
