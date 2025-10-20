@@ -19,7 +19,7 @@ export const FormContext = createContext(null);
  * @param {React.ReactNode} props.children - @en The child elements of the form. @ar العناصر الفرعية للنموذج.
  */
 export const Form = ({ initialValues = {}, onSubmit, validationSchema, children, ...rest }) => {
-    const [values, setValues] = useState(initialValues);
+    const [values, setValues] = useState(initialValues || {});
     const [errors, setErrors] = useState({});
 
     const setFieldValue = useCallback((name, value) => {
