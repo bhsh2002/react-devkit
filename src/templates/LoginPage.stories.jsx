@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { LoginPage } from './LoginPage';
 import { Box, Typography } from '@mui/material';
@@ -38,6 +37,17 @@ export const WithLogo = {
     logo: <MockLogo />,
   },
 };
+
+export const WithUsername = {
+    args: {
+      ...WithLogo.args,
+      loginField: {
+        name: 'username',
+        label: 'Username',
+        autoComplete: 'username',
+      },
+    },
+  };
 
 export const Submitting = {
   args: {
