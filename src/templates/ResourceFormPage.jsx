@@ -76,19 +76,19 @@ export const ResourceFormPage = ({
 
     const pageTitle = isEditMode ? `Edit ${resourceName}` : `Create ${resourceName}`;
 
-    if (loading) {
-        return <CircularProgress />;
-    }
+    // if (loading) {
+    //     return <CircularProgress />;
+    // }
 
-    if (error && !initialData) {
-        // Show error only if it happened while fetching initial data
-        return <Alert severity="error">{error.message || 'Failed to load resource.'}</Alert>;
-    }
+    // if (error && !initialData) {
+    //     // Show error only if it happened while fetching initial data
+    //     return <Alert severity="error">{error.message || 'Failed to load resource.'}</Alert>;
+    // }
 
     return (
         <Box>
             <Toolbar sx={{ p: '0 !important', mb: 2 }}>
-                <Typography variant="h4" component="h1">{pageTitle}</Typography>
+                <Typography variant="h4" component="h1">Bahaa</Typography>
             </Toolbar>
             <Paper sx={{ p: 3 }}>
                 {/* Render the form only when data is ready in edit mode, or always in create mode */}
