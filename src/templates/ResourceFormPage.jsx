@@ -49,6 +49,8 @@ export const ResourceFormPage = ({
                     setLoading(false);
                 });
         }
+
+        console.log("Response from getOne API:", initialData);
     }, [api, id, isEditMode]);
 
     const handleSubmit = async (formData) => {
@@ -90,14 +92,12 @@ export const ResourceFormPage = ({
             </Toolbar>
             <Paper sx={{ p: 3 }}>
                 {/* Render the form only when data is ready in edit mode, or always in create mode */}
-                {(!isEditMode || initialData) && (
                     <FormComponent
                         initialData={initialData}
                         onSubmit={handleSubmit}
                         isSubmitting={isSubmitting}
                         submitError={isSubmitting ? error : null} // Pass submit-specific error to the form
                     />
-                )}
             </Paper>
         </Box>
     );
