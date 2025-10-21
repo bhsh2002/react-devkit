@@ -382,7 +382,7 @@ const _r = ({ icon: s, title: t, value: e, color: r, sx: n, onClick: i }) => /* 
     )
   ] });
 }, Se = lt(null), Nt = ({ initialValues: s = {}, onSubmit: t, validationSchema: e, children: r, ...n }) => {
-  const [i, a] = R(s), [o, u] = R({}), d = Ze((m, x) => {
+  const [i, a] = R(s || {}), [o, u] = R({}), d = Ze((m, x) => {
     a((w) => ({
       ...w,
       [m]: x
@@ -529,7 +529,7 @@ const _r = ({ icon: s, title: t, value: e, color: r, sx: n, onClick: i }) => /* 
   const [i, a] = R(null), [o, u] = R(!1), [d, f] = R(null), [p, m] = R(!1), x = t != null;
   ue(() => {
     x && (u(!0), f(null), e.getOne(t).then((g) => {
-      a(g.data);
+      a(g);
     }).catch((g) => {
       f(g);
     }).finally(() => {

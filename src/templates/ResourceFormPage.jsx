@@ -40,7 +40,7 @@ export const ResourceFormPage = ({
             setError(null);
             api.getOne(id)
                 .then(response => {
-                    setInitialData(response.data);
+                    setInitialData(response);
                 })
                 .catch(err => {
                     setError(err);
