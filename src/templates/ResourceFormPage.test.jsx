@@ -49,7 +49,7 @@ describe('ResourceFormPage', () => {
 
   test('renders in edit mode, fetches data, and handles update', async () => {
     const mockApi = {
-      getOne: vi.fn().mockResolvedValue({ data: { id: '1', name: 'Existing Resource' } }),
+      getOne: vi.fn().mockResolvedValue({ id: '1', name: 'Existing Resource' }),
       update: vi.fn().mockResolvedValue({ data: { id: '1', name: 'Updated Resource' } }),
     };
     const onSuccess = vi.fn();
