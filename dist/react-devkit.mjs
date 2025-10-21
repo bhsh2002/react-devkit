@@ -2316,10 +2316,13 @@ const Cr = ({
     a(!i);
   }, u = /* @__PURE__ */ c.jsxs(N, { children: [
     e ? /* @__PURE__ */ c.jsx(H, { sx: { justifyContent: "center" }, children: e }) : null,
-    /* @__PURE__ */ c.jsx(wt, { children: s.map((d, f) => /* @__PURE__ */ c.jsx(Et, { disablePadding: !0, children: /* @__PURE__ */ c.jsxs(_t, { component: d.component || "a", href: d.path, children: [
-      d.icon && /* @__PURE__ */ c.jsx(St, { children: d.icon }),
-      /* @__PURE__ */ c.jsx(Tt, { primary: d.text })
-    ] }) }, f)) })
+    /* @__PURE__ */ c.jsx(wt, { children: s.map((d, f) => {
+      const p = d.component && d.component.displayName === "NavLink" ? { to: d.path } : { href: d.path };
+      return /* @__PURE__ */ c.jsx(Et, { disablePadding: !0, children: /* @__PURE__ */ c.jsxs(_t, { component: d.component || "a", ...p, children: [
+        d.icon && /* @__PURE__ */ c.jsx(St, { children: d.icon }),
+        /* @__PURE__ */ c.jsx(Tt, { primary: d.text })
+      ] }) }, f);
+    }) })
   ] });
   return /* @__PURE__ */ c.jsxs(N, { sx: { display: "flex" }, children: [
     /* @__PURE__ */ c.jsx(Ot, {}),
@@ -2343,7 +2346,7 @@ const Cr = ({
               children: /* @__PURE__ */ c.jsx(Ct, {})
             }
           ),
-          /* @__PURE__ */ c.jsx(q, { variant: "h6", noWrap: !0, component: "div", sx: { flexGrow: 1 }, children: t }),
+          /* @__PURE__ */ c.jsx(q, { variant: "h6", noWrap: !0, component: "div", sx: { flexGrow: 1 }, color: "inherit", children: t }),
           r
         ] })
       }

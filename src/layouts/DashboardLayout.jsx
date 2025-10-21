@@ -56,14 +56,21 @@ export const DashboardLayout = ({
                 <Toolbar sx={{ justifyContent: 'center' }}>{drawerHeader}</Toolbar>
             ) : null}
             <List>
-                {navItems.map((item, index) => (
-                    <ListItem key={index} disablePadding>
-                        <ListItemButton component={item.component || 'a'} href={item.path}>
-                            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
-                            <ListItemText primary={item.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                {navItems.map((item, index) => {
+                        // Dynamically assign `to` for router components and `href` for regular links
+                        const linkProps = item.component && item.component.displayName === 'NavLink' 
+                            ? { to: item.path } 
+                            : { href: item.path };
+
+                        return (
+                            <ListItem key={index} disablePadding>
+                                <ListItemButton component={item.component || 'a'} {...linkProps}>
+                                    {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+                                    <ListItemText primary={item.text} />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                })}
             </List>
         </Box>
     );
@@ -88,7 +95,7 @@ export const DashboardLayout = ({
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }} color="inherit">
                         {title}
                     </Typography>
                     {headerActions}
