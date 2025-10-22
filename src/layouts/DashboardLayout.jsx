@@ -95,7 +95,7 @@ export const DashboardLayout = ({
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }} color="inherit">
+                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, color: 'primary.contrastText' }}>
                         {title}
                     </Typography>
                     {headerActions}

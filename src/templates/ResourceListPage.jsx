@@ -1,33 +1,42 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Button, Typography, Toolbar } from '@mui/material';
-import { Add as AddIcon } from '@mui/icons-material';
+import { Box, Button, Typography, Toolbar, TextField, Switch, FormControlLabel } from '@mui/material';
+import { Add as AddIcon, Search as SearchIcon } from '@mui/icons-material';
 import { DataTable } from '../components';
+import { useDebounce } from '../hooks/useDebounce'; // Assuming a debounce hook exists
 
 /**
  * @typedef {import('../components').DataTableColumn} DataTableColumn
  */
 
 /**
- * @typedef {object} ListApi
- * @property {function(object): Promise<object>} list - @en A function that fetches a list of resources. It should accept pagination and sorting parameters and return a promise that resolves to an object like `{ data: [], meta: { total: 0 } }`. @ar دالة تجلب قائمة من الموارد. يجب أن تقبل معاملات الترقيم والفرز وتُرجع Promise يتم حله إلى كائن مثل `{ data: [], meta: { total: 0 } }`.
+ * @typedef {object} FilterOption
+ * @property {string} name - The query parameter name for the filter.
+ * @property {string} label - The user-facing label for the filter switch.
  */
 
 /**
- * @en A page template for listing a resource. It handles data fetching, pagination, sorting, and displays the data in a DataTable. It's a "smart" component that encapsulates the logic for displaying a resource list.
- * @ar قالب صفحة لعرض قائمة من الموارد. يتعامل مع جلب البيانات، والترقيم، والفرز، ويعرض البيانات في مكون DataTable. إنه "مكون ذكي" يغلف منطق عرض قائمة الموارد.
- *
+ * A powerful page template for listing resources. It handles data fetching, pagination, sorting, 
+ * searching, and filtering, and displays the data in a DataTable.
+ * 
  * @param {object} props - The component props.
- * @param {string} props.resourceName - @en The name of the resource, used for the page title (e.g., "Products", "Users"). @ar اسم المورد، يُستخدم لعنوان الصفحة (مثل "المنتجات"، "المستخدمون").
- * @param {Array<DataTableColumn>} props.columns - @en The column definitions to be passed to the DataTable. @ar تعريفات الأعمدة التي سيتم تمريرها إلى DataTable.
- * @param {ListApi} props.api - @en An API object containing the `list` method for fetching data. @ar كائن API يحتوي على دالة `list` لجلب البيانات.
- * @param {string} [props.createPath] - @en The path to the resource creation page. If provided, a "Create New" button will be displayed. @ar المسار إلى صفحة إنشاء المورد. إذا تم توفيره، سيتم عرض زر "إنشاء جديد".
+ * @param {string} props.resourceName - The name of the resource for the page title.
+ * @param {Array<DataTableColumn>} props.columns - Column definitions for the DataTable.
+ * @param {object} props.api - API object with a `list` method.
+ * @param {function(object): {data: Array<object>, meta: object}} [props.dataAdapter] - A function to adapt the API response to the expected format.
+ * @param {string} [props.createPath] - Path for the "Create New" button. If provided, the button is shown.
+ * @param {string} [props.createText] - Text for the create button.
+ * @param {boolean} [props.searchable=false] - If true, a search input is displayed.
+ * @param {Array<FilterOption>} [props.filterOptions=[]] - An array of filter options to display as switches.
  */
 export const ResourceListPage = ({
     resourceName,
     columns,
     api,
+    dataAdapter = (response) => response, // Default adapter does nothing
     createPath,
+    createText = 'Create New',
+    searchable = false,
+    filterOptions = [],
 }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -36,6 +45,12 @@ export const ResourceListPage = ({
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [sortModel, setSortModel] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filters, setFilters] = useState(() => 
+        filterOptions.reduce((acc, opt) => ({ ...acc, [opt.name]: false }), {})
+    );
+
+    const debouncedSearch = useDebounce(searchQuery, 500);
 
     const fetchData = useCallback(async () => {
         setLoading(true);
@@ -44,43 +59,40 @@ export const ResourceListPage = ({
             const sort = sortModel.length > 0 ? sortModel[0].field : undefined;
             const order = sortModel.length > 0 ? sortModel[0].sort : undefined;
 
-            const response = await api.list({ 
-                page: page + 1, // API might be 1-based
+            const queryParams = {
+                page: page + 1,
                 per_page: pageSize,
                 sort,
                 order,
-            });
+                q: debouncedSearch || undefined,
+                ...filters,
+            };
 
-            setData(response.data); // Assuming API returns { data: [], meta: { total: ... } }
-            setRowCount(response.meta.total);
+            const response = await api.list(queryParams);
+            const adaptedResponse = dataAdapter(response);
+
+            setData(adaptedResponse.data);
+            setRowCount(adaptedResponse.meta.total);
         } catch (err) {
             setError(err);
         } finally {
             setLoading(false);
         }
-    }, [api, page, pageSize, sortModel]);
+    }, [api, page, pageSize, sortModel, debouncedSearch, filters, dataAdapter]);
 
     useEffect(() => {
         fetchData();
     }, [fetchData]);
 
-    const handlePageChange = (newPage) => {
-        setPage(newPage);
-    };
-
-    const handlePageSizeChange = (newPageSize) => {
-        setPageSize(newPageSize);
-        setPage(0); // Reset to first page
-    };
-
-    const handleSortModelChange = (newSortModel) => {
-        setSortModel(newSortModel);
-        setPage(0); // Reset to first page
+    const handleFilterChange = (event) => {
+        const { name, checked } = event.target;
+        setFilters(prev => ({ ...prev, [name]: checked }));
+        setPage(0);
     };
 
     return (
         <Box>
-            <Toolbar sx={{ p: '0 !important', mb: 2 }}>
+            <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
                 <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
                     {resourceName}
                 </Typography>
@@ -88,30 +100,45 @@ export const ResourceListPage = ({
                     <Button
                         variant="contained"
                         startIcon={<AddIcon />}
-                        component="a" // Or Link from react-router-dom
                         href={createPath}
                     >
-                        Create New
+                        {createText}
                     </Button>
                 )}
             </Toolbar>
+
+            <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+                {searchable && (
+                    <TextField
+                        label="Search"
+                        variant="outlined"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        InputProps={{ endAdornment: <SearchIcon color="action" /> }}
+                        sx={{ flexGrow: 1, minWidth: '200px' }}
+                    />
+                )}
+                {filterOptions.map(opt => (
+                    <FormControlLabel
+                        key={opt.name}
+                        control={<Switch checked={filters[opt.name]} onChange={handleFilterChange} name={opt.name} />}
+                        label={opt.label}
+                    />
+                ))}
+            </Box>
 
             <DataTable
                 rows={data}
                 columns={columns}
                 loading={loading}
                 error={error}
-                // Pagination
-                pagination
                 rowCount={rowCount}
                 page={page}
-                onPageChange={handlePageChange}
+                onPageChange={setPage}
                 pageSize={pageSize}
-                onPageSizeChange={handlePageSizeChange}
-                // Sorting
-                sorting
+                onPageSizeChange={(size) => { setPageSize(size); setPage(0); }}
                 sortModel={sortModel}
-                onSortModelChange={handleSortModelChange}
+                onSortModelChange={(model) => { setSortModel(model); setPage(0); }}
             />
         </Box>
     );
