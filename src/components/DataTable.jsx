@@ -196,7 +196,7 @@ export const DataTable = ({
                 </Table>
             </TableContainer>
             </Box>
-            {pagination && !error && (
+            {pagination && !error && rows.length > 0 && (
                 <TablePagination
                     component="div"
                     count={rowCount}
@@ -207,6 +207,9 @@ export const DataTable = ({
                     rowsPerPageOptions={pageSizeOptions}
                     showFirstButton
                     showLastButton
+                    labelRowsPerPage={null}
+                    labelDisplayedRows={({ from, to, count }) => `${from} - ${to} | ${count}`}
+                    sx={{ display: 'flex', justifyContent: 'center' }}
                 />
             )}
         </Paper>

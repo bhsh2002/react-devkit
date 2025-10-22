@@ -52,7 +52,7 @@ function Nt() {
     function n(l) {
       if (l == null) return null;
       if (typeof l == "function")
-        return l.$$typeof === F ? null : l.displayName || l.name || null;
+        return l.$$typeof === k ? null : l.displayName || l.name || null;
       if (typeof l == "string") return l;
       switch (l) {
         case _:
@@ -63,7 +63,7 @@ function Nt() {
           return "StrictMode";
         case E:
           return "Suspense";
-        case w:
+        case y:
           return "SuspenseList";
         case M:
           return "Activity";
@@ -72,21 +72,21 @@ function Nt() {
         switch (typeof l.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
         ), l.$$typeof) {
-          case v:
+          case w:
             return "Portal";
-          case O:
+          case F:
             return l.displayName || "Context";
           case T:
             return (l._context.displayName || "Context") + ".Consumer";
           case S:
-            var y = l.render;
-            return l = l.displayName, l || (l = y.displayName || y.name || "", l = l !== "" ? "ForwardRef(" + l + ")" : "ForwardRef"), l;
+            var v = l.render;
+            return l = l.displayName, l || (l = v.displayName || v.name || "", l = l !== "" ? "ForwardRef(" + l + ")" : "ForwardRef"), l;
           case j:
-            return y = l.displayName || null, y !== null ? y : n(l.type) || "Memo";
-          case k:
-            y = l._payload, l = l._init;
+            return v = l.displayName || null, v !== null ? v : n(l.type) || "Memo";
+          case O:
+            v = l._payload, l = l._init;
             try {
-              return n(l(y));
+              return n(l(v));
             } catch {
             }
         }
@@ -98,15 +98,15 @@ function Nt() {
     function e(l) {
       try {
         t(l);
-        var y = !1;
+        var v = !1;
       } catch {
-        y = !0;
+        v = !0;
       }
-      if (y) {
-        y = console;
-        var $ = y.error, A = typeof Symbol == "function" && Symbol.toStringTag && l[Symbol.toStringTag] || l.constructor.name || "Object";
+      if (v) {
+        v = console;
+        var $ = v.error, A = typeof Symbol == "function" && Symbol.toStringTag && l[Symbol.toStringTag] || l.constructor.name || "Object";
         return $.call(
-          y,
+          v,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
           A
         ), t(l);
@@ -114,11 +114,11 @@ function Nt() {
     }
     function r(l) {
       if (l === _) return "<>";
-      if (typeof l == "object" && l !== null && l.$$typeof === k)
+      if (typeof l == "object" && l !== null && l.$$typeof === O)
         return "<...>";
       try {
-        var y = n(l);
-        return y ? "<" + y + ">" : "<...>";
+        var v = n(l);
+        return v ? "<" + v + ">" : "<...>";
       } catch {
         return "<...>";
       }
@@ -132,16 +132,16 @@ function Nt() {
     }
     function a(l) {
       if (W.call(l, "key")) {
-        var y = Object.getOwnPropertyDescriptor(l, "key").get;
-        if (y && y.isReactWarning) return !1;
+        var v = Object.getOwnPropertyDescriptor(l, "key").get;
+        if (v && v.isReactWarning) return !1;
       }
       return l.key !== void 0;
     }
-    function o(l, y) {
+    function o(l, v) {
       function $() {
         he || (he = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
-          y
+          v
         ));
       }
       $.isReactWarning = !0, Object.defineProperty(l, "key", {
@@ -155,12 +155,12 @@ function Nt() {
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), l = this.props.ref, l !== void 0 ? l : null;
     }
-    function f(l, y, $, A, pe, Te) {
+    function f(l, v, $, A, pe, Te) {
       var R = $.ref;
       return l = {
         $$typeof: g,
         type: l,
-        key: y,
+        key: v,
         props: $,
         _owner: A
       }, (R !== void 0 ? R : null) !== null ? Object.defineProperty(l, "ref", {
@@ -188,8 +188,8 @@ function Nt() {
         value: Te
       }), Object.freeze && (Object.freeze(l.props), Object.freeze(l)), l;
     }
-    function d(l, y, $, A, pe, Te) {
-      var R = y.children;
+    function d(l, v, $, A, pe, Te) {
+      var R = v.children;
       if (R !== void 0)
         if (A)
           if (de(R)) {
@@ -201,9 +201,9 @@ function Nt() {
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
         else p(R);
-      if (W.call(y, "key")) {
+      if (W.call(v, "key")) {
         R = n(l);
-        var K = Object.keys(y).filter(function(ct) {
+        var K = Object.keys(v).filter(function(ct) {
           return ct !== "key";
         });
         A = 0 < K.length ? "{key: someKey, " + K.join(": ..., ") + ": ...}" : "{key: someKey}", Q[R + A] || (K = 0 < K.length ? "{" + K.join(": ..., ") + ": ...}" : "{}", console.error(
@@ -219,11 +219,11 @@ React keys must be passed directly to JSX without using spread:
           R
         ), Q[R + A] = !0);
       }
-      if (R = null, $ !== void 0 && (e($), R = "" + $), a(y) && (e(y.key), R = "" + y.key), "key" in y) {
+      if (R = null, $ !== void 0 && (e($), R = "" + $), a(v) && (e(v.key), R = "" + v.key), "key" in v) {
         $ = {};
-        for (var je in y)
-          je !== "key" && ($[je] = y[je]);
-      } else $ = y;
+        for (var je in v)
+          je !== "key" && ($[je] = v[je]);
+      } else $ = v;
       return R && o(
         $,
         typeof l == "function" ? l.displayName || l.name || "Unknown" : l
@@ -237,12 +237,12 @@ React keys must be passed directly to JSX without using spread:
       );
     }
     function p(l) {
-      m(l) ? l._store && (l._store.validated = 1) : typeof l == "object" && l !== null && l.$$typeof === k && (l._payload.status === "fulfilled" ? m(l._payload.value) && l._payload.value._store && (l._payload.value._store.validated = 1) : l._store && (l._store.validated = 1));
+      m(l) ? l._store && (l._store.validated = 1) : typeof l == "object" && l !== null && l.$$typeof === O && (l._payload.status === "fulfilled" ? m(l._payload.value) && l._payload.value._store && (l._payload.value._store.validated = 1) : l._store && (l._store.validated = 1));
     }
     function m(l) {
       return typeof l == "object" && l !== null && l.$$typeof === g;
     }
-    var x = ft, g = Symbol.for("react.transitional.element"), v = Symbol.for("react.portal"), _ = Symbol.for("react.fragment"), h = Symbol.for("react.strict_mode"), b = Symbol.for("react.profiler"), T = Symbol.for("react.consumer"), O = Symbol.for("react.context"), S = Symbol.for("react.forward_ref"), E = Symbol.for("react.suspense"), w = Symbol.for("react.suspense_list"), j = Symbol.for("react.memo"), k = Symbol.for("react.lazy"), M = Symbol.for("react.activity"), F = Symbol.for("react.client.reference"), z = x.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, W = Object.prototype.hasOwnProperty, de = Array.isArray, X = console.createTask ? console.createTask : function() {
+    var x = ft, g = Symbol.for("react.transitional.element"), w = Symbol.for("react.portal"), _ = Symbol.for("react.fragment"), h = Symbol.for("react.strict_mode"), b = Symbol.for("react.profiler"), T = Symbol.for("react.consumer"), F = Symbol.for("react.context"), S = Symbol.for("react.forward_ref"), E = Symbol.for("react.suspense"), y = Symbol.for("react.suspense_list"), j = Symbol.for("react.memo"), O = Symbol.for("react.lazy"), M = Symbol.for("react.activity"), k = Symbol.for("react.client.reference"), z = x.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, W = Object.prototype.hasOwnProperty, de = Array.isArray, X = console.createTask ? console.createTask : function() {
       return null;
     };
     x = {
@@ -254,21 +254,21 @@ React keys must be passed directly to JSX without using spread:
       x,
       i
     )(), H = X(r(i)), Q = {};
-    le.Fragment = _, le.jsx = function(l, y, $) {
+    le.Fragment = _, le.jsx = function(l, v, $) {
       var A = 1e4 > z.recentlyCreatedOwnerStacks++;
       return d(
         l,
-        y,
+        v,
         $,
         !1,
         A ? Error("react-stack-top-frame") : q,
         A ? X(r(l)) : H
       );
-    }, le.jsxs = function(l, y, $) {
+    }, le.jsxs = function(l, v, $) {
       var A = 1e4 > z.recentlyCreatedOwnerStacks++;
       return d(
         l,
-        y,
+        v,
         $,
         !0,
         A ? Error("react-stack-top-frame") : q,
@@ -328,58 +328,61 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   onSortModelChange: g = () => {
   },
   // Customization
-  slots: v = {},
+  slots: w = {},
   slotProps: _ = {},
   sx: h
 }) => {
   const {
     toolbar: b,
     noRowsOverlay: T = zt,
-    loadingOverlay: O = Mt
-  } = v, S = (w) => {
+    loadingOverlay: F = Mt
+  } = w, S = (y) => {
     if (!m) return;
-    const j = x.find((M) => M.field === w);
-    let k;
-    j ? j.sort === "asc" ? k = [{ field: w, sort: "desc" }] : k = [] : k = [{ field: w, sort: "asc" }], g(k);
+    const j = x.find((M) => M.field === y);
+    let O;
+    j ? j.sort === "asc" ? O = [{ field: y, sort: "desc" }] : O = [] : O = [{ field: y, sort: "asc" }], g(O);
   }, E = x.length > 0 ? x[0] : null;
   return /* @__PURE__ */ u.jsxs(Se, { sx: h, children: [
     b && /* @__PURE__ */ u.jsx(ne, { children: /* @__PURE__ */ u.jsx(b, { ..._.toolbar || {} }) }),
     /* @__PURE__ */ u.jsx(D, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ u.jsx(ht, { children: /* @__PURE__ */ u.jsxs(pt, { stickyHeader: !0, children: [
-      /* @__PURE__ */ u.jsx(mt, { children: /* @__PURE__ */ u.jsx(ie, { children: t.map((w) => /* @__PURE__ */ u.jsx(
+      /* @__PURE__ */ u.jsx(mt, { children: /* @__PURE__ */ u.jsx(ie, { children: t.map((y) => /* @__PURE__ */ u.jsx(
         ae,
         {
-          align: w.align || "inherit",
-          width: w.width,
-          sortDirection: E?.field === w.field ? E.sort : !1,
-          children: w.sortable && m ? /* @__PURE__ */ u.jsx(
+          align: y.align || "inherit",
+          width: y.width,
+          sortDirection: E?.field === y.field ? E.sort : !1,
+          children: y.sortable && m ? /* @__PURE__ */ u.jsx(
             xt,
             {
-              active: E?.field === w.field,
-              direction: E?.field === w.field ? E.sort : "asc",
-              onClick: () => S(w.field),
-              children: w.headerName
+              active: E?.field === y.field,
+              direction: E?.field === y.field ? E.sort : "asc",
+              onClick: () => S(y.field),
+              children: y.headerName
             }
-          ) : w.headerName
+          ) : y.headerName
         },
-        w.field
+        y.field
       )) }) }),
-      /* @__PURE__ */ u.jsx(bt, { children: r ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(O, { ..._.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ u.jsx(Z, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(T, { ..._.noRowsOverlay || {} }) }) }) : n.map((w) => /* @__PURE__ */ u.jsx(ie, { hover: !0, children: t.map((j) => {
-        const k = j.field.split(".").reduce((M, F) => M?.[F], w);
-        return /* @__PURE__ */ u.jsx(ae, { align: j.align || "inherit", children: j.renderCell ? j.renderCell({ value: k, row: w, id: e(w) }) : k }, j.field);
-      }) }, e(w))) })
+      /* @__PURE__ */ u.jsx(bt, { children: r ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(F, { ..._.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ u.jsx(Z, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(T, { ..._.noRowsOverlay || {} }) }) }) : n.map((y) => /* @__PURE__ */ u.jsx(ie, { hover: !0, children: t.map((j) => {
+        const O = j.field.split(".").reduce((M, k) => M?.[k], y);
+        return /* @__PURE__ */ u.jsx(ae, { align: j.align || "inherit", children: j.renderCell ? j.renderCell({ value: O, row: y, id: e(y) }) : O }, j.field);
+      }) }, e(y))) })
     ] }) }) }),
-    i && !s && /* @__PURE__ */ u.jsx(
+    i && !s && n.length > 0 && /* @__PURE__ */ u.jsx(
       gt,
       {
         component: "div",
         count: a,
         page: o,
-        onPageChange: (w, j) => c(j),
+        onPageChange: (y, j) => c(j),
         rowsPerPage: f,
-        onRowsPerPageChange: (w) => d(parseInt(w.target.value, 10)),
+        onRowsPerPageChange: (y) => d(parseInt(y.target.value, 10)),
         rowsPerPageOptions: p,
         showFirstButton: !0,
-        showLastButton: !0
+        showLastButton: !0,
+        labelRowsPerPage: null,
+        labelDisplayedRows: ({ from: y, to: j, count: O }) => `${y} - ${j} | ${O}`,
+        sx: { display: "flex", justifyContent: "center" }
       }
     )
   ] });
@@ -398,7 +401,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       e && await e.validate(i, { abortEarly: !1 }), t && t(i);
     } catch (x) {
       if (x.inner) {
-        const g = x.inner.reduce((v, _) => (v[_.path] = _.message, v), {});
+        const g = x.inner.reduce((w, _) => (w[_.path] = _.message, w), {});
         c(g);
       }
     }
@@ -465,7 +468,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   const a = _e(fe);
   if (!a)
     throw new Error("AutocompleteField must be used within a Form component");
-  const { values: o, setFieldValue: c, errors: f } = a, [d, p] = C([]), [m, x] = C(!1), [g, v] = C("");
+  const { values: o, setFieldValue: c, errors: f } = a, [d, p] = C([]), [m, x] = C(!1), [g, w] = C("");
   se(() => {
     let b = !0;
     return x(!0), e(g).then((T) => {
@@ -491,7 +494,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       value: o[n] || (s ? [] : null),
       onChange: _,
       onInputChange: (b, T) => {
-        v(T);
+        w(T);
       },
       renderInput: (b) => /* @__PURE__ */ u.jsx(
         Re,
@@ -592,13 +595,13 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   renderHeader: d = Ut,
   renderFilters: p = qt
 }) => {
-  const [m, x] = C([]), [g, v] = C(!0), [_, h] = C(null), [b, T] = C(0), [O, S] = C(0), [E, w] = C(10), [j, k] = C([]), [M, F] = C(""), [z, W] = C(
+  const [m, x] = C([]), [g, w] = C(!0), [_, h] = C(null), [b, T] = C(0), [F, S] = C(0), [E, y] = C(10), [j, O] = C([]), [M, k] = C(""), [z, W] = C(
     () => o.reduce((N, q) => ({ ...N, [q.name]: !1 }), {})
   ), de = Lt(M, 500), X = Je(async () => {
-    v(!0), h(null);
+    w(!0), h(null);
     try {
       const N = j.length > 0 ? j[0].field : void 0, q = j.length > 0 ? j[0].sort : void 0, H = {
-        page: O + 1,
+        page: F + 1,
         per_page: E,
         sort: N,
         order: q,
@@ -609,9 +612,9 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     } catch (N) {
       h(N);
     } finally {
-      v(!1);
+      w(!1);
     }
-  }, [e, O, E, j, de, z, r]);
+  }, [e, F, E, j, de, z, r]);
   se(() => {
     X();
   }, [X]);
@@ -624,7 +627,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     p({
       searchable: a,
       searchQuery: M,
-      setSearchQuery: F,
+      setSearchQuery: k,
       filterOptions: o,
       filters: z,
       handleFilterChange: he,
@@ -639,15 +642,15 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
         error: _,
         pagination: !0,
         rowCount: b,
-        page: O,
+        page: F,
         onPageChange: S,
         pageSize: E,
         onPageSizeChange: (N) => {
-          w(N), S(0);
+          y(N), S(0);
         },
         sortModel: j,
         onSortModelChange: (N) => {
-          k(N), S(0);
+          O(N), S(0);
         }
       }
     )
@@ -675,13 +678,13 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   requestAdapter: o = (f) => f,
   renderActions: c = Yt
 }) => {
-  const [f, d] = C(null), [p, m] = C(!1), [x, g] = C(null), [v, _] = C(!1), h = t != null;
+  const [f, d] = C(null), [p, m] = C(!1), [x, g] = C(null), [w, _] = C(!1), h = t != null;
   se(() => {
-    h && (m(!0), g(null), e.getOne(t).then((O) => d(a(O))).catch((O) => g(O)).finally(() => m(!1)));
+    h && (m(!0), g(null), e.getOne(t).then((F) => d(a(F))).catch((F) => g(F)).finally(() => m(!1)));
   }, [e, t, h, a]);
-  const b = async (O) => {
+  const b = async (F) => {
     _(!0), g(null);
-    const S = o(O);
+    const S = o(F);
     try {
       const E = h ? await e.update(t, S) : await e.create(S);
       s(E.data);
@@ -689,12 +692,12 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       g(E), _(!1);
     }
   }, T = h ? `Edit ${n}` : `Create ${n}`;
-  return p ? /* @__PURE__ */ u.jsx(ce, {}) : x && !v ? /* @__PURE__ */ u.jsx($e, { severity: "error", children: x.message || "Failed to load resource data." }) : /* @__PURE__ */ u.jsxs(D, { children: [
+  return p ? /* @__PURE__ */ u.jsx(ce, {}) : x && !w ? /* @__PURE__ */ u.jsx($e, { severity: "error", children: x.message || "Failed to load resource data." }) : /* @__PURE__ */ u.jsxs(D, { children: [
     /* @__PURE__ */ u.jsx(ne, { sx: { p: "0 !important", mb: 2 }, children: /* @__PURE__ */ u.jsx(Z, { variant: "h4", component: "h1", children: T }) }),
     /* @__PURE__ */ u.jsx(Se, { sx: { p: 3 }, children: (!h || f) && /* @__PURE__ */ u.jsxs(Qe, { onSubmit: b, initialValues: f, children: [
       /* @__PURE__ */ u.jsx(r, {}),
-      x && v && /* @__PURE__ */ u.jsx($e, { severity: "error", sx: { mt: 2 }, children: x.message || "An error occurred during submission." }),
-      c({ isSubmitting: v, onCancel: i })
+      x && w && /* @__PURE__ */ u.jsx($e, { severity: "error", sx: { mt: 2 }, children: x.message || "An error occurred during submission." }),
+      c({ isSubmitting: w, onCancel: i })
     ] }) })
   ] });
 };
@@ -719,11 +722,11 @@ function Zt() {
     normalizePath: d,
     setter: function(h) {
       var b = d(h);
-      return c.get(h) || c.set(h, function(O, S) {
-        for (var E = 0, w = b.length, j = O; E < w - 1; ) {
-          var k = b[E];
-          if (k === "__proto__" || k === "constructor" || k === "prototype")
-            return O;
+      return c.get(h) || c.set(h, function(F, S) {
+        for (var E = 0, y = b.length, j = F; E < y - 1; ) {
+          var O = b[E];
+          if (O === "__proto__" || O === "constructor" || O === "prototype")
+            return F;
           j = j[b[E++]];
         }
         j[b[E]] = S;
@@ -732,7 +735,7 @@ function Zt() {
     getter: function(h, b) {
       var T = d(h);
       return f.get(h) || f.set(h, function(S) {
-        for (var E = 0, w = T.length; E < w; )
+        for (var E = 0, y = T.length; E < y; )
           if (S != null || !b) S = S[T[E++]];
           else return;
         return S;
@@ -759,9 +762,9 @@ function Zt() {
     return h.match(t) || [""];
   }
   function m(h, b, T) {
-    var O = h.length, S, E, w, j;
-    for (E = 0; E < O; E++)
-      S = h[E], S && (_(S) && (S = '"' + S + '"'), j = x(S), w = !j && /^\d+$/.test(S), b.call(T, S, j, w, E, h));
+    var F = h.length, S, E, y, j;
+    for (E = 0; E < F; E++)
+      S = h[E], S && (_(S) && (S = '"' + S + '"'), j = x(S), y = !j && /^\d+$/.test(S), b.call(T, S, j, y, E, h));
   }
   function x(h) {
     return typeof h == "string" && h && ["'", '"'].indexOf(h.charAt(0)) !== -1;
@@ -769,11 +772,11 @@ function Zt() {
   function g(h) {
     return h.match(r) && !h.match(e);
   }
-  function v(h) {
+  function w(h) {
     return s.test(h);
   }
   function _(h) {
-    return !x(h) && (g(h) || v(h));
+    return !x(h) && (g(h) || w(h));
   }
   return Oe;
 }
@@ -810,8 +813,8 @@ function Gt() {
     }); f--; )
       c[f] || m(s[f], f, /* @__PURE__ */ new Set());
     return o;
-    function m(x, g, v) {
-      if (v.has(x)) {
+    function m(x, g, w) {
+      if (w.has(x)) {
         var _;
         try {
           _ = ", node was:" + JSON.stringify(x);
@@ -826,12 +829,12 @@ function Gt() {
         c[g] = !0;
         var h = d.get(x) || /* @__PURE__ */ new Set();
         if (h = Array.from(h), g = h.length) {
-          v.add(x);
+          w.add(x);
           do {
             var b = h[--g];
-            m(b, p.get(b), v);
+            m(b, p.get(b), w);
           } while (g);
-          v.delete(x);
+          w.delete(x);
         }
         o[--a] = x;
       }
@@ -1085,60 +1088,60 @@ function ee(n) {
     } = n;
     let {
       parent: g,
-      context: v,
+      context: w,
       abortEarly: _ = a.spec.abortEarly,
       disableStackTrace: h = a.spec.disableStackTrace
     } = s;
     const b = {
       value: e,
       parent: g,
-      context: v
+      context: w
     };
-    function T(F = {}) {
+    function T(k = {}) {
       const z = nt(Object.assign({
         value: e,
         originalValue: i,
         label: a.spec.label,
-        path: F.path || r,
+        path: k.path || r,
         spec: a.spec,
-        disableStackTrace: F.disableStackTrace || h
-      }, p, F.params), b), W = new P(P.formatError(F.message || m, z), e, z.path, F.type || f, z.disableStackTrace);
+        disableStackTrace: k.disableStackTrace || h
+      }, p, k.params), b), W = new P(P.formatError(k.message || m, z), e, z.path, k.type || f, z.disableStackTrace);
       return W.params = z, W;
     }
-    const O = _ ? o : c;
+    const F = _ ? o : c;
     let S = {
       path: r,
       parent: g,
       type: f,
       from: s.from,
       createError: T,
-      resolve(F) {
-        return st(F, b);
+      resolve(k) {
+        return st(k, b);
       },
       options: s,
       originalValue: i,
       schema: a
     };
-    const E = (F) => {
-      P.isError(F) ? O(F) : F ? c(null) : O(T());
-    }, w = (F) => {
-      P.isError(F) ? O(F) : o(F);
+    const E = (k) => {
+      P.isError(k) ? F(k) : k ? c(null) : F(T());
+    }, y = (k) => {
+      P.isError(k) ? F(k) : o(k);
     };
     if (x && G(e))
       return E(!0);
-    let k;
+    let O;
     try {
       var M;
-      if (k = d.call(S, e, S), typeof ((M = k) == null ? void 0 : M.then) == "function") {
+      if (O = d.call(S, e, S), typeof ((M = O) == null ? void 0 : M.then) == "function") {
         if (s.sync)
           throw new Error(`Validation test of type: "${S.type}" returned a Promise during a synchronous validate. This test will finish after the validate call has returned`);
-        return Promise.resolve(k).then(E, w);
+        return Promise.resolve(O).then(E, y);
       }
-    } catch (F) {
-      w(F);
+    } catch (k) {
+      y(k);
       return;
     }
-    E(k);
+    E(O);
   }
   return t.OPTIONS = n, t;
 }
@@ -1407,10 +1410,10 @@ attempted value: ${a}
       originalValue: o,
       path: c,
       options: f
-    } = t, d = (v) => {
-      s || (s = !0, e(v, a));
-    }, p = (v) => {
-      s || (s = !0, r(v, a));
+    } = t, d = (w) => {
+      s || (s = !0, e(w, a));
+    }, p = (w) => {
+      s || (s = !0, r(w, a));
     }, m = i.length, x = [];
     if (!m) return p([]);
     let g = {
@@ -1420,8 +1423,8 @@ attempted value: ${a}
       options: f,
       schema: this
     };
-    for (let v = 0; v < i.length; v++) {
-      const _ = i[v];
+    for (let w = 0; w < i.length; w++) {
+      const _ = i[w];
       _(g, d, function(b) {
         b && (Array.isArray(b) ? x.push(...b) : x.push(b)), --m <= 0 && p(x);
       });
@@ -2075,7 +2078,7 @@ class ut extends L {
     for (const p of o) {
       let m = i[p], x = p in s, g = s[p];
       if (m) {
-        let v;
+        let w;
         f.path = (e.path ? `${e.path}.` : "") + p, m = m.resolve({
           value: g,
           context: e.context,
@@ -2086,7 +2089,7 @@ class ut extends L {
           d = d || p in s;
           continue;
         }
-        v = !e.__validating || !h ? m.cast(g, f) : g, v !== void 0 && (c[p] = v);
+        w = !e.__validating || !h ? m.cast(g, f) : g, w !== void 0 && (c[p] = w);
       } else x && !a && (c[p] = g);
       (x !== p in c || c[p] !== g) && (d = !0);
     }
@@ -2458,7 +2461,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
         sx: {
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${te}px)` },
+          width: { xs: "100%", sm: `calc(100% - ${te}px)` },
           minHeight: "100vh",
           backgroundColor: (f) => f.palette.grey[100]
         },
