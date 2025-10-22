@@ -1,5 +1,5 @@
 import ft, { createContext as dt, useState as C, useCallback as Je, useContext as we, useEffect as ne } from "react";
-import { Paper as Ee, Box as N, Typography as W, Toolbar as re, TableContainer as ht, Table as pt, TableHead as mt, TableRow as ie, TableCell as ae, TableSortLabel as xt, TableBody as bt, TablePagination as gt, CircularProgress as ce, TextField as Ae, Avatar as yt, Button as ue, Autocomplete as vt, FormControlLabel as Xe, Switch as He, Alert as ke, Container as wt, List as Et, ListItem as _t, ListItemButton as St, ListItemIcon as Tt, ListItemText as jt, CssBaseline as Ft, AppBar as Ot, IconButton as kt, Drawer as Ne } from "@mui/material";
+import { Paper as Ee, Box as N, Typography as W, Toolbar as re, TableContainer as ht, Table as pt, TableHead as mt, TableRow as ie, TableCell as ae, TableSortLabel as xt, TableBody as bt, TablePagination as gt, CircularProgress as ce, TextField as Ae, Avatar as yt, Button as ue, Autocomplete as vt, FormControlLabel as Xe, Switch as He, Alert as ke, Container as wt, List as Et, ListItem as _t, ListItemButton as St, ListItemIcon as Tt, ListItemText as jt, CssBaseline as Ot, AppBar as Ft, IconButton as kt, Drawer as Ne } from "@mui/material";
 import { ImageNotSupported as $t, Add as Ct, Search as At, Menu as Rt } from "@mui/icons-material";
 function Dt(n) {
   return n && n.__esModule && Object.prototype.hasOwnProperty.call(n, "default") ? n.default : n;
@@ -52,7 +52,7 @@ function Nt() {
     function n(l) {
       if (l == null) return null;
       if (typeof l == "function")
-        return l.$$typeof === O ? null : l.displayName || l.name || null;
+        return l.$$typeof === F ? null : l.displayName || l.name || null;
       if (typeof l == "string") return l;
       switch (l) {
         case S:
@@ -74,7 +74,7 @@ function Nt() {
         ), l.$$typeof) {
           case v:
             return "Portal";
-          case F:
+          case O:
             return l.displayName || "Context";
           case _:
             return (l._context.displayName || "Context") + ".Consumer";
@@ -242,7 +242,7 @@ React keys must be passed directly to JSX without using spread:
     function m(l) {
       return typeof l == "object" && l !== null && l.$$typeof === g;
     }
-    var b = ft, g = Symbol.for("react.transitional.element"), v = Symbol.for("react.portal"), S = Symbol.for("react.fragment"), h = Symbol.for("react.strict_mode"), x = Symbol.for("react.profiler"), _ = Symbol.for("react.consumer"), F = Symbol.for("react.context"), T = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), E = Symbol.for("react.suspense_list"), j = Symbol.for("react.memo"), k = Symbol.for("react.lazy"), z = Symbol.for("react.activity"), O = Symbol.for("react.client.reference"), M = b.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, q = Object.prototype.hasOwnProperty, _e = Array.isArray, D = console.createTask ? console.createTask : function() {
+    var b = ft, g = Symbol.for("react.transitional.element"), v = Symbol.for("react.portal"), S = Symbol.for("react.fragment"), h = Symbol.for("react.strict_mode"), x = Symbol.for("react.profiler"), _ = Symbol.for("react.consumer"), O = Symbol.for("react.context"), T = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), E = Symbol.for("react.suspense_list"), j = Symbol.for("react.memo"), k = Symbol.for("react.lazy"), z = Symbol.for("react.activity"), F = Symbol.for("react.client.reference"), M = b.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, q = Object.prototype.hasOwnProperty, _e = Array.isArray, D = console.createTask ? console.createTask : function() {
       return null;
     };
     b = {
@@ -335,7 +335,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   const {
     toolbar: x,
     noRowsOverlay: _ = zt,
-    loadingOverlay: F = Mt
+    loadingOverlay: O = Mt
   } = v, T = (E) => {
     if (!m) return;
     const j = b.find((z) => z.field === E);
@@ -363,8 +363,8 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
         },
         E.field
       )) }) }),
-      /* @__PURE__ */ u.jsx(bt, { children: r ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(F, { ...S.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ u.jsx(W, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(_, { ...S.noRowsOverlay || {} }) }) }) : n.map((E) => /* @__PURE__ */ u.jsx(ie, { hover: !0, children: t.map((j) => {
-        const k = j.field.split(".").reduce((z, O) => z?.[O], E);
+      /* @__PURE__ */ u.jsx(bt, { children: r ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(O, { ...S.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ u.jsx(W, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ u.jsx(ie, { children: /* @__PURE__ */ u.jsx(ae, { colSpan: t.length, sx: { border: "none" }, children: /* @__PURE__ */ u.jsx(_, { ...S.noRowsOverlay || {} }) }) }) : n.map((E) => /* @__PURE__ */ u.jsx(ie, { hover: !0, children: t.map((j) => {
+        const k = j.field.split(".").reduce((z, F) => z?.[F], E);
         return /* @__PURE__ */ u.jsx(ae, { align: j.align || "inherit", children: j.renderCell ? j.renderCell({ value: k, row: E, id: e(E) }) : k }, j.field);
       }) }, e(E))) })
     ] }) }),
@@ -577,14 +577,14 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   renderHeader: c = Ut,
   renderFilters: f = qt
 }) => {
-  const [d, p] = C([]), [m, b] = C(!0), [g, v] = C(null), [S, h] = C(0), [x, _] = C(0), [F, T] = C(10), [w, E] = C([]), [j, k] = C(""), [z, O] = C(
+  const [d, p] = C([]), [m, b] = C(!0), [g, v] = C(null), [S, h] = C(0), [x, _] = C(0), [O, T] = C(10), [w, E] = C([]), [j, k] = C(""), [z, F] = C(
     () => o.reduce((D, Y) => ({ ...D, [Y.name]: !1 }), {})
   ), M = Lt(j, 500), q = Je(async () => {
     b(!0), v(null);
     try {
       const D = w.length > 0 ? w[0].field : void 0, Y = w.length > 0 ? w[0].sort : void 0, X = {
         page: x + 1,
-        per_page: F,
+        per_page: O,
         sort: D,
         order: Y,
         q: M || void 0,
@@ -596,13 +596,13 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     } finally {
       b(!1);
     }
-  }, [e, x, F, w, M, z, r]);
+  }, [e, x, O, w, M, z, r]);
   ne(() => {
     q();
   }, [q]);
   const _e = (D) => {
     const { name: Y, checked: X } = D.target;
-    O((H) => ({ ...H, [Y]: X })), _(0);
+    F((H) => ({ ...H, [Y]: X })), _(0);
   };
   return /* @__PURE__ */ u.jsxs(N, { children: [
     c({ resourceName: n, createPath: s, createText: i }),
@@ -624,7 +624,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
         rowCount: S,
         page: x,
         onPageChange: _,
-        pageSize: F,
+        pageSize: O,
         onPageSizeChange: (D) => {
           T(D), _(0);
         },
@@ -660,11 +660,11 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
 }) => {
   const [f, d] = C(null), [p, m] = C(!1), [b, g] = C(null), [v, S] = C(!1), h = t != null;
   ne(() => {
-    h && (m(!0), g(null), e.getOne(t).then((F) => d(a(F))).catch((F) => g(F)).finally(() => m(!1)));
+    h && (m(!0), g(null), e.getOne(t).then((O) => d(a(O))).catch((O) => g(O)).finally(() => m(!1)));
   }, [e, t, h, a]);
-  const x = async (F) => {
+  const x = async (O) => {
     S(!0), g(null);
-    const T = o(F);
+    const T = o(O);
     try {
       const w = h ? await e.update(t, T) : await e.create(T);
       s(w.data);
@@ -702,11 +702,11 @@ function Zt() {
     normalizePath: d,
     setter: function(h) {
       var x = d(h);
-      return c.get(h) || c.set(h, function(F, T) {
-        for (var w = 0, E = x.length, j = F; w < E - 1; ) {
+      return c.get(h) || c.set(h, function(O, T) {
+        for (var w = 0, E = x.length, j = O; w < E - 1; ) {
           var k = x[w];
           if (k === "__proto__" || k === "constructor" || k === "prototype")
-            return F;
+            return O;
           j = j[x[w++]];
         }
         j[x[w]] = T;
@@ -742,8 +742,8 @@ function Zt() {
     return h.match(t) || [""];
   }
   function m(h, x, _) {
-    var F = h.length, T, w, E, j;
-    for (w = 0; w < F; w++)
+    var O = h.length, T, w, E, j;
+    for (w = 0; w < O; w++)
       T = h[w], T && (S(T) && (T = '"' + T + '"'), j = b(T), E = !j && /^\d+$/.test(T), x.call(_, T, j, E, w, h));
   }
   function b(h) {
@@ -760,15 +760,15 @@ function Zt() {
   }
   return je;
 }
-var B = Zt(), Fe, Ue;
+var B = Zt(), Oe, Ue;
 function Wt() {
-  if (Ue) return Fe;
+  if (Ue) return Oe;
   Ue = 1;
   const n = /[A-Z\xc0-\xd6\xd8-\xde]?[a-z\xdf-\xf6\xf8-\xff]+(?:['’](?:d|ll|m|re|s|t|ve))?(?=[\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000]|[A-Z\xc0-\xd6\xd8-\xde]|$)|(?:[A-Z\xc0-\xd6\xd8-\xde]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])+(?:['’](?:D|LL|M|RE|S|T|VE))?(?=[\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000]|[A-Z\xc0-\xd6\xd8-\xde](?:[a-z\xdf-\xf6\xf8-\xff]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])|$)|[A-Z\xc0-\xd6\xd8-\xde]?(?:[a-z\xdf-\xf6\xf8-\xff]|[^\ud800-\udfff\xac\xb1\xd7\xf7\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\xbf\u2000-\u206f \t\x0b\f\xa0\ufeff\n\r\u2028\u2029\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\d+\u2700-\u27bfa-z\xdf-\xf6\xf8-\xffA-Z\xc0-\xd6\xd8-\xde])+(?:['’](?:d|ll|m|re|s|t|ve))?|[A-Z\xc0-\xd6\xd8-\xde]+(?:['’](?:D|LL|M|RE|S|T|VE))?|\d*(?:1ST|2ND|3RD|(?![123])\dTH)(?=\b|[a-z_])|\d*(?:1st|2nd|3rd|(?![123])\dth)(?=\b|[A-Z_])|\d+|(?:[\u2700-\u27bf]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|\ud83c[\udffb-\udfff])?(?:\u200d(?:[^\ud800-\udfff]|(?:\ud83c[\udde6-\uddff]){2}|[\ud800-\udbff][\udc00-\udfff])[\ufe0e\ufe0f]?(?:[\u0300-\u036f\ufe20-\ufe2f\u20d0-\u20ff]|\ud83c[\udffb-\udfff])?)*/g, t = (d) => d.match(n) || [], e = (d) => d[0].toUpperCase() + d.slice(1), r = (d, p) => t(d).join(p).toLowerCase(), s = (d) => t(d).reduce(
     (p, m) => `${p}${p ? m[0].toUpperCase() + m.slice(1).toLowerCase() : m.toLowerCase()}`,
     ""
   );
-  return Fe = {
+  return Oe = {
     words: t,
     upperFirst: e,
     camelCase: s,
@@ -777,9 +777,9 @@ function Wt() {
     kebabCase: (d) => r(d, "-"),
     sentenceCase: (d) => e(r(d, " ")),
     titleCase: (d) => t(d).map(e).join(" ")
-  }, Fe;
+  }, Oe;
 }
-var Oe = Wt(), pe = { exports: {} }, qe;
+var Fe = Wt(), pe = { exports: {} }, qe;
 function Gt() {
   if (qe) return pe.exports;
   qe = 1, pe.exports = function(s) {
@@ -1077,35 +1077,35 @@ function K(n) {
       parent: g,
       context: v
     };
-    function _(O = {}) {
+    function _(F = {}) {
       const M = nt(Object.assign({
         value: e,
         originalValue: i,
         label: a.spec.label,
-        path: O.path || r,
+        path: F.path || r,
         spec: a.spec,
-        disableStackTrace: O.disableStackTrace || h
-      }, p, O.params), x), q = new P(P.formatError(O.message || m, M), e, M.path, O.type || f, M.disableStackTrace);
+        disableStackTrace: F.disableStackTrace || h
+      }, p, F.params), x), q = new P(P.formatError(F.message || m, M), e, M.path, F.type || f, M.disableStackTrace);
       return q.params = M, q;
     }
-    const F = S ? o : c;
+    const O = S ? o : c;
     let T = {
       path: r,
       parent: g,
       type: f,
       from: s.from,
       createError: _,
-      resolve(O) {
-        return st(O, x);
+      resolve(F) {
+        return st(F, x);
       },
       options: s,
       originalValue: i,
       schema: a
     };
-    const w = (O) => {
-      P.isError(O) ? F(O) : O ? c(null) : F(_());
-    }, E = (O) => {
-      P.isError(O) ? F(O) : o(O);
+    const w = (F) => {
+      P.isError(F) ? O(F) : F ? c(null) : O(_());
+    }, E = (F) => {
+      P.isError(F) ? O(F) : o(F);
     };
     if (b && G(e))
       return w(!0);
@@ -1117,8 +1117,8 @@ function K(n) {
           throw new Error(`Validation test of type: "${T.type}" returned a Promise during a synchronous validate. This test will finish after the validate call has returned`);
         return Promise.resolve(k).then(w, E);
       }
-    } catch (O) {
-      E(O);
+    } catch (F) {
+      E(F);
       return;
     }
     w(k);
@@ -2239,13 +2239,13 @@ class ut extends L {
     });
   }
   camelCase() {
-    return this.transformKeys(Oe.camelCase);
+    return this.transformKeys(Fe.camelCase);
   }
   snakeCase() {
-    return this.transformKeys(Oe.snakeCase);
+    return this.transformKeys(Fe.snakeCase);
   }
   constantCase() {
-    return this.transformKeys((t) => Oe.snakeCase(t).toUpperCase());
+    return this.transformKeys((t) => Fe.snakeCase(t).toUpperCase());
   }
   describe(t) {
     const e = (t ? this.resolve(t) : this).clone(), r = super.describe(t);
@@ -2262,7 +2262,7 @@ class ut extends L {
   }
 }
 lt.prototype = ut.prototype;
-const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
+const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
   ue,
   {
     type: "submit",
@@ -2272,13 +2272,16 @@ const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
     disabled: n,
     children: n ? /* @__PURE__ */ u.jsx(ce, { size: 24 }) : "Sign In"
   }
-), Or = (n) => lt({
+), Fr = (n, t) => lt({
   [n.name]: be().required(`${n.label} is required`).test(
     "is-email-if-required",
     "Enter a valid email",
-    (t) => n.name === "email" ? be().email().isValidSync(t) : !0
+    (e) => n.name === "email" ? be().email().isValidSync(e) : !0
   ),
-  password: be().required("Password is required")
+  // Add password validation only if the field is present
+  ...t && {
+    [t.name]: be().required(`${t.label} is required`)
+  }
 }), zr = ({
   onSubmit: n,
   isSubmitting: t = !1,
@@ -2286,10 +2289,11 @@ const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
   logo: r,
   title: s = "Sign in to your account",
   loginField: i = { name: "email", label: "Email Address", autoComplete: "email" },
-  validationSchema: a,
-  renderActions: o = Fr
+  passwordField: a = { name: "password", label: "Password", autoComplete: "current-password" },
+  validationSchema: o,
+  renderActions: c = Or
 }) => {
-  const c = a || Or(i);
+  const f = o || Fr(i, a);
   return /* @__PURE__ */ u.jsx(wt, { component: "main", maxWidth: "xs", children: /* @__PURE__ */ u.jsxs(
     Ee,
     {
@@ -2309,7 +2313,7 @@ const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
           Qe,
           {
             onSubmit: n,
-            validationSchema: c,
+            validationSchema: f,
             noValidate: !0,
             children: [
               /* @__PURE__ */ u.jsx(
@@ -2325,20 +2329,20 @@ const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
                   autoFocus: !0
                 }
               ),
-              /* @__PURE__ */ u.jsx(
+              a && /* @__PURE__ */ u.jsx(
                 Ve,
                 {
                   margin: "normal",
                   required: !0,
                   fullWidth: !0,
-                  name: "password",
-                  label: "Password",
+                  id: a.name,
+                  label: a.label,
+                  name: a.name,
                   type: "password",
-                  id: "password",
-                  autoComplete: "current-password"
+                  autoComplete: a.autoComplete
                 }
               ),
-              o({ isSubmitting: t })
+              c({ isSubmitting: t })
             ]
           }
         ) })
@@ -2365,9 +2369,9 @@ const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
     }) })
   ] });
   return /* @__PURE__ */ u.jsxs(N, { sx: { display: "flex" }, children: [
-    /* @__PURE__ */ u.jsx(Ft, {}),
+    /* @__PURE__ */ u.jsx(Ot, {}),
     /* @__PURE__ */ u.jsx(
-      Ot,
+      Ft,
       {
         position: "fixed",
         sx: {

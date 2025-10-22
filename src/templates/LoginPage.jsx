@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Form, TextField } from '../components/forms';
 import { 
@@ -26,7 +25,7 @@ const defaultRenderActions = ({ isSubmitting }) => (
 );
 
 // Default validation schema generator
-const getDefaultValidationSchema = (loginField) => yup.object({
+const getDefaultValidationSchema = (loginField, passwordField) => yup.object({
     [loginField.name]: yup.string()
         .required(`${loginField.label} is required`)
         .test(
@@ -39,7 +38,10 @@ const getDefaultValidationSchema = (loginField) => yup.object({
                 return true;
             }
         ),
-    password: yup.string().required('Password is required'),
+    // Add password validation only if the field is present
+    ...(passwordField && { 
+        [passwordField.name]: yup.string().required(`${passwordField.label} is required`)
+    }),
 });
 
 export const LoginPage = ({
@@ -49,11 +51,12 @@ export const LoginPage = ({
     logo,
     title = 'Sign in to your account',
     loginField = { name: 'email', label: 'Email Address', autoComplete: 'email' },
+    passwordField = { name: 'password', label: 'Password', autoComplete: 'current-password' },
     validationSchema,
     renderActions = defaultRenderActions,
 }) => {
 
-    const finalValidationSchema = validationSchema || getDefaultValidationSchema(loginField);
+    const finalValidationSchema = validationSchema || getDefaultValidationSchema(loginField, passwordField);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -92,16 +95,18 @@ export const LoginPage = ({
                             autoComplete={loginField.autoComplete}
                             autoFocus
                         />
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
+                        {passwordField && (
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id={passwordField.name}
+                                label={passwordField.label}
+                                name={passwordField.name}
+                                type="password"
+                                autoComplete={passwordField.autoComplete}
+                            />
+                        )}
                         
                         {renderActions({ isSubmitting })}
 
