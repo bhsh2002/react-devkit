@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { Form } from '../components/forms'; // Import the main Form component
+import { Form } from '../components/forms';
 import { 
     Box, 
     Typography, 
@@ -11,26 +10,37 @@ import {
     Button 
 } from '@mui/material';
 
-/**
- * @typedef {object} FormApi
- * @property {function(string): Promise<object>} [getOne] - Fetches a single resource. Required for edit mode.
- * @property {function(object): Promise<object>} create - Creates a new resource.
- * @property {function(string, object): Promise<object>} [update] - Updates a resource. Required for edit mode.
- */
+// Default render function for action buttons
+const defaultRenderActions = ({ isSubmitting, onCancel }) => (
+    <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+        <Button 
+            type="submit" 
+            variant="contained" 
+            disabled={isSubmitting}
+        >
+            {isSubmitting ? <CircularProgress size={24} /> : 'Save'}
+        </Button>
+        {onCancel && (
+            <Button variant="outlined" onClick={onCancel} disabled={isSubmitting}>
+                Cancel
+            </Button>
+        )}
+    </Box>
+);
 
 /**
- * A page template for creating or editing a resource. It renders the form fields provided by `FormComponent`
- * and automatically handles data fetching, submission, and action buttons.
+ * A fully dynamic page template for creating or editing a resource.
  * 
  * @param {object} props - The component props.
- * @param {string} props.resourceName - The singular name of the resource (e.g., "Product").
- * @param {string|number} [props.id] - The ID of the resource to edit. If absent, operates in "create" mode.
- * @param {FormApi} props.api - API object with methods for CRUD operations.
- * @param {React.ElementType} props.FormComponent - A component that renders the form fields (e.g., TextFields, Selects).
+ * @param {string} props.resourceName - The singular name of the resource.
+ * @param {string|number} [props.id] - The ID of the resource to edit.
+ * @param {object} props.api - API object with `getOne`, `create`, and `update` methods.
+ * @param {React.ElementType} props.FormComponent - A component that renders the form fields.
  * @param {function(object): void} [props.onSuccess] - Callback on successful submission.
- * @param {function(): void} [props.onCancel] - Callback for the cancel button. If not provided, the button is hidden.
- * @param {string} [props.submitText='Save'] - Text for the submit button.
- * @param {string} [props.cancelText='Cancel'] - Text for the cancel button.
+ * @param {function(): void} [props.onCancel] - Callback for the cancel button, passed to `renderActions`.
+ * @param {function(object): object} [props.responseAdapter] - Adapts the data from `api.getOne`.
+ * @param {function(object): object} [props.requestAdapter] - Adapts the form data before sending to `api.create` or `api.update`.
+ * @param {function({isSubmitting: boolean, onCancel: function}): React.ReactNode} [props.renderActions] - Function to render action buttons.
  */
 export const ResourceFormPage = ({
     resourceName,
@@ -39,8 +49,9 @@ export const ResourceFormPage = ({
     FormComponent,
     onSuccess = () => {},
     onCancel,
-    submitText = 'Save',
-    cancelText = 'Cancel',
+    responseAdapter = (data) => data,
+    requestAdapter = (data) => data,
+    renderActions = defaultRenderActions,
 }) => {
     const [initialData, setInitialData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -53,19 +64,20 @@ export const ResourceFormPage = ({
             setLoading(true);
             setError(null);
             api.getOne(id)
-                .then(response => setInitialData(response))
+                .then(response => setInitialData(responseAdapter(response)))
                 .catch(err => setError(err))
                 .finally(() => setLoading(false));
         }
-    }, [api, id, isEditMode]);
+    }, [api, id, isEditMode, responseAdapter]);
 
     const handleSubmit = async (formData) => {
         setIsSubmitting(true);
         setError(null);
+        const adaptedData = requestAdapter(formData);
         try {
             const savedData = isEditMode
-                ? await api.update(id, formData)
-                : await api.create(formData);
+                ? await api.update(id, adaptedData)
+                : await api.create(adaptedData);
             
             onSuccess(savedData.data);
         } catch (err) { 
@@ -77,7 +89,6 @@ export const ResourceFormPage = ({
     const pageTitle = isEditMode ? `Edit ${resourceName}` : `Create ${resourceName}`;
 
     if (loading) return <CircularProgress />;
-    // Show a generic error if fetching failed, but not if a submission is in progress
     if (error && !isSubmitting) return <Alert severity="error">{error.message || 'Failed to load resource data.'}</Alert>;
 
     return (
@@ -86,34 +97,18 @@ export const ResourceFormPage = ({
                 <Typography variant="h4" component="h1">{pageTitle}</Typography>
             </Toolbar>
             <Paper sx={{ p: 3 }}>
-                {/* Render the form only when data is ready in edit mode, or always in create mode */}
                 {(!isEditMode || initialData) && (
                     <Form onSubmit={handleSubmit} initialValues={initialData}>
-                        {/* Render the fields using the provided component */}
                         <FormComponent />
 
-                        {/* Display submission-specific error */}
                         {error && isSubmitting && (
                             <Alert severity="error" sx={{ mt: 2 }}>
                                 {error.message || 'An error occurred during submission.'}
                             </Alert>
                         )}
 
-                        {/* Action Buttons */}
-                        <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
-                            <Button 
-                                type="submit" 
-                                variant="contained" 
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? <CircularProgress size={24} /> : submitText}
-                            </Button>
-                            {onCancel && (
-                                <Button variant="outlined" onClick={onCancel} disabled={isSubmitting}>
-                                    {cancelText}
-                                </Button>
-                            )}
-                        </Box>
+                        {/* Render action buttons dynamically */}
+                        {renderActions({ isSubmitting, onCancel })}
                     </Form>
                 )}
             </Paper>

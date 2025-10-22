@@ -1,42 +1,58 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Button, Typography, Toolbar, TextField, Switch, FormControlLabel } from '@mui/material';
 import { Add as AddIcon, Search as SearchIcon } from '@mui/icons-material';
 import { DataTable } from '../components';
-import { useDebounce } from '../hooks/useDebounce'; // Assuming a debounce hook exists
+import { useDebounce } from '../hooks/useDebounce';
 
-/**
- * @typedef {import('../components').DataTableColumn} DataTableColumn
- */
+// Default render function for the header
+const defaultRenderHeader = ({ resourceName, createPath, createText }) => (
+    <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
+        <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
+            {resourceName}
+        </Typography>
+        {createPath && (
+            <Button variant="contained" startIcon={<AddIcon />} href={createPath}>
+                {createText}
+            </Button>
+        )}
+    </Toolbar>
+);
 
-/**
- * @typedef {object} FilterOption
- * @property {string} name - The query parameter name for the filter.
- * @property {string} label - The user-facing label for the filter switch.
- */
+// Default render function for the filter/search area
+const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange }) => (
+    <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+        {searchable && (
+            <TextField
+                label="Search"
+                variant="outlined"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                InputProps={{ endAdornment: <SearchIcon color="action" /> }}
+                sx={{ flexGrow: 1, minWidth: '200px' }}
+            />
+        )}
+        {filterOptions.map(opt => (
+            <FormControlLabel
+                key={opt.name}
+                control={<Switch checked={filters[opt.name]} onChange={handleFilterChange} name={opt.name} />}
+                label={opt.label}
+            />
+        ))}
+    </Box>
+);
 
-/**
- * A powerful page template for listing resources. It handles data fetching, pagination, sorting, 
- * searching, and filtering, and displays the data in a DataTable.
- * 
- * @param {object} props - The component props.
- * @param {string} props.resourceName - The name of the resource for the page title.
- * @param {Array<DataTableColumn>} props.columns - Column definitions for the DataTable.
- * @param {object} props.api - API object with a `list` method.
- * @param {function(object): {data: Array<object>, meta: object}} [props.dataAdapter] - A function to adapt the API response to the expected format.
- * @param {string} [props.createPath] - Path for the "Create New" button. If provided, the button is shown.
- * @param {string} [props.createText] - Text for the create button.
- * @param {boolean} [props.searchable=false] - If true, a search input is displayed.
- * @param {Array<FilterOption>} [props.filterOptions=[]] - An array of filter options to display as switches.
- */
 export const ResourceListPage = ({
     resourceName,
     columns,
     api,
-    dataAdapter = (response) => response, // Default adapter does nothing
+    dataAdapter = (response) => response,
     createPath,
     createText = 'Create New',
     searchable = false,
     filterOptions = [],
+    renderHeader = defaultRenderHeader,
+    renderFilters = defaultRenderFilters,
 }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -92,40 +108,16 @@ export const ResourceListPage = ({
 
     return (
         <Box>
-            <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
-                <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
-                    {resourceName}
-                </Typography>
-                {createPath && (
-                    <Button
-                        variant="contained"
-                        startIcon={<AddIcon />}
-                        href={createPath}
-                    >
-                        {createText}
-                    </Button>
-                )}
-            </Toolbar>
-
-            <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
-                {searchable && (
-                    <TextField
-                        label="Search"
-                        variant="outlined"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        InputProps={{ endAdornment: <SearchIcon color="action" /> }}
-                        sx={{ flexGrow: 1, minWidth: '200px' }}
-                    />
-                )}
-                {filterOptions.map(opt => (
-                    <FormControlLabel
-                        key={opt.name}
-                        control={<Switch checked={filters[opt.name]} onChange={handleFilterChange} name={opt.name} />}
-                        label={opt.label}
-                    />
-                ))}
-            </Box>
+            {renderHeader({ resourceName, createPath, createText })}
+            
+            {renderFilters({
+                searchable,
+                searchQuery,
+                setSearchQuery,
+                filterOptions,
+                filters,
+                handleFilterChange,
+            })}
 
             <DataTable
                 rows={data}
