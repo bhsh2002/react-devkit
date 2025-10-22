@@ -6,25 +6,33 @@ import { DataTable } from '../components';
 import { useDebounce } from '../hooks/useDebounce';
 
 // Default render function for the header
-const defaultRenderHeader = ({ resourceName, createPath, createText }) => (
-    <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
-        <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
-            {resourceName}
-        </Typography>
-        {createPath && (
-            <Button variant="contained" startIcon={<AddIcon />} href={createPath}>
-                {createText}
-            </Button>
-        )}
-    </Toolbar>
-);
+const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent }) => {
+    const Link = linkComponent;
+    return (
+        <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
+            <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
+                {resourceName}
+            </Typography>
+            {createPath && (
+                <Button
+                    variant="contained"
+                    startIcon={<AddIcon />}
+                    // Use the passed Link component if it exists
+                    {...(Link ? { component: Link, to: createPath } : { href: createPath })}
+                >
+                    {createText}
+                </Button>
+            )}
+        </Toolbar>
+    );
+};
 
 // Default render function for the filter/search area
-const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange }) => (
-    <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap' }}>
+const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange, searchPlaceholder }) => (
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'center' }}>
         {searchable && (
             <TextField
-                label="Search"
+                label={searchPlaceholder}
                 variant="outlined"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -51,6 +59,8 @@ export const ResourceListPage = ({
     createText = 'Create New',
     searchable = false,
     filterOptions = [],
+    linkComponent,
+    searchPlaceholder = 'Search...',
     renderHeader = defaultRenderHeader,
     renderFilters = defaultRenderFilters,
 }) => {
@@ -108,7 +118,7 @@ export const ResourceListPage = ({
 
     return (
         <Box>
-            {renderHeader({ resourceName, createPath, createText })}
+            {renderHeader({ resourceName, createPath, createText, linkComponent })}
             
             {renderFilters({
                 searchable,
@@ -117,6 +127,7 @@ export const ResourceListPage = ({
                 filterOptions,
                 filters,
                 handleFilterChange,
+                searchPlaceholder,
             })}
 
             <DataTable
@@ -124,6 +135,7 @@ export const ResourceListPage = ({
                 columns={columns}
                 loading={loading}
                 error={error}
+                pagination
                 rowCount={rowCount}
                 page={page}
                 onPageChange={setPage}
