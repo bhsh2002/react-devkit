@@ -1,24 +1,36 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, Toolbar, Paper, CircularProgress, Alert } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Form } from '../components/forms'; // Import the main Form component
+import { 
+    Box, 
+    Typography, 
+    Toolbar, 
+    Paper, 
+    CircularProgress, 
+    Alert, 
+    Button 
+} from '@mui/material';
 
 /**
  * @typedef {object} FormApi
- * @property {function(string): Promise<object>} [getOne] - @en A function that fetches a single resource by its ID. Required for edit mode. @ar دالة تجلب موردًا واحدًا بواسطة معرفه. مطلوبة في وضع التعديل.
- * @property {function(object): Promise<object>} create - @en A function that creates a new resource. @ar دالة تنشئ موردًا جديدًا.
- * @property {function(string, object): Promise<object>} [update] - @en A function that updates an existing resource. Required for edit mode. @ar دالة تحدث موردًا موجودًا. مطلوبة في وضع التعديل.
+ * @property {function(string): Promise<object>} [getOne] - Fetches a single resource. Required for edit mode.
+ * @property {function(object): Promise<object>} create - Creates a new resource.
+ * @property {function(string, object): Promise<object>} [update] - Updates a resource. Required for edit mode.
  */
 
 /**
- * @en A page template for creating or editing a resource. It handles fetching data for editing, submitting the form, and displaying loading/error states. It is a "smart" component that encapsulates the logic for resource form handling.
- * @ar قالب صفحة لإنشاء أو تعديل مورد. يتعامل مع جلب البيانات للتعديل، وتقديم النموذج، وعرض حالات التحميل والخطأ. إنه "مكون ذكي" يغلف منطق التعامل مع نماذج الموارد.
- *
+ * A page template for creating or editing a resource. It renders the form fields provided by `FormComponent`
+ * and automatically handles data fetching, submission, and action buttons.
+ * 
  * @param {object} props - The component props.
- * @param {string} props.resourceName - @en The singular name of the resource, used for page titles (e.g., "Product", "User"). @ar الاسم المفرد للمورد، يُستخدم لعناوين الصفحات (مثل "منتج"، "مستخدم").
- * @param {string|number} [props.id] - @en The ID of the resource to edit. If not provided, the component operates in "create" mode. @ar معرف المورد المراد تعديله. إذا لم يتم توفيره، يعمل المكون في وضع "الإنشاء".
- * @param {FormApi} props.api - @en An API object with methods for `getOne`, `create`, and `update`. @ar كائن API يحتوي على دوال لـ `getOne` و `create` و `update`.
- * @param {React.ElementType} props.FormComponent - @en The form component to be rendered. It will receive `initialData`, `onSubmit`, `isSubmitting`, and `submitError` as props. @ar مكون النموذج المراد عرضه. سيستقبل `initialData` و `onSubmit` و `isSubmitting` و `submitError` كخصائص.
- * @param {function(object): void} [props.onSuccess] - @en A callback function executed after a successful create or update operation. It receives the saved data. @ar دالة استدعاء يتم تنفيذها بعد عملية إنشاء أو تحديث ناجحة. تستقبل البيانات المحفوظة.
+ * @param {string} props.resourceName - The singular name of the resource (e.g., "Product").
+ * @param {string|number} [props.id] - The ID of the resource to edit. If absent, operates in "create" mode.
+ * @param {FormApi} props.api - API object with methods for CRUD operations.
+ * @param {React.ElementType} props.FormComponent - A component that renders the form fields (e.g., TextFields, Selects).
+ * @param {function(object): void} [props.onSuccess] - Callback on successful submission.
+ * @param {function(): void} [props.onCancel] - Callback for the cancel button. If not provided, the button is hidden.
+ * @param {string} [props.submitText='Save'] - Text for the submit button.
+ * @param {string} [props.cancelText='Cancel'] - Text for the cancel button.
  */
 export const ResourceFormPage = ({
     resourceName,
@@ -26,12 +38,14 @@ export const ResourceFormPage = ({
     api,
     FormComponent,
     onSuccess = () => {},
+    onCancel,
+    submitText = 'Save',
+    cancelText = 'Cancel',
 }) => {
     const [initialData, setInitialData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const isEditMode = id != null;
 
     useEffect(() => {
@@ -39,15 +53,9 @@ export const ResourceFormPage = ({
             setLoading(true);
             setError(null);
             api.getOne(id)
-                .then(response => {
-                    setInitialData(response);
-                })
-                .catch(err => {
-                    setError(err);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
+                .then(response => setInitialData(response))
+                .catch(err => setError(err))
+                .finally(() => setLoading(false));
         }
     }, [api, id, isEditMode]);
 
@@ -55,33 +63,22 @@ export const ResourceFormPage = ({
         setIsSubmitting(true);
         setError(null);
         try {
-            let savedData;
-            if (isEditMode) {
-                // Omit 'id' from the payload if it exists, as it's already in the URL/first param
-                const { id: formId, ...updateData } = formData;
-                savedData = await api.update(id, updateData);
-            } else {
-                savedData = await api.create(formData);
-            }
+            const savedData = isEditMode
+                ? await api.update(id, formData)
+                : await api.create(formData);
             
             onSuccess(savedData.data);
-        } catch (err) {
+        } catch (err) { 
             setError(err);
             setIsSubmitting(false);
         }
-        // No need to set isSubmitting to false on success because we will be navigating away
     };
 
     const pageTitle = isEditMode ? `Edit ${resourceName}` : `Create ${resourceName}`;
 
-    if (loading) {
-        return <CircularProgress />;
-    }
-
-    if (error && !initialData) {
-        // Show error only if it happened while fetching initial data
-        return <Alert severity="error">{error.message || 'Failed to load resource.'}</Alert>;
-    }
+    if (loading) return <CircularProgress />;
+    // Show a generic error if fetching failed, but not if a submission is in progress
+    if (error && !isSubmitting) return <Alert severity="error">{error.message || 'Failed to load resource data.'}</Alert>;
 
     return (
         <Box>
@@ -91,12 +88,33 @@ export const ResourceFormPage = ({
             <Paper sx={{ p: 3 }}>
                 {/* Render the form only when data is ready in edit mode, or always in create mode */}
                 {(!isEditMode || initialData) && (
-                    <FormComponent
-                        initialData={initialData}
-                        onSubmit={handleSubmit}
-                        isSubmitting={isSubmitting}
-                        submitError={isSubmitting ? error : null} // Pass submit-specific error to the form
-                    />
+                    <Form onSubmit={handleSubmit} initialValues={initialData}>
+                        {/* Render the fields using the provided component */}
+                        <FormComponent />
+
+                        {/* Display submission-specific error */}
+                        {error && isSubmitting && (
+                            <Alert severity="error" sx={{ mt: 2 }}>
+                                {error.message || 'An error occurred during submission.'}
+                            </Alert>
+                        )}
+
+                        {/* Action Buttons */}
+                        <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+                            <Button 
+                                type="submit" 
+                                variant="contained" 
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? <CircularProgress size={24} /> : submitText}
+                            </Button>
+                            {onCancel && (
+                                <Button variant="outlined" onClick={onCancel} disabled={isSubmitting}>
+                                    {cancelText}
+                                </Button>
+                            )}
+                        </Box>
+                    </Form>
                 )}
             </Paper>
         </Box>
