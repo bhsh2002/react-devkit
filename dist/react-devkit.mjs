@@ -282,7 +282,7 @@ function It() {
   return Me || (Me = 1, process.env.NODE_ENV === "production" ? he.exports = Pt() : he.exports = Nt()), he.exports;
 }
 var u = It();
-const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* @__PURE__ */ u.jsxs(
+const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* @__PURE__ */ u.jsxs(
   Ee,
   {
     sx: {
@@ -425,7 +425,7 @@ const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       ...e
     }
   );
-}, Cr = ({ name: n, label: t = "Upload File", initialPreview: e }) => {
+}, Rr = ({ name: n, label: t = "Upload File", initialPreview: e }) => {
   const r = we(fe), [s, i] = C(e || null);
   if (!r)
     throw new Error("FileUploadField must be used within a Form component");
@@ -452,7 +452,7 @@ const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       /* @__PURE__ */ u.jsx("input", { type: "file", hidden: !0, accept: "image/*", onChange: f, "data-testid": "file-upload-input" })
     ] })
   ] });
-}, Ar = ({
+}, Dr = ({
   name: n,
   label: t,
   fetchOptions: e,
@@ -510,7 +510,7 @@ const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       ...i
     }
   );
-}, Rr = ({ name: n, label: t, ...e }) => {
+}, Pr = ({ name: n, label: t, ...e }) => {
   const r = we(fe);
   if (!r)
     throw new Error("SwitchField must be used within a Form component");
@@ -565,7 +565,7 @@ const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     },
     a.name
   ))
-] }), Dr = ({
+] }), Nr = ({
   resourceName: n,
   columns: t,
   api: e,
@@ -646,7 +646,7 @@ const $r = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     }
   ),
   t && /* @__PURE__ */ u.jsx(ue, { variant: "outlined", onClick: t, disabled: n, children: "Cancel" })
-] }), Pr = ({
+] }), Ir = ({
   resourceName: n,
   id: t,
   api: e,
@@ -2262,22 +2262,34 @@ class ut extends L {
   }
 }
 lt.prototype = ut.prototype;
-const Nr = ({
+const Fr = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
+  ue,
+  {
+    type: "submit",
+    fullWidth: !0,
+    variant: "contained",
+    sx: { mt: 3, mb: 2 },
+    disabled: n,
+    children: n ? /* @__PURE__ */ u.jsx(ce, { size: 24 }) : "Sign In"
+  }
+), Or = (n) => lt({
+  [n.name]: be().required(`${n.label} is required`).test(
+    "is-email-if-required",
+    "Enter a valid email",
+    (t) => n.name === "email" ? be().email().isValidSync(t) : !0
+  ),
+  password: be().required("Password is required")
+}), zr = ({
   onSubmit: n,
   isSubmitting: t = !1,
   error: e,
   logo: r,
   title: s = "Sign in to your account",
-  loginField: i = { name: "email", label: "Email Address", autoComplete: "email" }
+  loginField: i = { name: "email", label: "Email Address", autoComplete: "email" },
+  validationSchema: a,
+  renderActions: o = Fr
 }) => {
-  const a = lt({
-    [i.name]: be().required(`${i.label} is required`).test(
-      "is-email-if-required",
-      "Enter a valid email",
-      (o) => i.name === "email" ? be().email().isValidSync(o) : !0
-    ),
-    password: be().required("Password is required")
-  });
+  const c = a || Or(i);
   return /* @__PURE__ */ u.jsx(wt, { component: "main", maxWidth: "xs", children: /* @__PURE__ */ u.jsxs(
     Ee,
     {
@@ -2297,7 +2309,7 @@ const Nr = ({
           Qe,
           {
             onSubmit: n,
-            validationSchema: a,
+            validationSchema: c,
             noValidate: !0,
             children: [
               /* @__PURE__ */ u.jsx(
@@ -2326,24 +2338,14 @@ const Nr = ({
                   autoComplete: "current-password"
                 }
               ),
-              /* @__PURE__ */ u.jsx(
-                ue,
-                {
-                  type: "submit",
-                  fullWidth: !0,
-                  variant: "contained",
-                  sx: { mt: 3, mb: 2 },
-                  disabled: t,
-                  children: t ? /* @__PURE__ */ u.jsx(ce, { size: 24 }) : "Sign In"
-                }
-              )
+              o({ isSubmitting: t })
             ]
           }
         ) })
       ]
     }
   ) });
-}, ee = 240, Ir = ({
+}, ee = 240, Mr = ({
   navItems: n = [],
   title: t = "Dashboard",
   drawerHeader: e,
@@ -2444,16 +2446,16 @@ const Nr = ({
   ] });
 };
 export {
-  Ar as AutocompleteField,
-  Ir as DashboardLayout,
+  Dr as AutocompleteField,
+  Mr as DashboardLayout,
   Vt as DataTable,
-  Cr as FileUploadField,
+  Rr as FileUploadField,
   Qe as Form,
   fe as FormContext,
-  Nr as LoginPage,
-  Pr as ResourceFormPage,
-  Dr as ResourceListPage,
-  $r as StatCard,
-  Rr as SwitchField,
+  zr as LoginPage,
+  Ir as ResourceFormPage,
+  Nr as ResourceListPage,
+  Ar as StatCard,
+  Pr as SwitchField,
   Ve as TextField
 };

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Form, TextField } from '../components/forms';
 import { 
@@ -11,25 +12,36 @@ import {
 } from '@mui/material';
 import * as yup from 'yup';
 
-/**
- * @typedef {object} LoginField
- * @property {string} name - @en The name of the login field (e.g., 'email' or 'username'). @ar اسم حقل تسجيل الدخول (مثل 'email' أو 'username').
- * @property {string} label - @en The label for the login field (e.g., 'Email Address' or 'Username'). @ar التسمية للحقل (مثل 'Email Address' أو 'Username').
- * @property {string} [autoComplete='email'] - @en The autocomplete value for the field. @ar قيمة الإكمال التلقائي للحقل.
- */
+// Default render function for action buttons
+const defaultRenderActions = ({ isSubmitting }) => (
+    <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        sx={{ mt: 3, mb: 2 }}
+        disabled={isSubmitting}
+    >
+        {isSubmitting ? <CircularProgress size={24} /> : 'Sign In'}
+    </Button>
+);
 
-/**
- * @en A presentational template for a login page. It provides a standard UI for authentication and is composed of the library's form components.
- * @ar قالب عرض لصفحة تسجيل الدخول. يوفر واجهة مستخدم قياسية للمصادقة ويتكون من مكونات النماذج الخاصة بالمكتبة.
- *
- * @param {object} props - The component props.
- * @param {function(object): void} props.onSubmit - @en A callback function executed when the form is submitted. @ar دالة استدعاء يتم تنفيذها عند إرسال النموذج.
- * @param {boolean} [props.isSubmitting=false] - @en If true, shows a loading indicator on the submit button. @ar إذا كانت true، يتم عرض مؤشر تحميل على زر الإرسال.
- * @param {Error} [props.error] - @en If an error object is provided, an error message is displayed. @ar إذا تم توفير كائن خطأ، يتم عرض رسالة خطأ.
- * @param {React.ReactNode} [props.logo] - @en A React node to display as a logo. @ar مكون React لعرضه كشعار.
- * @param {string} [props.title='Sign in to your account'] - @en The main title displayed above the form. @ar العنوان الرئيسي الذي يُعرض فوق النموذج.
- * @param {LoginField} [props.loginField] - @en Configuration for the login identifier field. Defaults to a standard email field. @ar إعدادات حقل معرّف تسجيل الدخول. الافتراضي هو حقل بريد إلكتروني قياسي.
- */
+// Default validation schema generator
+const getDefaultValidationSchema = (loginField) => yup.object({
+    [loginField.name]: yup.string()
+        .required(`${loginField.label} is required`)
+        .test(
+            'is-email-if-required',
+            'Enter a valid email',
+            (value) => {
+                if (loginField.name === 'email') {
+                    return yup.string().email().isValidSync(value);
+                }
+                return true;
+            }
+        ),
+    password: yup.string().required('Password is required'),
+});
+
 export const LoginPage = ({
     onSubmit,
     isSubmitting = false,
@@ -37,25 +49,11 @@ export const LoginPage = ({
     logo,
     title = 'Sign in to your account',
     loginField = { name: 'email', label: 'Email Address', autoComplete: 'email' },
+    validationSchema,
+    renderActions = defaultRenderActions,
 }) => {
 
-    // Dynamically create the validation schema based on the login field name
-    const validationSchema = yup.object({
-        [loginField.name]: yup.string()
-            .required(`${loginField.label} is required`)
-            .test(
-                'is-email-if-required',
-                'Enter a valid email',
-                (value) => {
-                    // Only apply email validation if the field name is 'email'
-                    if (loginField.name === 'email') {
-                        return yup.string().email().isValidSync(value);
-                    }
-                    return true; // Skip validation for other field names like 'username'
-                }
-            ),
-        password: yup.string().required('Password is required'),
-    });
+    const finalValidationSchema = validationSchema || getDefaultValidationSchema(loginField);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -81,7 +79,7 @@ export const LoginPage = ({
                 <Box sx={{ mt: 1, width: '100%' }}>
                     <Form 
                         onSubmit={onSubmit} 
-                        validationSchema={validationSchema}
+                        validationSchema={finalValidationSchema}
                         noValidate
                     >
                         <TextField
@@ -104,15 +102,9 @@ export const LoginPage = ({
                             id="password"
                             autoComplete="current-password"
                         />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? <CircularProgress size={24} /> : 'Sign In'}
-                        </Button>
+                        
+                        {renderActions({ isSubmitting })}
+
                     </Form>
                 </Box>
             </Paper>
