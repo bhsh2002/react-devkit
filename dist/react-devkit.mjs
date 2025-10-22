@@ -1,5 +1,5 @@
 import ft, { createContext as dt, useState as C, useCallback as Je, useContext as _e, useEffect as se } from "react";
-import { Paper as Se, Box as P, Typography as Z, Toolbar as ne, TableContainer as ht, Table as pt, TableHead as mt, TableRow as ie, TableCell as ae, TableSortLabel as xt, TableBody as bt, TablePagination as gt, CircularProgress as ce, TextField as Re, Avatar as yt, Button as ue, Autocomplete as vt, FormControlLabel as Xe, Switch as He, Alert as $e, Container as wt, List as Et, ListItem as _t, ListItemButton as St, ListItemIcon as Tt, ListItemText as jt, CssBaseline as Ot, AppBar as Ft, IconButton as kt, Drawer as Ne } from "@mui/material";
+import { Paper as Se, Box as D, Typography as Z, Toolbar as ne, TableContainer as ht, Table as pt, TableHead as mt, TableRow as ie, TableCell as ae, TableSortLabel as xt, TableBody as bt, TablePagination as gt, CircularProgress as ce, TextField as Re, Avatar as yt, Button as ue, Autocomplete as vt, FormControlLabel as Xe, Switch as He, Alert as $e, Container as wt, List as Et, ListItem as _t, ListItemButton as St, ListItemIcon as Tt, ListItemText as jt, CssBaseline as Ot, AppBar as Ft, IconButton as kt, Drawer as Ne } from "@mui/material";
 import { ImageNotSupported as $t, Add as Ct, Search as At, Menu as Rt } from "@mui/icons-material";
 function Dt(n) {
   return n && n.__esModule && Object.prototype.hasOwnProperty.call(n, "default") ? n.default : n;
@@ -297,14 +297,14 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     onClick: i,
     elevation: 2,
     children: [
-      /* @__PURE__ */ u.jsx(P, { sx: { color: r || "primary.main", fontSize: 40 }, "data-testid": "statcard-icon", children: n }),
-      /* @__PURE__ */ u.jsxs(P, { children: [
+      /* @__PURE__ */ u.jsx(D, { sx: { color: r || "primary.main", fontSize: 40 }, "data-testid": "statcard-icon", children: n }),
+      /* @__PURE__ */ u.jsxs(D, { children: [
         /* @__PURE__ */ u.jsx(Z, { color: "text.secondary", children: t }),
         /* @__PURE__ */ u.jsx(Z, { variant: "h5", sx: { fontWeight: "bold" }, children: e })
       ] })
     ]
   }
-), zt = () => /* @__PURE__ */ u.jsx(P, { sx: { p: 4, textAlign: "center" }, children: /* @__PURE__ */ u.jsx(Z, { color: "text.secondary", children: "No rows" }) }), Mt = () => /* @__PURE__ */ u.jsx(P, { sx: { display: "flex", justifyContent: "center", alignItems: "center", p: 4 }, children: /* @__PURE__ */ u.jsx(ce, {}) }), Vt = ({
+), zt = () => /* @__PURE__ */ u.jsx(D, { sx: { p: 4, textAlign: "center" }, children: /* @__PURE__ */ u.jsx(Z, { color: "text.secondary", children: "No rows" }) }), Mt = () => /* @__PURE__ */ u.jsx(D, { sx: { display: "flex", justifyContent: "center", alignItems: "center", p: 4 }, children: /* @__PURE__ */ u.jsx(ce, {}) }), Vt = ({
   // Data
   rows: n = [],
   columns: t = [],
@@ -344,7 +344,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   }, E = x.length > 0 ? x[0] : null;
   return /* @__PURE__ */ u.jsxs(Se, { sx: h, children: [
     b && /* @__PURE__ */ u.jsx(ne, { children: /* @__PURE__ */ u.jsx(b, { ..._.toolbar || {} }) }),
-    /* @__PURE__ */ u.jsx(ht, { children: /* @__PURE__ */ u.jsxs(pt, { stickyHeader: !0, children: [
+    /* @__PURE__ */ u.jsx(D, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ u.jsx(ht, { children: /* @__PURE__ */ u.jsxs(pt, { stickyHeader: !0, children: [
       /* @__PURE__ */ u.jsx(mt, { children: /* @__PURE__ */ u.jsx(ie, { children: t.map((w) => /* @__PURE__ */ u.jsx(
         ae,
         {
@@ -367,7 +367,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
         const k = j.field.split(".").reduce((M, F) => M?.[F], w);
         return /* @__PURE__ */ u.jsx(ae, { align: j.align || "inherit", children: j.renderCell ? j.renderCell({ value: k, row: w, id: e(w) }) : k }, j.field);
       }) }, e(w))) })
-    ] }) }),
+    ] }) }) }),
     i && !s && /* @__PURE__ */ u.jsx(
       gt,
       {
@@ -377,7 +377,9 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
         onPageChange: (w, j) => c(j),
         rowsPerPage: f,
         onRowsPerPageChange: (w) => d(parseInt(w.target.value, 10)),
-        rowsPerPageOptions: p
+        rowsPerPageOptions: p,
+        showFirstButton: !0,
+        showLastButton: !0
       }
     )
   ] });
@@ -445,7 +447,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       }, m.readAsDataURL(p);
     }
   };
-  return /* @__PURE__ */ u.jsxs(P, { sx: { display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }, children: [
+  return /* @__PURE__ */ u.jsxs(D, { sx: { display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }, children: [
     /* @__PURE__ */ u.jsx(yt, { src: s, sx: { width: 100, height: 100 }, children: !s && /* @__PURE__ */ u.jsx($t, { sx: { width: "70%", height: "70%" } }) }),
     /* @__PURE__ */ u.jsxs(ue, { variant: "outlined", component: "label", children: [
       t,
@@ -544,8 +546,8 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
   }, [n, t]), e;
 }, Ut = ({ resourceName: n, createPath: t, createText: e, linkComponent: r }) => {
   const s = r;
-  return /* @__PURE__ */ u.jsxs(ne, { sx: { p: "0 !important", mb: 2, display: "flex", flexWrap: "wrap" }, children: [
-    /* @__PURE__ */ u.jsx(Z, { variant: "h4", component: "h1", sx: { flexGrow: 1 }, children: n }),
+  return /* @__PURE__ */ u.jsxs(ne, { sx: { p: "0 !important", mb: 2, display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "flex-start", sm: "center" } }, children: [
+    /* @__PURE__ */ u.jsx(Z, { variant: "h4", component: "h1", sx: { flexGrow: 1, mb: { xs: 2, sm: 0 } }, children: n }),
     t && /* @__PURE__ */ u.jsx(
       ue,
       {
@@ -556,7 +558,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       }
     )
   ] });
-}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(P, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "center" }, children: [
+}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(D, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "center" }, children: [
   n && /* @__PURE__ */ u.jsx(
     Re,
     {
@@ -617,7 +619,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
     const { name: q, checked: H } = N.target;
     W((Q) => ({ ...Q, [q]: H })), S(0);
   };
-  return /* @__PURE__ */ u.jsxs(P, { children: [
+  return /* @__PURE__ */ u.jsxs(D, { children: [
     d({ resourceName: n, createPath: s, createText: i, linkComponent: c }),
     p({
       searchable: a,
@@ -650,7 +652,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       }
     )
   ] });
-}, Yt = ({ isSubmitting: n, onCancel: t }) => /* @__PURE__ */ u.jsxs(P, { sx: { mt: 3, display: "flex", gap: 2 }, children: [
+}, Yt = ({ isSubmitting: n, onCancel: t }) => /* @__PURE__ */ u.jsxs(D, { sx: { mt: 3, display: "flex", gap: 2 }, children: [
   /* @__PURE__ */ u.jsx(
     ue,
     {
@@ -687,7 +689,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       g(E), _(!1);
     }
   }, T = h ? `Edit ${n}` : `Create ${n}`;
-  return p ? /* @__PURE__ */ u.jsx(ce, {}) : x && !v ? /* @__PURE__ */ u.jsx($e, { severity: "error", children: x.message || "Failed to load resource data." }) : /* @__PURE__ */ u.jsxs(P, { children: [
+  return p ? /* @__PURE__ */ u.jsx(ce, {}) : x && !v ? /* @__PURE__ */ u.jsx($e, { severity: "error", children: x.message || "Failed to load resource data." }) : /* @__PURE__ */ u.jsxs(D, { children: [
     /* @__PURE__ */ u.jsx(ne, { sx: { p: "0 !important", mb: 2 }, children: /* @__PURE__ */ u.jsx(Z, { variant: "h4", component: "h1", children: T }) }),
     /* @__PURE__ */ u.jsx(Se, { sx: { p: 3 }, children: (!h || f) && /* @__PURE__ */ u.jsxs(Qe, { onSubmit: b, initialValues: f, children: [
       /* @__PURE__ */ u.jsx(r, {}),
@@ -886,7 +888,7 @@ et = Symbol.toStringTag;
 class Ze {
   constructor(t, e, r, s) {
     this.name = void 0, this.message = void 0, this.value = void 0, this.path = void 0, this.type = void 0, this.params = void 0, this.errors = void 0, this.inner = void 0, this[et] = "Error", this.name = "ValidationError", this.value = e, this.path = r, this.type = s, this.errors = [], this.inner = [], Ke(t).forEach((i) => {
-      if (D.isError(i)) {
+      if (P.isError(i)) {
         this.errors.push(...i.errors);
         const a = i.inner.length ? i.inner : [i];
         this.inner.push(...a);
@@ -897,7 +899,7 @@ class Ze {
 }
 tt = Symbol.hasInstance;
 rt = Symbol.toStringTag;
-class D extends Error {
+class P extends Error {
   static formatError(t, e) {
     const r = e.label || e.path || "this";
     return e = Object.assign({}, e, {
@@ -912,7 +914,7 @@ class D extends Error {
     const a = new Ze(t, e, r, s);
     if (i)
       return a;
-    super(), this.value = void 0, this.path = void 0, this.type = void 0, this.params = void 0, this.errors = [], this.inner = [], this[rt] = "Error", this.name = a.name, this.message = a.message, this.type = a.type, this.value = a.value, this.path = a.path, this.errors = a.errors, this.inner = a.inner, Error.captureStackTrace && Error.captureStackTrace(this, D);
+    super(), this.value = void 0, this.path = void 0, this.type = void 0, this.params = void 0, this.errors = [], this.inner = [], this[rt] = "Error", this.name = a.name, this.message = a.message, this.type = a.type, this.value = a.value, this.path = a.path, this.errors = a.errors, this.inner = a.inner, Error.captureStackTrace && Error.captureStackTrace(this, P);
   }
   static [tt](t) {
     return Ze[Symbol.hasInstance](t) || super[Symbol.hasInstance](t);
@@ -979,7 +981,7 @@ let V = {
       if (e.length < s) return `${t} tuple value has too few items, expected a length of ${s} but got ${e.length} for value: \`${Y(e, !0)}\``;
       if (e.length > s) return `${t} tuple value has too many items, expected a length of ${s} but got ${e.length} for value: \`${Y(e, !0)}\``;
     }
-    return D.formatError(V.notType, n);
+    return P.formatError(V.notType, n);
   }
 };
 Object.assign(/* @__PURE__ */ Object.create(null), {
@@ -1100,7 +1102,7 @@ function ee(n) {
         path: F.path || r,
         spec: a.spec,
         disableStackTrace: F.disableStackTrace || h
-      }, p, F.params), b), W = new D(D.formatError(F.message || m, z), e, z.path, F.type || f, z.disableStackTrace);
+      }, p, F.params), b), W = new P(P.formatError(F.message || m, z), e, z.path, F.type || f, z.disableStackTrace);
       return W.params = z, W;
     }
     const O = _ ? o : c;
@@ -1118,9 +1120,9 @@ function ee(n) {
       schema: a
     };
     const E = (F) => {
-      D.isError(F) ? O(F) : F ? c(null) : O(T());
+      P.isError(F) ? O(F) : F ? c(null) : O(T());
     }, w = (F) => {
-      D.isError(F) ? O(F) : o(F);
+      P.isError(F) ? O(F) : o(F);
     };
     if (x && G(e))
       return E(!0);
@@ -1461,9 +1463,9 @@ attempted value: ${a}
       value: t
     })), i = (r = e?.disableStackTrace) != null ? r : s.spec.disableStackTrace;
     return new Promise((a, o) => s._validate(t, e, (c, f) => {
-      D.isError(c) && (c.value = f), o(c);
+      P.isError(c) && (c.value = f), o(c);
     }, (c, f) => {
-      c.length ? o(new D(c, f, void 0, void 0, i)) : a(f);
+      c.length ? o(new P(c, f, void 0, void 0, i)) : a(f);
     }));
   }
   validateSync(t, e) {
@@ -1474,15 +1476,15 @@ attempted value: ${a}
     return s._validate(t, Object.assign({}, e, {
       sync: !0
     }), (o, c) => {
-      throw D.isError(o) && (o.value = c), o;
+      throw P.isError(o) && (o.value = c), o;
     }, (o, c) => {
-      if (o.length) throw new D(o, t, void 0, void 0, a);
+      if (o.length) throw new P(o, t, void 0, void 0, a);
       i = c;
     }), i;
   }
   isValid(t, e) {
     return this.validate(t, e).then(() => !0, (r) => {
-      if (D.isError(r)) return !1;
+      if (P.isError(r)) return !1;
       throw r;
     });
   }
@@ -1490,7 +1492,7 @@ attempted value: ${a}
     try {
       return this.validateSync(t, e), !0;
     } catch (r) {
-      if (D.isError(r)) return !1;
+      if (P.isError(r)) return !1;
       throw r;
     }
   }
@@ -1693,7 +1695,7 @@ attempted value: ${a}
             })
           };
         } catch (s) {
-          if (s instanceof D)
+          if (s instanceof P)
             return {
               issues: it(s)
             };
@@ -2321,10 +2323,10 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
         alignItems: "center"
       },
       children: [
-        r && /* @__PURE__ */ u.jsx(P, { mb: 2, children: r }),
+        r && /* @__PURE__ */ u.jsx(D, { mb: 2, children: r }),
         /* @__PURE__ */ u.jsx(Z, { component: "h1", variant: "h5", children: s }),
         e && /* @__PURE__ */ u.jsx($e, { severity: "error", sx: { width: "100%", mt: 2 }, children: e.message }),
-        /* @__PURE__ */ u.jsx(P, { sx: { mt: 1, width: "100%" }, children: /* @__PURE__ */ u.jsxs(
+        /* @__PURE__ */ u.jsx(D, { sx: { mt: 1, width: "100%" }, children: /* @__PURE__ */ u.jsxs(
           Qe,
           {
             onSubmit: n,
@@ -2373,7 +2375,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
 }) => {
   const [i, a] = C(!1), o = () => {
     a(!i);
-  }, c = /* @__PURE__ */ u.jsxs(P, { children: [
+  }, c = /* @__PURE__ */ u.jsxs(D, { children: [
     e ? /* @__PURE__ */ u.jsx(ne, { sx: { justifyContent: "center" }, children: e }) : null,
     /* @__PURE__ */ u.jsx(Et, { children: n.map((f, d) => {
       const p = f.component || "a", m = p !== "a" ? { to: f.path } : { href: f.path };
@@ -2383,7 +2385,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
       ] }) }, d);
     }) })
   ] });
-  return /* @__PURE__ */ u.jsxs(P, { sx: { display: "flex" }, children: [
+  return /* @__PURE__ */ u.jsxs(D, { sx: { display: "flex" }, children: [
     /* @__PURE__ */ u.jsx(Ot, {}),
     /* @__PURE__ */ u.jsx(
       Ft,
@@ -2411,7 +2413,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
       }
     ),
     /* @__PURE__ */ u.jsxs(
-      P,
+      D,
       {
         component: "nav",
         sx: { width: { sm: te }, flexShrink: { sm: 0 } },
@@ -2450,7 +2452,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
       }
     ),
     /* @__PURE__ */ u.jsxs(
-      P,
+      D,
       {
         component: "main",
         sx: {

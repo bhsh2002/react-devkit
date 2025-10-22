@@ -128,7 +128,8 @@ export const DataTable = ({
                     <ToolbarSlot {...(slotProps.toolbar || {})} />
                 </Toolbar>
             )}
-            <TableContainer>
+            <Box sx={{ width: '100%', overflowX: 'auto' }}>
+                <TableContainer>
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
@@ -194,6 +195,7 @@ export const DataTable = ({
                     </TableBody>
                 </Table>
             </TableContainer>
+            </Box>
             {pagination && !error && (
                 <TablePagination
                     component="div"
@@ -203,6 +205,8 @@ export const DataTable = ({
                     rowsPerPage={pageSize}
                     onRowsPerPageChange={(e) => onPageSizeChange(parseInt(e.target.value, 10))}
                     rowsPerPageOptions={pageSizeOptions}
+                    showFirstButton
+                    showLastButton
                 />
             )}
         </Paper>

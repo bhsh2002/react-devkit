@@ -9,8 +9,8 @@ import { useDebounce } from '../hooks/useDebounce';
 const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent }) => {
     const Link = linkComponent;
     return (
-        <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexWrap: 'wrap' }}>
-            <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
+        <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'center' } }}>
+            <Typography variant="h4" component="h1" sx={{ flexGrow: 1, mb: { xs: 2, sm: 0 } }}>
                 {resourceName}
             </Typography>
             {createPath && (
