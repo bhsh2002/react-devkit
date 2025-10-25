@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Button, Typography, Toolbar, TextField, Switch, FormControlLabel } from '@mui/material';
 import { Add as AddIcon, Search as SearchIcon } from '@mui/icons-material';
 import { DataTable } from '../components';
 import { useDebounce } from '../hooks/useDebounce';
 
-// Default render function for the header
 const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent }) => {
     const Link = linkComponent;
     return (
@@ -17,7 +15,6 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
                 <Button
                     variant="contained"
                     startIcon={<AddIcon />}
-                    // Use the passed Link component if it exists
                     {...(Link ? { component: Link, to: createPath } : { href: createPath })}
                 >
                     {createText}
@@ -27,9 +24,8 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
     );
 };
 
-// Default render function for the filter/search area
 const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange, searchPlaceholder }) => (
-    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'stretch' }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'center' }}>
         {filterOptions.map(opt => (
             <FormControlLabel
                 key={opt.name}
@@ -58,9 +54,10 @@ export const ResourceListPage = ({
     createPath,
     createText = 'Create New',
     searchable = false,
-    filterOptions = [],
-    linkComponent,
     searchPlaceholder = 'Search...',
+    filterOptions = [],
+    sorting = false, // Added sorting prop
+    linkComponent,
     renderHeader = defaultRenderHeader,
     renderFilters = defaultRenderFilters,
 }) => {
@@ -141,6 +138,7 @@ export const ResourceListPage = ({
                 onPageChange={setPage}
                 pageSize={pageSize}
                 onPageSizeChange={(size) => { setPageSize(size); setPage(0); }}
+                sorting={sorting} // Pass sorting prop to DataTable
                 sortModel={sortModel}
                 onSortModelChange={(model) => { setSortModel(model); setPage(0); }}
             />
