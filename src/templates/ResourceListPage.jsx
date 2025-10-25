@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Button, Typography, Toolbar, TextField, Switch, FormControlLabel } from '@mui/material';
 import { Add as AddIcon, Search as SearchIcon } from '@mui/icons-material';
@@ -56,7 +57,8 @@ export const ResourceListPage = ({
     searchable = false,
     searchPlaceholder = 'Search...',
     filterOptions = [],
-    sorting = false, // Added sorting prop
+    sorting = false,
+    showRowNumber = true, // Added prop
     linkComponent,
     renderHeader = defaultRenderHeader,
     renderFilters = defaultRenderFilters,
@@ -138,9 +140,10 @@ export const ResourceListPage = ({
                 onPageChange={setPage}
                 pageSize={pageSize}
                 onPageSizeChange={(size) => { setPageSize(size); setPage(0); }}
-                sorting={sorting} // Pass sorting prop to DataTable
+                sorting={sorting}
                 sortModel={sortModel}
                 onSortModelChange={(model) => { setSortModel(model); setPage(0); }}
+                showRowNumber={showRowNumber} // Pass prop down
             />
         </Box>
     );
