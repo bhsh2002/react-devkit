@@ -561,7 +561,15 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       }
     )
   ] });
-}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(D, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "center" }, children: [
+}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(D, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "stretch" }, children: [
+  r.map((o) => /* @__PURE__ */ u.jsx(
+    Xe,
+    {
+      control: /* @__PURE__ */ u.jsx(He, { checked: s[o.name], onChange: i, name: o.name }),
+      label: o.label
+    },
+    o.name
+  )),
   n && /* @__PURE__ */ u.jsx(
     Re,
     {
@@ -572,15 +580,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       InputProps: { endAdornment: /* @__PURE__ */ u.jsx(At, { color: "action" }) },
       sx: { flexGrow: 1, minWidth: "200px" }
     }
-  ),
-  r.map((o) => /* @__PURE__ */ u.jsx(
-    Xe,
-    {
-      control: /* @__PURE__ */ u.jsx(He, { checked: s[o.name], onChange: i, name: o.name }),
-      label: o.label
-    },
-    o.name
-  ))
+  )
 ] }), Nr = ({
   resourceName: n,
   columns: t,
@@ -2402,7 +2402,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
           /* @__PURE__ */ u.jsx(
             kt,
             {
-              color: "inherit",
+              color: "primary",
               "aria-label": "open drawer",
               edge: "start",
               onClick: o,
@@ -2410,7 +2410,7 @@ const Or = ({ isSubmitting: n }) => /* @__PURE__ */ u.jsx(
               children: /* @__PURE__ */ u.jsx(Rt, {})
             }
           ),
-          /* @__PURE__ */ u.jsx(Z, { variant: "h6", noWrap: !0, component: "div", sx: { flexGrow: 1, color: "primary.contrastText" }, children: t }),
+          /* @__PURE__ */ u.jsx(Z, { variant: "h6", noWrap: !0, component: "div", sx: { flexGrow: 1, color: "primary" }, children: t }),
           r
         ] })
       }

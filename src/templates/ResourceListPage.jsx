@@ -29,7 +29,14 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 // Default render function for the filter/search area
 const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange, searchPlaceholder }) => (
-    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'stretch' }}>
+        {filterOptions.map(opt => (
+            <FormControlLabel
+                key={opt.name}
+                control={<Switch checked={filters[opt.name]} onChange={handleFilterChange} name={opt.name} />}
+                label={opt.label}
+            />
+        ))}
         {searchable && (
             <TextField
                 label={searchPlaceholder}
@@ -40,13 +47,6 @@ const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterO
                 sx={{ flexGrow: 1, minWidth: '200px' }}
             />
         )}
-        {filterOptions.map(opt => (
-            <FormControlLabel
-                key={opt.name}
-                control={<Switch checked={filters[opt.name]} onChange={handleFilterChange} name={opt.name} />}
-                label={opt.label}
-            />
-        ))}
     </Box>
 );
 

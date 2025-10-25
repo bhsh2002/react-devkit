@@ -64,7 +64,7 @@ export const DashboardLayout = ({
             >
                 <Toolbar>
                     <IconButton
-                        color="inherit"
+                        color="primary"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
@@ -72,7 +72,7 @@ export const DashboardLayout = ({
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, color: 'primary.contrastText' }}>
+                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, color: 'primary' }}>
                         {title}
                     </Typography>
                     {headerActions}
