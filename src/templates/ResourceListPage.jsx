@@ -63,8 +63,7 @@ export const ResourceListPage = ({
     renderHeader = defaultRenderHeader,
     renderFilters = defaultRenderFilters,
 }) => {
-    const [rowCount, setRowCount] = useState(0);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
     const [sortModel, setSortModel] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
@@ -87,7 +86,7 @@ export const ResourceListPage = ({
     const handleFilterChange = (event) => {
         const { name, checked } = event.target;
         setFilters(prev => ({ ...prev, [name]: checked }));
-        setPage(0);
+        setPage(1);
     };
 
     return (
@@ -111,7 +110,7 @@ export const ResourceListPage = ({
                 error={error}
                 pagination
                 rowCount={data?.pagination.total || 0}
-                page={data?.pagination.page ? data.pagination.page - 1 : page}
+                page={page}
                 onPageChange={setPage}
                 perPage={perPage}
                 onPerPageChange={(size) => { setPerPage(size); setPage(0); }}
