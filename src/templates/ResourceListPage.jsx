@@ -75,8 +75,8 @@ export const ResourceListPage = ({
     const debouncedSearch = useDebounce(searchQuery, 500);
 
     const { data, isLoading, error, mutate } = useApi(
-        [resourceName, page, perPage, debouncedSearch, showDeleted],
-        () => api.list({ page, per_page: perPage, q: debouncedSearch, deleted_state: showDeleted ? "all" : "active" }),
+        [resourceName, page, perPage, debouncedSearch, filters.include_deleted],
+        () => api.list({ page, per_page: perPage, q: debouncedSearch, deleted_state: filters.include_deleted ? "all" : "active" }),
         { keepPreviousData: true }
     );
 
