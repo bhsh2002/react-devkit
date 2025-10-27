@@ -567,7 +567,7 @@ const Ar = ({ icon: n, title: t, value: e, color: r, sx: s, onClick: i }) => /* 
       }
     )
   ] });
-}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(N, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "center" }, children: [
+}, qt = ({ searchable: n, searchQuery: t, setSearchQuery: e, filterOptions: r, filters: s, handleFilterChange: i, searchPlaceholder: a }) => /* @__PURE__ */ u.jsxs(N, { sx: { display: "flex", flexDirection: { xs: "column", sm: "row" }, gap: 2, mb: 2, alignItems: "stretch" }, children: [
   r.map((o) => /* @__PURE__ */ u.jsx(
     Xe,
     {

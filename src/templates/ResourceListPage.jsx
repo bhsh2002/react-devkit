@@ -26,7 +26,7 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 };
 
 const defaultRenderFilters = ({ searchable, searchQuery, setSearchQuery, filterOptions, filters, handleFilterChange, searchPlaceholder }) => (
-    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'center' }}>
+    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mb: 2, alignItems: 'stretch' }}>
         {filterOptions.map(opt => (
             <FormControlLabel
                 key={opt.name}
