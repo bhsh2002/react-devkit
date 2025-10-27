@@ -111,7 +111,7 @@ export const ResourceListPage = ({
                 error={error}
                 pagination
                 rowCount={data?.pagination.total || 0}
-                page={page}
+                page={data?.pagination.page ? data.pagination.page - 1 : page}
                 onPageChange={setPage}
                 perPage={perPage}
                 onPerPageChange={(size) => { setPerPage(size); setPage(0); }}

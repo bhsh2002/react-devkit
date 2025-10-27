@@ -1280,7 +1280,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
         error: q,
         pagination: !0,
         rowCount: O?.pagination.total || 0,
-        page: E,
+        page: O?.pagination.page ? O.pagination.page - 1 : E,
         onPageChange: l,
         perPage: y,
         onPerPageChange: (Z) => {
