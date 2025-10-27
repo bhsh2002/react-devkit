@@ -113,10 +113,10 @@ export const ResourceListPage = ({
                 page={page}
                 onPageChange={setPage}
                 perPage={perPage}
-                onPerPageChange={(size) => { setPerPage(size); setPage(0); }}
+                onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                 sorting={sorting}
                 sortModel={sortModel}
-                onSortModelChange={(model) => { setSortModel(model); setPage(0); }}
+                onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
                 showRowNumber={showRowNumber} // Pass prop down
             />
         </Box>

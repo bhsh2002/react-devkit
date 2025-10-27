@@ -76,7 +76,7 @@ export const DataTable = ({
     error,
     pagination = false,
     rowCount = 0,
-    page = 0,
+    page = 1,
     onPageChange = () => {},
     perPage = 10,
     onPerPageChange = () => {},
@@ -177,7 +177,7 @@ export const DataTable = ({
                 <TablePagination
                     component="div"
                     count={rowCount}
-                    page={page}
+                    page={page - 1}
                     onPageChange={(e, newPage) => onPageChange(newPage)}
                     rowsPerPage={perPage}
                     onRowsPerPageChange={(e) => onPerPageChange(parseInt(e.target.value, 10))}

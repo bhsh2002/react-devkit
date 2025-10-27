@@ -312,7 +312,7 @@ const Rs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
   error: s,
   pagination: i = !1,
   rowCount: a = 0,
-  page: o = 0,
+  page: o = 1,
   onPageChange: u = () => {
   },
   perPage: p = 10,
@@ -379,7 +379,7 @@ const Rs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
       {
         component: "div",
         count: a,
-        page: o,
+        page: o - 1,
         onPageChange: (v, $) => u($),
         rowsPerPage: p,
         onRowsPerPageChange: (v) => h(parseInt(v.target.value, 10)),
@@ -1284,12 +1284,12 @@ const ot = Te.use || // This extra generic is to avoid TypeScript mixing up the 
         onPageChange: g,
         perPage: E,
         onPerPageChange: (A) => {
-          l(A), g(0);
+          l(A), g(1);
         },
         sorting: p,
         sortModel: y,
         onSortModelChange: (A) => {
-          O(A), g(0);
+          O(A), g(1);
         },
         showRowNumber: h
       }
