@@ -57,9 +57,9 @@ const DefaultLoadingOverlay = () => (
  * @param {number} [props.rowCount=0] - The total number of rows on the server.
  * @param {number} [props.page=0] - The current page number (0-based).
  * @param {function(number): void} [props.onPageChange] - Callback for when the page changes.
- * @param {number} [props.pageSize=10] - The number of rows per page.
- * @param {function(number): void} [props.onPageSizeChange] - Callback for when the page size changes.
- * @param {Array<number>} [props.pageSizeOptions=[5, 10, 25, 50]] - The available page size options.
+ * @param {number} [props.perPage=10] - The number of rows per page.
+ * @param {function(number): void} [props.onPerPageChange] - Callback for when the page size changes.
+ * @param {Array<number>} [props.perPageOptions=[5, 10, 25, 50]] - The available page size options.
  * @param {boolean} [props.sorting=false] - If true, enables column sorting.
  * @param {Array<SortModel>} [props.sortModel=[]] - The current sort model.
  * @param {function(Array<SortModel>): void} [props.onSortModelChange] - Callback for when the sort model changes.
@@ -78,9 +78,9 @@ export const DataTable = ({
     rowCount = 0,
     page = 0,
     onPageChange = () => {},
-    pageSize = 10,
-    onPageSizeChange = () => {},
-    pageSizeOptions = [5, 10, 25, 50],
+    perPage = 10,
+    onPerPageChange = () => {},
+    perPageOptions = [10, 25, 100],
     sorting = false,
     sortModel = [],
     onSortModelChange = () => {},
@@ -110,7 +110,7 @@ export const DataTable = ({
             headerName: '#',
             width: 60,
             align: 'center',
-            renderCell: ({ index }) => (page * pageSize) + index + 1,
+            renderCell: ({ index }) => (page * perPage) + index + 1,
         }] : []),
         ...columns,
     ];
@@ -179,9 +179,9 @@ export const DataTable = ({
                     count={rowCount}
                     page={page}
                     onPageChange={(e, newPage) => onPageChange(newPage)}
-                    rowsPerPage={pageSize}
-                    onRowsPerPageChange={(e) => onPageSizeChange(parseInt(e.target.value, 10))}
-                    rowsPerPageOptions={pageSizeOptions}
+                    rowsPerPage={perPage}
+                    onRowsPerPageChange={(e) => onPerPageChange(parseInt(e.target.value, 10))}
+                    rowsPerPageOptions={perPageOptions}
                     showFirstButton
                     showLastButton
                     labelRowsPerPage={null}

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Button, Typography, Toolbar, TextField, Switch, FormControlLabel } from '@mui/material';
 import { Add as AddIcon, Search as SearchIcon } from '@mui/icons-material';
 import { DataTable } from '../components';
-import { useDebounce } from '../hooks/useDebounce';
+import { useApi, useDebounce } from '../hooks';
 
 const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent }) => {
     const Link = linkComponent;
@@ -63,12 +63,9 @@ export const ResourceListPage = ({
     renderHeader = defaultRenderHeader,
     renderFilters = defaultRenderFilters,
 }) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [rowCount, setRowCount] = useState(0);
     const [page, setPage] = useState(0);
-    const [pageSize, setPageSize] = useState(10);
+    const [perPage, setPerPage] = useState(10);
     const [sortModel, setSortModel] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [filters, setFilters] = useState(() => 
@@ -77,37 +74,15 @@ export const ResourceListPage = ({
 
     const debouncedSearch = useDebounce(searchQuery, 500);
 
-    const fetchData = useCallback(async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const sort = sortModel.length > 0 ? sortModel[0].field : undefined;
-            const order = sortModel.length > 0 ? sortModel[0].sort : undefined;
-
-            const queryParams = {
-                page: page + 1,
-                per_page: pageSize,
-                sort,
-                order,
-                q: debouncedSearch || undefined,
-                ...filters,
-            };
-
-            const response = await api.list(queryParams);
-            const adaptedResponse = dataAdapter(response);
-
-            setData(adaptedResponse.data);
-            setRowCount(adaptedResponse.meta.total);
-        } catch (err) {
-            setError(err);
-        } finally {
-            setLoading(false);
-        }
-    }, [api, page, pageSize, sortModel, debouncedSearch, filters, dataAdapter]);
+    const { data, isLoading, error, mutate } = useApi(
+        [resourceName, page, perPage, debouncedSearch, showDeleted],
+        () => api.list({ page, per_page: perPage, q: debouncedSearch, deleted_state: showDeleted ? "all" : "active" }),
+        { keepPreviousData: true }
+    );
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        mutate();
+    }, [data]);
 
     const handleFilterChange = (event) => {
         const { name, checked } = event.target;
@@ -132,14 +107,14 @@ export const ResourceListPage = ({
             <DataTable
                 rows={data}
                 columns={columns}
-                loading={loading}
+                loading={isLoading}
                 error={error}
                 pagination
                 rowCount={rowCount}
                 page={page}
                 onPageChange={setPage}
-                pageSize={pageSize}
-                onPageSizeChange={(size) => { setPageSize(size); setPage(0); }}
+                perPage={perPage}
+                onPerPageChange={(size) => { setPerPage(size); setPage(0); }}
                 sorting={sorting}
                 sortModel={sortModel}
                 onSortModelChange={(model) => { setSortModel(model); setPage(0); }}
