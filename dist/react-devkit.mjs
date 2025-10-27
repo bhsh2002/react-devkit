@@ -1,5 +1,5 @@
-import je, { createContext as er, useState as M, useCallback as Ge, useContext as De, useEffect as ye, useLayoutEffect as Or, useMemo as tr, useRef as xe, useDebugValue as Tr } from "react";
-import { Paper as Xe, Box as W, Typography as de, Toolbar as Te, TableContainer as jr, Table as Rr, TableHead as Fr, TableRow as Le, TableCell as Ve, TableSortLabel as Cr, TableBody as kr, TablePagination as Ar, CircularProgress as $e, TextField as wt, Avatar as Dr, Button as ke, Autocomplete as $r, FormControlLabel as rr, Switch as nr, Alert as dt, Container as Ir, List as Nr, ListItem as Pr, ListItemButton as Lr, ListItemIcon as Vr, ListItemText as Mr, CssBaseline as Ur, AppBar as qr, IconButton as zr, Drawer as At } from "@mui/material";
+import je, { createContext as er, useState as M, useCallback as Ge, useContext as Ae, useEffect as ye, useLayoutEffect as Or, useMemo as tr, useRef as xe, useDebugValue as Tr } from "react";
+import { Paper as Xe, Box as W, Typography as de, Toolbar as Te, TableContainer as jr, Table as Rr, TableHead as Fr, TableRow as Le, TableCell as Ve, TableSortLabel as Cr, TableBody as Dr, TablePagination as kr, CircularProgress as $e, TextField as wt, Avatar as Ar, Button as De, Autocomplete as $r, FormControlLabel as rr, Switch as nr, Alert as dt, Container as Ir, List as Nr, ListItem as Pr, ListItemButton as Lr, ListItemIcon as Vr, ListItemText as Mr, CssBaseline as Ur, AppBar as qr, IconButton as zr, Drawer as kt } from "@mui/material";
 import { ImageNotSupported as Wr, Add as Yr, Search as Gr, Menu as Br } from "@mui/icons-material";
 function Hr(r) {
   return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
@@ -14,10 +14,10 @@ var Me = { exports: {} }, Fe = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var Dt;
+var At;
 function Zr() {
-  if (Dt) return Fe;
-  Dt = 1;
+  if (At) return Fe;
+  At = 1;
   var r = Symbol.for("react.transitional.element"), e = Symbol.for("react.fragment");
   function t(n, s, i) {
     var a = null;
@@ -65,7 +65,7 @@ function Jr() {
           return "Suspense";
         case C:
           return "SuspenseList";
-        case D:
+        case A:
           return "Activity";
       }
       if (typeof c == "object")
@@ -81,9 +81,9 @@ function Jr() {
           case _:
             var E = c.render;
             return c = c.displayName, c || (c = E.displayName || E.name || "", c = c !== "" ? "ForwardRef(" + c + ")" : "ForwardRef"), c;
-          case S:
-            return E = c.displayName || null, E !== null ? E : r(c.type) || "Memo";
           case w:
+            return E = c.displayName || null, E !== null ? E : r(c.type) || "Memo";
+          case S:
             E = c._payload, c = c._init;
             try {
               return r(c(E));
@@ -104,8 +104,8 @@ function Jr() {
       }
       if (E) {
         E = console;
-        var A = E.error, I = typeof Symbol == "function" && Symbol.toStringTag && c[Symbol.toStringTag] || c.constructor.name || "Object";
-        return A.call(
+        var k = E.error, I = typeof Symbol == "function" && Symbol.toStringTag && c[Symbol.toStringTag] || c.constructor.name || "Object";
+        return k.call(
           E,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
           I
@@ -114,7 +114,7 @@ function Jr() {
     }
     function n(c) {
       if (c === v) return "<>";
-      if (typeof c == "object" && c !== null && c.$$typeof === w)
+      if (typeof c == "object" && c !== null && c.$$typeof === S)
         return "<...>";
       try {
         var E = r(c);
@@ -138,14 +138,14 @@ function Jr() {
       return c.key !== void 0;
     }
     function o(c, E) {
-      function A() {
+      function k() {
         Z || (Z = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
           E
         ));
       }
-      A.isReactWarning = !0, Object.defineProperty(c, "key", {
-        get: A,
+      k.isReactWarning = !0, Object.defineProperty(c, "key", {
+        get: k,
         configurable: !0
       });
     }
@@ -155,13 +155,13 @@ function Jr() {
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), c = this.props.ref, c !== void 0 ? c : null;
     }
-    function p(c, E, A, I, se, Ee) {
-      var P = A.ref;
+    function p(c, E, k, I, se, Ee) {
+      var P = k.ref;
       return c = {
         $$typeof: g,
         type: c,
         key: E,
-        props: A,
+        props: k,
         _owner: I
       }, (P !== void 0 ? P : null) !== null ? Object.defineProperty(c, "ref", {
         enumerable: !1,
@@ -188,7 +188,7 @@ function Jr() {
         value: Ee
       }), Object.freeze && (Object.freeze(c.props), Object.freeze(c)), c;
     }
-    function h(c, E, A, I, se, Ee) {
+    function h(c, E, k, I, se, Ee) {
       var P = E.children;
       if (P !== void 0)
         if (I)
@@ -219,30 +219,30 @@ React keys must be passed directly to JSX without using spread:
           P
         ), Pe[P + I] = !0);
       }
-      if (P = null, A !== void 0 && (t(A), P = "" + A), a(E) && (t(E.key), P = "" + E.key), "key" in E) {
-        A = {};
+      if (P = null, k !== void 0 && (t(k), P = "" + k), a(E) && (t(E.key), P = "" + E.key), "key" in E) {
+        k = {};
         for (var Re in E)
-          Re !== "key" && (A[Re] = E[Re]);
-      } else A = E;
+          Re !== "key" && (k[Re] = E[Re]);
+      } else k = E;
       return P && o(
-        A,
+        k,
         typeof c == "function" ? c.displayName || c.name || "Unknown" : c
       ), p(
         c,
         P,
-        A,
+        k,
         s(),
         se,
         Ee
       );
     }
     function f(c) {
-      x(c) ? c._store && (c._store.validated = 1) : typeof c == "object" && c !== null && c.$$typeof === w && (c._payload.status === "fulfilled" ? x(c._payload.value) && c._payload.value._store && (c._payload.value._store.validated = 1) : c._store && (c._store.validated = 1));
+      x(c) ? c._store && (c._store.validated = 1) : typeof c == "object" && c !== null && c.$$typeof === S && (c._payload.status === "fulfilled" ? x(c._payload.value) && c._payload.value._store && (c._payload.value._store.validated = 1) : c._store && (c._store.validated = 1));
     }
     function x(c) {
       return typeof c == "object" && c !== null && c.$$typeof === g;
     }
-    var m = je, g = Symbol.for("react.transitional.element"), b = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), l = Symbol.for("react.strict_mode"), y = Symbol.for("react.profiler"), O = Symbol.for("react.consumer"), F = Symbol.for("react.context"), _ = Symbol.for("react.forward_ref"), T = Symbol.for("react.suspense"), C = Symbol.for("react.suspense_list"), S = Symbol.for("react.memo"), w = Symbol.for("react.lazy"), D = Symbol.for("react.activity"), j = Symbol.for("react.client.reference"), U = m.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, Y = Object.prototype.hasOwnProperty, L = Array.isArray, K = console.createTask ? console.createTask : function() {
+    var m = je, g = Symbol.for("react.transitional.element"), b = Symbol.for("react.portal"), v = Symbol.for("react.fragment"), l = Symbol.for("react.strict_mode"), y = Symbol.for("react.profiler"), O = Symbol.for("react.consumer"), F = Symbol.for("react.context"), _ = Symbol.for("react.forward_ref"), T = Symbol.for("react.suspense"), C = Symbol.for("react.suspense_list"), w = Symbol.for("react.memo"), S = Symbol.for("react.lazy"), A = Symbol.for("react.activity"), j = Symbol.for("react.client.reference"), U = m.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, Y = Object.prototype.hasOwnProperty, L = Array.isArray, K = console.createTask ? console.createTask : function() {
       return null;
     };
     m = {
@@ -254,22 +254,22 @@ React keys must be passed directly to JSX without using spread:
       m,
       i
     )(), pe = K(n(i)), Pe = {};
-    Ce.Fragment = v, Ce.jsx = function(c, E, A) {
+    Ce.Fragment = v, Ce.jsx = function(c, E, k) {
       var I = 1e4 > U.recentlyCreatedOwnerStacks++;
       return h(
         c,
         E,
-        A,
+        k,
         !1,
         I ? Error("react-stack-top-frame") : X,
         I ? K(n(c)) : pe
       );
-    }, Ce.jsxs = function(c, E, A) {
+    }, Ce.jsxs = function(c, E, k) {
       var I = 1e4 > U.recentlyCreatedOwnerStacks++;
       return h(
         c,
         E,
-        A,
+        k,
         !0,
         I ? Error("react-stack-top-frame") : X,
         I ? K(n(c)) : pe
@@ -332,59 +332,59 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
     toolbar: O,
     noRowsOverlay: F = Xr,
     loadingOverlay: _ = Qr
-  } = v, T = (w) => {
+  } = v, T = (S) => {
     if (!x) return;
-    const D = m.find((U) => U.field === w);
-    let j = D ? D.sort === "asc" ? [{ field: w, sort: "desc" }] : [] : [{ field: w, sort: "asc" }];
+    const A = m.find((U) => U.field === S);
+    let j = A ? A.sort === "asc" ? [{ field: S, sort: "desc" }] : [] : [{ field: S, sort: "asc" }];
     g(j);
-  }, C = m.length > 0 ? m[0] : null, S = [
+  }, C = m.length > 0 ? m[0] : null, w = [
     ...b ? [{
       field: "__rowNumber__",
       headerName: "#",
       width: 60,
       align: "center",
-      renderCell: ({ index: w }) => o * p + w + 1
+      renderCell: ({ index: S }) => o * p + S + 1
     }] : [],
     ...e
   ];
-  return /* @__PURE__ */ d.jsxs(Xe, { sx: y, children: [
+  return console.log("Rendering DataTable with rows:", r), console.log("Rendering DataTable with finalColumns:", w), /* @__PURE__ */ d.jsxs(Xe, { sx: y, children: [
     O && /* @__PURE__ */ d.jsx(Te, { children: /* @__PURE__ */ d.jsx(O, { ...l.toolbar || {} }) }),
     /* @__PURE__ */ d.jsx(W, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ d.jsx(jr, { children: /* @__PURE__ */ d.jsxs(Rr, { stickyHeader: !0, children: [
-      /* @__PURE__ */ d.jsx(Fr, { children: /* @__PURE__ */ d.jsx(Le, { children: S.map((w) => /* @__PURE__ */ d.jsx(
+      /* @__PURE__ */ d.jsx(Fr, { children: /* @__PURE__ */ d.jsx(Le, { children: w.map((S) => /* @__PURE__ */ d.jsx(
         Ve,
         {
-          align: w.align || "inherit",
-          width: w.width,
+          align: S.align || "inherit",
+          width: S.width,
           sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
-          sortDirection: C?.field === w.field ? C.sort : !1,
-          children: w.sortable && x ? /* @__PURE__ */ d.jsx(
+          sortDirection: C?.field === S.field ? C.sort : !1,
+          children: S.sortable && x ? /* @__PURE__ */ d.jsx(
             Cr,
             {
-              active: C?.field === w.field,
-              direction: C?.field === w.field ? C.sort : "asc",
-              onClick: () => T(w.field),
-              children: w.headerName
+              active: C?.field === S.field,
+              direction: C?.field === S.field ? C.sort : "asc",
+              onClick: () => T(S.field),
+              children: S.headerName
             }
-          ) : w.headerName
+          ) : S.headerName
         },
-        w.field
+        S.field
       )) }) }),
-      /* @__PURE__ */ d.jsx(kr, { children: n ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: S.length, sx: { border: "none" }, children: /* @__PURE__ */ d.jsx(_, { ...l.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: S.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ d.jsx(de, { color: "error", children: s.message || "An error occurred." }) }) }) : r.length === 0 ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: S.length, sx: { border: "none" }, children: /* @__PURE__ */ d.jsx(F, { ...l.noRowsOverlay || {} }) }) }) : /* @__PURE__ */ d.jsx("div", {}) })
+      /* @__PURE__ */ d.jsx(Dr, { children: n ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: w.length, sx: { border: "none" }, children: /* @__PURE__ */ d.jsx(_, { ...l.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: w.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ d.jsx(de, { color: "error", children: s.message || "An error occurred." }) }) }) : r.length === 0 ? /* @__PURE__ */ d.jsx(Le, { children: /* @__PURE__ */ d.jsx(Ve, { colSpan: w.length, sx: { border: "none" }, children: /* @__PURE__ */ d.jsx(F, { ...l.noRowsOverlay || {} }) }) }) : /* @__PURE__ */ d.jsx("div", {}) })
     ] }) }) }),
     i && !s && r.length > 0 && /* @__PURE__ */ d.jsx(
-      Ar,
+      kr,
       {
         component: "div",
         count: a,
         page: o,
-        onPageChange: (w, D) => u(D),
+        onPageChange: (S, A) => u(A),
         rowsPerPage: p,
-        onRowsPerPageChange: (w) => h(parseInt(w.target.value, 10)),
+        onRowsPerPageChange: (S) => h(parseInt(S.target.value, 10)),
         rowsPerPageOptions: f,
         showFirstButton: !0,
         showLastButton: !0,
         labelRowsPerPage: null,
-        labelDisplayedRows: ({ from: w, to: D, count: j }) => `${w} - ${D} | ${j}`,
+        labelDisplayedRows: ({ from: S, to: A, count: j }) => `${S} - ${A} | ${j}`,
         sx: { display: "flex", justifyContent: "center" }
       }
     )
@@ -415,7 +415,7 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
   };
   return /* @__PURE__ */ d.jsx(Ie.Provider, { value: f, children: /* @__PURE__ */ d.jsx("form", { onSubmit: h, ...s, children: n }) });
 }, Nt = ({ name: r, label: e, ...t }) => {
-  const n = De(Ie);
+  const n = Ae(Ie);
   if (!n)
     throw new Error("TextField must be used within a Form component");
   const { values: s, setFieldValue: i, errors: a } = n, o = a[r], u = (p) => {
@@ -434,7 +434,7 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
     }
   );
 }, Cs = ({ name: r, label: e = "Upload File", initialPreview: t }) => {
-  const n = De(Ie), [s, i] = M(t || null);
+  const n = Ae(Ie), [s, i] = M(t || null);
   if (!n)
     throw new Error("FileUploadField must be used within a Form component");
   const { setFieldValue: a, values: o } = n, u = o[r];
@@ -454,13 +454,13 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
     }
   };
   return /* @__PURE__ */ d.jsxs(W, { sx: { display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }, children: [
-    /* @__PURE__ */ d.jsx(Dr, { src: s, sx: { width: 100, height: 100 }, children: !s && /* @__PURE__ */ d.jsx(Wr, { sx: { width: "70%", height: "70%" } }) }),
-    /* @__PURE__ */ d.jsxs(ke, { variant: "outlined", component: "label", children: [
+    /* @__PURE__ */ d.jsx(Ar, { src: s, sx: { width: 100, height: 100 }, children: !s && /* @__PURE__ */ d.jsx(Wr, { sx: { width: "70%", height: "70%" } }) }),
+    /* @__PURE__ */ d.jsxs(De, { variant: "outlined", component: "label", children: [
       e,
       /* @__PURE__ */ d.jsx("input", { type: "file", hidden: !0, accept: "image/*", onChange: p, "data-testid": "file-upload-input" })
     ] })
   ] });
-}, ks = ({
+}, Ds = ({
   name: r,
   label: e,
   fetchOptions: t,
@@ -468,7 +468,7 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
   multiple: s = !1,
   ...i
 }) => {
-  const a = De(Ie);
+  const a = Ae(Ie);
   if (!a)
     throw new Error("AutocompleteField must be used within a Form component");
   const { values: o, setFieldValue: u, errors: p } = a, [h, f] = M([]), [x, m] = M(!1), [g, b] = M("");
@@ -518,8 +518,8 @@ const Fs = ({ icon: r, title: e, value: t, color: n, sx: s, onClick: i }) => /* 
       ...i
     }
   );
-}, As = ({ name: r, label: e, ...t }) => {
-  const n = De(Ie);
+}, ks = ({ name: r, label: e, ...t }) => {
+  const n = Ae(Ie);
   if (!n)
     throw new Error("SwitchField must be used within a Form component");
   const { values: s, setFieldValue: i } = n, a = (o) => {
@@ -734,7 +734,7 @@ const un = () => xt, [gt, bt] = Ne && window.addEventListener ? [
 }, hn = {
   initFocus: cn,
   initReconnect: fn
-}, qt = !je.useId, Ae = !Ne || an, pn = (r) => on() ? window.requestAnimationFrame(r) : setTimeout(r, 1), st = Ae ? ye : Or, it = typeof navigator < "u" && navigator.connection, zt = !Ae && it && ([
+}, qt = !je.useId, ke = !Ne || an, pn = (r) => on() ? window.requestAnimationFrame(r) : setTimeout(r, 1), st = ke ? ye : Or, it = typeof navigator < "u" && navigator.connection, zt = !ke && it && ([
   "slow-2g",
   "2g"
 ].includes(it.effectiveType) || it.saveData), ze = /* @__PURE__ */ new WeakMap(), mn = (r) => pt.prototype.toString.call(r), at = (r, e) => r === `[object ${e}]`;
@@ -803,13 +803,13 @@ async function cr(...r) {
     if (r.length < 3)
       return F();
     let _ = n, T, C = !1;
-    const S = vt();
+    const w = vt();
     l[m] = [
-      S,
+      w,
       0
     ];
-    const w = !R(u), D = g(), j = D.data, U = D._c, Y = R(U) ? j : U;
-    if (w && (u = te(u) ? u(Y, j) : u, b({
+    const S = !R(u), A = g(), j = A.data, U = A._c, Y = R(U) ? j : U;
+    if (S && (u = te(u) ? u(Y, j) : u, b({
       data: u,
       _c: Y
     })), te(_))
@@ -821,10 +821,10 @@ async function cr(...r) {
     if (_ && ur(_))
       if (_ = await _.catch((L) => {
         T = L, C = !0;
-      }), S !== l[m][0]) {
+      }), w !== l[m][0]) {
         if (C) throw T;
         return _;
-      } else C && w && p(T) && (a = !0, b({
+      } else C && S && p(T) && (a = !0, b({
         data: Y,
         _c: z
       }));
@@ -878,7 +878,7 @@ const Wt = (r, e) => {
         s,
         u,
         o
-      ]), !Ae)) {
+      ]), !ke)) {
         const h = t.initFocus(setTimeout.bind(z, Wt.bind(z, n, ir))), f = t.initReconnect(setTimeout.bind(z, Wt.bind(z, n, ar)));
         i = () => {
           h && h(), f && f(), ue.delete(r);
@@ -944,7 +944,7 @@ const Wt = (r, e) => {
   null,
   (r[1] === null ? r[2] : r[1]) || {}
 ], Fn = () => {
-  const r = De(Sn);
+  const r = Ae(Sn);
   return tr(() => he(_n, r), [
     r
   ]);
@@ -954,14 +954,14 @@ const Wt = (r, e) => {
     return t(...i);
   const u = o[a];
   return R(u) ? t(...i) : (delete o[a], u);
-}), n), kn = Tn.concat(Cn), An = (r) => function(...t) {
+}), n), Dn = Tn.concat(Cn), kn = (r) => function(...t) {
   const n = Fn(), [s, i, a] = Rn(t), o = wn(n, a);
   let u = r;
-  const { use: p } = o, h = (p || []).concat(kn);
+  const { use: p } = o, h = (p || []).concat(Dn);
   for (let f = h.length; f--; )
     u = h[f](u);
   return u(s, i || o.fetcher || null, o);
-}, Dn = (r, e, t) => {
+}, An = (r, e, t) => {
   const n = e[r] || (e[r] = []);
   return n.push(t), () => {
     const s = n.indexOf(t);
@@ -991,29 +991,29 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
 }), ut = {
   dedupe: !0
 }, Yt = Promise.resolve(z), $n = (r, e, t) => {
-  const { cache: n, compare: s, suspense: i, fallbackData: a, revalidateOnMount: o, revalidateIfStale: u, refreshInterval: p, refreshWhenHidden: h, refreshWhenOffline: f, keepPreviousData: x } = t, [m, g, b, v] = ue.get(n), [l, y] = Ot(r), O = xe(!1), F = xe(!1), _ = xe(l), T = xe(e), C = xe(t), S = () => C.current, w = () => S().isVisible() && S().isOnline(), [D, j, U, Y] = lr(n, l), L = xe({}).current, K = R(a) ? R(t.fallback) ? z : t.fallback[l] : a, Z = (k, N) => {
+  const { cache: n, compare: s, suspense: i, fallbackData: a, revalidateOnMount: o, revalidateIfStale: u, refreshInterval: p, refreshWhenHidden: h, refreshWhenOffline: f, keepPreviousData: x } = t, [m, g, b, v] = ue.get(n), [l, y] = Ot(r), O = xe(!1), F = xe(!1), _ = xe(l), T = xe(e), C = xe(t), w = () => C.current, S = () => w().isVisible() && w().isOnline(), [A, j, U, Y] = lr(n, l), L = xe({}).current, K = R(a) ? R(t.fallback) ? z : t.fallback[l] : a, Z = (D, N) => {
     for (const V in L) {
       const $ = V;
       if ($ === "data") {
-        if (!s(k[$], N[$]) && (!R(k[$]) || !s(se, N[$])))
+        if (!s(D[$], N[$]) && (!R(D[$]) || !s(se, N[$])))
           return !1;
-      } else if (N[$] !== k[$])
+      } else if (N[$] !== D[$])
         return !1;
     }
     return !0;
   }, ne = tr(() => {
-    const k = !l || !e ? !1 : R(o) ? S().isPaused() || i ? !1 : u !== !1 : o, N = (G) => {
+    const D = !l || !e ? !1 : R(o) ? w().isPaused() || i ? !1 : u !== !1 : o, N = (G) => {
       const ie = he(G);
-      return delete ie._k, k ? {
+      return delete ie._k, D ? {
         isValidating: !0,
         isLoading: !0,
         ...ie
       } : ie;
-    }, V = D(), $ = Y(), Q = N(V), _e = V === $ ? Q : N($);
+    }, V = A(), $ = Y(), Q = N(V), _e = V === $ ? Q : N($);
     let q = Q;
     return [
       () => {
-        const G = N(D());
+        const G = N(A());
         return Z(G, q) ? (q.data = G.data, q.isLoading = G.isLoading, q.isValidating = G.isValidating, q.error = G.error, q) : (q = G, G);
       },
       () => _e
@@ -1022,21 +1022,21 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     n,
     l
   ]), X = sn.useSyncExternalStore(Ge(
-    (k) => U(l, (N, V) => {
-      Z(V, N) || k();
+    (D) => U(l, (N, V) => {
+      Z(V, N) || D();
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       n,
       l
     ]
-  ), ne[0], ne[1]), pe = !O.current, Pe = m[l] && m[l].length > 0, c = X.data, E = R(c) ? K && ur(K) ? ot(K) : K : c, A = X.error, I = xe(E), se = x ? R(c) ? R(I.current) ? E : I.current : c : E, Ee = Pe && !R(A) ? !1 : pe && !R(o) ? o : S().isPaused() ? !1 : i ? R(E) ? !1 : u : R(E) || u, P = !!(l && e && pe && Ee), le = R(X.isValidating) ? P : X.isValidating, Re = R(X.isLoading) ? P : X.isLoading, me = Ge(
-    async (k) => {
+  ), ne[0], ne[1]), pe = !O.current, Pe = m[l] && m[l].length > 0, c = X.data, E = R(c) ? K && ur(K) ? ot(K) : K : c, k = X.error, I = xe(E), se = x ? R(c) ? R(I.current) ? E : I.current : c : E, Ee = Pe && !R(k) ? !1 : pe && !R(o) ? o : w().isPaused() ? !1 : i ? R(E) ? !1 : u : R(E) || u, P = !!(l && e && pe && Ee), le = R(X.isValidating) ? P : X.isValidating, Re = R(X.isLoading) ? P : X.isLoading, me = Ge(
+    async (D) => {
       const N = T.current;
-      if (!l || !N || F.current || S().isPaused())
+      if (!l || !N || F.current || w().isPaused())
         return !1;
       let V, $, Q = !0;
-      const _e = k || {}, q = !b[l] || !_e.dedupe, G = () => qt ? !F.current && l === _.current && O.current : l === _.current, ie = {
+      const _e = D || {}, q = !b[l] || !_e.dedupe, G = () => qt ? !F.current && l === _.current && O.current : l === _.current, ie = {
         isValidating: !1,
         isLoading: !1
       }, Ft = () => {
@@ -1044,31 +1044,31 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       }, Ct = () => {
         const J = b[l];
         J && J[1] === $ && delete b[l];
-      }, kt = {
+      }, Dt = {
         isValidating: !0
       };
-      R(D().data) && (kt.isLoading = !0);
+      R(A().data) && (Dt.isLoading = !0);
       try {
-        if (q && (j(kt), t.loadingTimeout && R(D().data) && setTimeout(() => {
-          Q && G() && S().onLoadingSlow(l, t);
+        if (q && (j(Dt), t.loadingTimeout && R(A().data) && setTimeout(() => {
+          Q && G() && w().onLoadingSlow(l, t);
         }, t.loadingTimeout), b[l] = [
           N(y),
           vt()
         ]), [V, $] = b[l], V = await V, q && setTimeout(Ct, t.dedupingInterval), !b[l] || b[l][1] !== $)
-          return q && G() && S().onDiscarded(l), !1;
+          return q && G() && w().onDiscarded(l), !1;
         ie.error = z;
         const J = g[l];
         if (!R(J) && // case 1
         ($ <= J[0] || // case 2
         $ <= J[1] || // case 3
         J[1] === 0))
-          return Ft(), q && G() && S().onDiscarded(l), !1;
-        const ae = D().data;
-        ie.data = s(ae, V) ? ae : V, q && G() && S().onSuccess(V, l, t);
+          return Ft(), q && G() && w().onDiscarded(l), !1;
+        const ae = A().data;
+        ie.data = s(ae, V) ? ae : V, q && G() && w().onSuccess(V, l, t);
       } catch (J) {
         Ct();
-        const ae = S(), { shouldRetryOnError: Qe } = ae;
-        ae.isPaused() || (ie.error = J, q && G() && (ae.onError(J, l, ae), (Qe === !0 || te(Qe) && Qe(J)) && (!S().revalidateOnFocus || !S().revalidateOnReconnect || w()) && ae.onErrorRetry(J, l, ae, (Sr) => {
+        const ae = w(), { shouldRetryOnError: Qe } = ae;
+        ae.isPaused() || (ie.error = J, q && G() && (ae.onError(J, l, ae), (Qe === !0 || te(Qe) && Qe(J)) && (!w().revalidateOnFocus || !w().revalidateOnReconnect || S()) && ae.onErrorRetry(J, l, ae, (Sr) => {
           const et = m[l];
           et && et[0] && et[0](Mt, Sr);
         }, {
@@ -1095,7 +1095,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     ]
   ), Rt = Ge(
     // Use callback to make sure `keyRef.current` returns latest result every time
-    (...k) => cr(n, _.current, ...k),
+    (...D) => cr(n, _.current, ...D),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
@@ -1103,15 +1103,15 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     T.current = e, C.current = t, R(c) || (I.current = c);
   }), st(() => {
     if (!l) return;
-    const k = me.bind(z, ut);
+    const D = me.bind(z, ut);
     let N = 0;
-    S().revalidateOnFocus && (N = Date.now() + S().focusThrottleInterval);
-    const $ = Dn(l, m, (Q, _e = {}) => {
+    w().revalidateOnFocus && (N = Date.now() + w().focusThrottleInterval);
+    const $ = An(l, m, (Q, _e = {}) => {
       if (Q == ir) {
         const q = Date.now();
-        S().revalidateOnFocus && q > N && w() && (N = q + S().focusThrottleInterval, k());
+        w().revalidateOnFocus && q > N && S() && (N = q + w().focusThrottleInterval, D());
       } else if (Q == ar)
-        S().revalidateOnReconnect && w() && k();
+        w().revalidateOnReconnect && S() && D();
       else {
         if (Q == or)
           return me();
@@ -1121,22 +1121,22 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     });
     return F.current = !1, _.current = l, O.current = !0, j({
       _k: y
-    }), Ee && (b[l] || (R(E) || Ae ? k() : pn(k))), () => {
+    }), Ee && (b[l] || (R(E) || ke ? D() : pn(D))), () => {
       F.current = !0, $();
     };
   }, [
     l
   ]), st(() => {
-    let k;
+    let D;
     function N() {
-      const $ = te(p) ? p(D().data) : p;
-      $ && k !== -1 && (k = setTimeout(V, $));
+      const $ = te(p) ? p(A().data) : p;
+      $ && D !== -1 && (D = setTimeout(V, $));
     }
     function V() {
-      !D().error && (h || S().isVisible()) && (f || S().isOnline()) ? me(ut).then(N) : N();
+      !A().error && (h || w().isVisible()) && (f || w().isOnline()) ? me(ut).then(N) : N();
     }
     return N(), () => {
-      k && (clearTimeout(k), k = -1);
+      D && (clearTimeout(D), D = -1);
     };
   }, [
     p,
@@ -1144,15 +1144,15 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     f,
     l
   ]), Tr(se), i) {
-    const k = l && R(E);
-    if (!qt && Ae && k)
+    const D = l && R(E);
+    if (!qt && ke && D)
       throw new Error("Fallback data is required when using Suspense in SSR.");
-    k && (T.current = e, C.current = t, F.current = !1);
-    const N = v[l], V = !R(N) && k ? Rt(N) : Yt;
-    if (ot(V), !R(A) && k)
-      throw A;
-    const $ = k ? me(ut) : Yt;
-    !R(se) && k && ($.status = "fulfilled", $.value = !0), ot($);
+    D && (T.current = e, C.current = t, F.current = !1);
+    const N = v[l], V = !R(N) && D ? Rt(N) : Yt;
+    if (ot(V), !R(k) && D)
+      throw k;
+    const $ = D ? me(ut) : Yt;
+    !R(se) && D && ($.status = "fulfilled", $.value = !0), ot($);
   }
   return {
     mutate: Rt,
@@ -1160,7 +1160,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       return L.data = !0, se;
     },
     get error() {
-      return L.error = !0, A;
+      return L.error = !0, k;
     },
     get isValidating() {
       return L.isValidating = !0, le;
@@ -1169,7 +1169,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       return L.isLoading = !0, Re;
     }
   };
-}, In = An($n), Nn = (r, e, t = {}) => {
+}, In = kn($n), Nn = (r, e, t = {}) => {
   const { data: n, error: s, isLoading: i, mutate: a } = In(r, e, {
     ...t,
     onError: (o) => {
@@ -1197,7 +1197,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
   return /* @__PURE__ */ d.jsxs(Te, { sx: { p: "0 !important", mb: 2, display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "flex-start", sm: "center" } }, children: [
     /* @__PURE__ */ d.jsx(de, { variant: "h4", component: "h1", sx: { flexGrow: 1, mb: { xs: 2, sm: 0 } }, children: r }),
     e && /* @__PURE__ */ d.jsx(
-      ke,
+      De,
       {
         variant: "contained",
         startIcon: /* @__PURE__ */ d.jsx(Yr, {}),
@@ -1226,7 +1226,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       sx: { flexGrow: 1, minWidth: "200px" }
     }
   )
-] }), Ds = ({
+] }), As = ({
   resourceName: r,
   columns: e,
   api: t,
@@ -1243,11 +1243,11 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
   renderHeader: x = Ln,
   renderFilters: m = Vn
 }) => {
-  const [g, b] = M(0), [v, l] = M(0), [y, O] = M(10), [F, _] = M([]), [T, C] = M(""), [S, w] = M(
+  const [g, b] = M(0), [v, l] = M(0), [y, O] = M(10), [F, _] = M([]), [T, C] = M(""), [w, S] = M(
     () => u.reduce((Z, ne) => ({ ...Z, [ne.name]: !1 }), {})
-  ), D = Pn(T, 500), { data: j, isLoading: U, error: Y, mutate: L } = Nn(
-    [r, v, y, D, S.include_deleted],
-    () => t.list({ page: v, per_page: y, q: D, deleted_state: S.include_deleted ? "all" : "active" }),
+  ), A = Pn(T, 500), { data: j, isLoading: U, error: Y, mutate: L } = Nn(
+    [r, v, y, A, w.include_deleted],
+    () => t.list({ page: v, per_page: y, q: A, deleted_state: w.include_deleted ? "all" : "active" }),
     { keepPreviousData: !0 }
   );
   ye(() => {
@@ -1255,7 +1255,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
   }, [j]);
   const K = (Z) => {
     const { name: ne, checked: X } = Z.target;
-    w((pe) => ({ ...pe, [ne]: X })), l(0);
+    S((pe) => ({ ...pe, [ne]: X })), l(0);
   };
   return /* @__PURE__ */ d.jsxs(W, { children: [
     x({ resourceName: r, createPath: s, createText: i, linkComponent: f }),
@@ -1264,7 +1264,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       searchQuery: T,
       setSearchQuery: C,
       filterOptions: u,
-      filters: S,
+      filters: w,
       handleFilterChange: K,
       searchPlaceholder: o
     }),
@@ -1294,7 +1294,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
   ] });
 }, Mn = ({ isSubmitting: r, onCancel: e }) => /* @__PURE__ */ d.jsxs(W, { sx: { mt: 3, display: "flex", gap: 2 }, children: [
   /* @__PURE__ */ d.jsx(
-    ke,
+    De,
     {
       type: "submit",
       variant: "contained",
@@ -1302,7 +1302,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
       children: r ? /* @__PURE__ */ d.jsx($e, { size: 24 }) : "Save"
     }
   ),
-  e && /* @__PURE__ */ d.jsx(ke, { variant: "outlined", onClick: e, disabled: r, children: "Cancel" })
+  e && /* @__PURE__ */ d.jsx(De, { variant: "outlined", onClick: e, disabled: r, children: "Cancel" })
 ] }), $s = ({
   resourceName: r,
   id: e,
@@ -1360,13 +1360,13 @@ function Un() {
     setter: function(l) {
       var y = h(l);
       return u.get(l) || u.set(l, function(F, _) {
-        for (var T = 0, C = y.length, S = F; T < C - 1; ) {
-          var w = y[T];
-          if (w === "__proto__" || w === "constructor" || w === "prototype")
+        for (var T = 0, C = y.length, w = F; T < C - 1; ) {
+          var S = y[T];
+          if (S === "__proto__" || S === "constructor" || S === "prototype")
             return F;
-          S = S[y[T++]];
+          w = w[y[T++]];
         }
-        S[y[T]] = _;
+        w[y[T]] = _;
       });
     },
     getter: function(l, y) {
@@ -1399,9 +1399,9 @@ function Un() {
     return l.match(e) || [""];
   }
   function x(l, y, O) {
-    var F = l.length, _, T, C, S;
+    var F = l.length, _, T, C, w;
     for (T = 0; T < F; T++)
-      _ = l[T], _ && (v(_) && (_ = '"' + _ + '"'), S = m(_), C = !S && /^\d+$/.test(_), y.call(O, _, S, C, T, l));
+      _ = l[T], _ && (v(_) && (_ = '"' + _ + '"'), w = m(_), C = !w && /^\d+$/.test(_), y.call(O, _, w, C, T, l));
   }
   function m(l) {
     return typeof l == "string" && l && ["'", '"'].indexOf(l.charAt(0)) !== -1;
@@ -1766,19 +1766,19 @@ function we(r) {
     };
     if (m && ge(t))
       return T(!0);
-    let w;
+    let S;
     try {
-      var D;
-      if (w = h.call(_, t, _), typeof ((D = w) == null ? void 0 : D.then) == "function") {
+      var A;
+      if (S = h.call(_, t, _), typeof ((A = S) == null ? void 0 : A.then) == "function") {
         if (s.sync)
           throw new Error(`Validation test of type: "${_.type}" returned a Promise during a synchronous validate. This test will finish after the validate call has returned`);
-        return Promise.resolve(w).then(T, C);
+        return Promise.resolve(S).then(T, C);
       }
     } catch (j) {
       C(j);
       return;
     }
-    T(w);
+    T(S);
   }
   return e.OPTIONS = r, e;
 }
@@ -2920,7 +2920,7 @@ class wr extends re {
 }
 _r.prototype = wr.prototype;
 const ws = ({ isSubmitting: r }) => /* @__PURE__ */ d.jsx(
-  ke,
+  De,
   {
     type: "submit",
     fullWidth: !0,
@@ -3060,7 +3060,7 @@ const ws = ({ isSubmitting: r }) => /* @__PURE__ */ d.jsx(
         "aria-label": "mailbox folders",
         children: [
           /* @__PURE__ */ d.jsx(
-            At,
+            kt,
             {
               variant: "temporary",
               open: i,
@@ -3077,7 +3077,7 @@ const ws = ({ isSubmitting: r }) => /* @__PURE__ */ d.jsx(
             }
           ),
           /* @__PURE__ */ d.jsx(
-            At,
+            kt,
             {
               variant: "permanent",
               sx: {
@@ -3111,7 +3111,7 @@ const ws = ({ isSubmitting: r }) => /* @__PURE__ */ d.jsx(
   ] });
 };
 export {
-  ks as AutocompleteField,
+  Ds as AutocompleteField,
   Ns as DashboardLayout,
   en as DataTable,
   Cs as FileUploadField,
@@ -3119,8 +3119,8 @@ export {
   Ie as FormContext,
   Is as LoginPage,
   $s as ResourceFormPage,
-  Ds as ResourceListPage,
+  As as ResourceListPage,
   Fs as StatCard,
-  As as SwitchField,
+  ks as SwitchField,
   Nt as TextField
 };

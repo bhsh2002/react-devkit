@@ -115,6 +115,9 @@ export const DataTable = ({
         ...columns,
     ];
 
+    console.log('Rendering DataTable with rows:', rows);
+    console.log('Rendering DataTable with finalColumns:', finalColumns);
+
     return (
         <Paper sx={sx}>
             {ToolbarSlot && <Toolbar><ToolbarSlot {...(slotProps.toolbar || {})} /></Toolbar>}
