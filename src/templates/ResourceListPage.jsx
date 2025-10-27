@@ -105,7 +105,7 @@ export const ResourceListPage = ({
             })}
 
             <DataTable
-                rows={data}
+                rows={data?.items}
                 columns={columns}
                 loading={isLoading}
                 error={error}

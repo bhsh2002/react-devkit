@@ -1271,7 +1271,7 @@ const ot = je.use || // This extra generic is to avoid TypeScript mixing up the 
     /* @__PURE__ */ d.jsx(
       en,
       {
-        rows: j,
+        rows: j?.items,
         columns: e,
         loading: U,
         error: Y,
