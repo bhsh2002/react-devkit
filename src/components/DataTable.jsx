@@ -154,20 +154,21 @@ export const DataTable = ({
                             ) : rows.length === 0 ? (
                                 <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
                             ) : (
-                                rows.map((row, index) => (
-                                    <TableRow hover key={getRowId(row)}>
-                                        {finalColumns.map((col) => {
-                                            const value = col.field.split('.').reduce((o, i) => o?.[i], row);
-                                            return (
-                                                <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                                    {col.renderCell
-                                                        ? col.renderCell({ value, row, id: getRowId(row), index })
-                                                        : value}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                ))
+                                <div></div>
+                                // rows.map((row, index) => (
+                                //     <TableRow hover key={getRowId(row)}>
+                                //         {finalColumns.map((col) => {
+                                //             const value = col.field.split('.').reduce((o, i) => o?.[i], row);
+                                //             return (
+                                //                 <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                //                     {col.renderCell
+                                //                         ? col.renderCell({ value, row, id: getRowId(row), index })
+                                //                         : value}
+                                //                 </TableCell>
+                                //             );
+                                //         })}
+                                //     </TableRow>
+                                // ))
                             )}
                         </TableBody>
                     </Table>
