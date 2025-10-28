@@ -31323,7 +31323,7 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
     /* @__PURE__ */ E.jsx(Ir, { onClick: () => s(!r), sx: { mb: 2 }, children: r ? "إخفاء الفلاتر" : "إظهار الفلاتر" }),
     /* @__PURE__ */ E.jsx(Bm, { in: r, children: /* @__PURE__ */ E.jsx(bc, { container: !0, spacing: 2, alignItems: "center", children: e.map((i) => {
       const a = i.type === "search" ? { xs: 12, sm: 12, md: 6, lg: 6 } : { xs: 12, sm: 6, md: 3, lg: 3 };
-      return /* @__PURE__ */ E.jsx(bc, { item: !0, ...a, children: /* @__PURE__ */ E.jsx(
+      return /* @__PURE__ */ E.jsx(bc, { size: a, children: /* @__PURE__ */ E.jsx(
         eD,
         {
           filter: i,

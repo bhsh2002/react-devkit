@@ -111,13 +111,13 @@ export const FilterBar = ({ filterOptions, filters, onFilterChange }) => {
             <Collapse in={showFilters}>
                 <Grid container spacing={2} alignItems="center">
                     {filterOptions.map((filter) => {
-                        const gridProps =
+                        const size =
                             filter.type === 'search'
                                 ? { xs: 12, sm: 12, md: 6, lg: 6 }
                                 : { xs: 12, sm: 6, md: 3, lg: 3 };
 
                         return (
-                            <Grid item key={filter.name} {...gridProps}>
+                            <Grid size={size} key={filter.name}>
                                 <FilterInput
                                     filter={filter}
                                     value={filters[filter.name]}
