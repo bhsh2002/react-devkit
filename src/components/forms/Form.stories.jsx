@@ -27,19 +27,19 @@ const validationSchema = yup.object({
 const FormTemplate = (args) => (
   <Form {...args}>
     <Grid container spacing={3} sx={{ maxWidth: 600 }}>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <TextField name="marketName" label="Market Name" fullWidth />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <TextField name="phoneNumber" label="Phone Number" fullWidth />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <TextField name="email" label="Contact Email" fullWidth />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <FileUploadField name="logo" label="Upload Logo" />
       </Grid>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <Button type="submit" variant="contained">Submit</Button>
       </Grid>
     </Grid>

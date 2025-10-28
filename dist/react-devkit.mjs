@@ -31321,7 +31321,7 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   const [r, s] = ut(!0);
   return /* @__PURE__ */ E.jsxs(xt, { sx: { mb: 3 }, children: [
     /* @__PURE__ */ E.jsx(Ir, { onClick: () => s(!r), sx: { mb: 2 }, children: r ? "Hide Filters" : "Show Filters" }),
-    /* @__PURE__ */ E.jsx(Bm, { in: r, children: /* @__PURE__ */ E.jsx(bc, { container: !0, spacing: 2, alignItems: "center", children: e.map((i) => /* @__PURE__ */ E.jsx(bc, { item: !0, xs: 12, sm: 6, md: 4, lg: 3, children: /* @__PURE__ */ E.jsx(
+    /* @__PURE__ */ E.jsx(Bm, { in: r, children: /* @__PURE__ */ E.jsx(bc, { container: !0, spacing: 2, alignItems: "center", children: e.map((i) => /* @__PURE__ */ E.jsx(bc, { size: { xs: 12, sm: 6, md: 4, lg: 3 }, children: /* @__PURE__ */ E.jsx(
       eD,
       {
         filter: i,
@@ -31359,7 +31359,7 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   renderHeader: f = nD
 }) => {
   const [y, g] = ut(1), [h, p] = ut(10), [m, b] = ut([]), [C, O] = ut({}), w = { page: y, per_page: h, ...C };
-  m.length > 0 && (w.sort_by = m[0].field, w.sort_order = m[0].sort), w.deleted_state && (w.deleted_state = w.deleted_state ? "all" : "active");
+  m.length > 0 && (w.sort_by = m[0].field, w.sort_order = m[0].sort), w.deleted_state !== void 0 && (w.deleted_state = w.deleted_state ? "all" : "active");
   const { data: S, isLoading: P, error: k } = Zk(
     [e, w],
     () => n.list(w),

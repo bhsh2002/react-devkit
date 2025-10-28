@@ -111,7 +111,7 @@ export const FilterBar = ({ filterOptions, filters, onFilterChange }) => {
             <Collapse in={showFilters}>
                 <Grid container spacing={2} alignItems="center">
                     {filterOptions.map((filter) => (
-                        <Grid item xs={12} sm={6} md={4} lg={3} key={filter.name}>
+                        <Grid size={{ xs:12, sm:6, md:4, lg:3, }} key={filter.name}>
                             <FilterInput
                                 filter={filter}
                                 value={filters[filter.name]}
