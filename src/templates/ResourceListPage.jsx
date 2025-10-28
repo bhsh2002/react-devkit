@@ -50,9 +50,6 @@ export const ResourceListPage = ({
         apiParams.sort_by = sortModel[0].field;
         apiParams.sort_order = sortModel[0].sort;
     }
-    if (apiParams.deleted_state !== undefined) {
-        apiParams.deleted_state = apiParams.deleted_state ? 'all' : 'active';
-    }
 
     const { data, isLoading, error } = useApi(
         [resourceName, apiParams],

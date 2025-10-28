@@ -31359,7 +31359,7 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   renderHeader: f = nD
 }) => {
   const [y, g] = ut(1), [h, p] = ut(10), [m, b] = ut([]), [C, O] = ut({}), w = { page: y, per_page: h, ...C };
-  m.length > 0 && (w.sort_by = m[0].field, w.sort_order = m[0].sort), w.deleted_state !== void 0 && (w.deleted_state = w.deleted_state ? "all" : "active");
+  m.length > 0 && (w.sort_by = m[0].field, w.sort_order = m[0].sort);
   const { data: S, isLoading: P, error: k } = Zk(
     [e, w],
     () => n.list(w),
