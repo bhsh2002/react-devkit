@@ -5,7 +5,19 @@
 
 
 
-import React, { useState, useEffect, useCallback } from 'react';
+
+
+
+
+
+
+
+
+import React, { useState, useCallback } from 'react';
+
+
+
+
 
 
 
@@ -13,7 +25,15 @@ import { Box, Button, Typography, Toolbar } from '@mui/material';
 
 
 
+
+
+
+
 import { Add as AddIcon } from '@mui/icons-material';
+
+
+
+
 
 
 
@@ -21,7 +41,15 @@ import { DataTable } from '../components';
 
 
 
+
+
+
+
 import { FilterBar } from '../components/filters/FilterBar';
+
+
+
+
 
 
 
@@ -33,7 +61,19 @@ import { useApi } from '../hooks';
 
 
 
+
+
+
+
+
+
+
+
 const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent }) => {
+
+
+
+
 
 
 
@@ -41,7 +81,15 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
     return (
+
+
+
+
 
 
 
@@ -49,27 +97,20 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
             <Typography variant="h4" component="h1" sx={{ flexGrow: 1, mb: { xs: 2, sm: 0 } }}>
-
-
-
                 {resourceName}
-
-
-
             </Typography>
-
-
-
             {createPath && (
-
-
-
                 <Button
-
-
-
                     variant="contained"
+
+
+
+
 
 
 
@@ -77,7 +118,15 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
                     {...(Link ? { component: Link, to: createPath } : { href: createPath })}
+
+
+
+
 
 
 
@@ -85,7 +134,15 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
                     {createText}
+
+
+
+
 
 
 
@@ -93,7 +150,15 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
             )}
+
+
+
+
 
 
 
@@ -101,11 +166,27 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
 
 
 
+
+
+
+
     );
 
 
 
+
+
+
+
 };
+
+
+
+
+
+
+
+
 
 
 
@@ -117,7 +198,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     resourceName,
+
+
+
+
 
 
 
@@ -125,7 +214,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     api,
+
+
+
+
 
 
 
@@ -133,7 +230,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     createPath,
+
+
+
+
 
 
 
@@ -141,7 +246,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     filterOptions = [],
+
+
+
+
 
 
 
@@ -149,7 +262,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     showRowNumber = true,
+
+
+
+
 
 
 
@@ -157,7 +278,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     renderHeader = defaultRenderHeader,
+
+
+
+
 
 
 
@@ -165,7 +294,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     const [page, setPage] = useState(1);
+
+
+
+
 
 
 
@@ -173,7 +310,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     const [sortModel, setSortModel] = useState([]);
+
+
+
+
 
 
 
@@ -185,7 +330,19 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
+
+
+
+
     const apiParams = { page, per_page: perPage, ...filters };
+
+
+
+
 
 
 
@@ -193,11 +350,23 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
         apiParams.sort_by = sortModel[0].field;
 
 
 
+
+
+
+
         apiParams.sort_order = sortModel[0].sort;
+
+
+
+
 
 
 
@@ -209,7 +378,19 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
+
+
+
+
     const { data, isLoading, error } = useApi(
+
+
+
+
 
 
 
@@ -217,11 +398,23 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
         () => api.list(apiParams),
 
 
 
+
+
+
+
         { keepPreviousData: true }
+
+
+
+
 
 
 
@@ -233,7 +426,19 @@ export const ResourceListPage = ({
 
 
 
-    const handleFilterChange = useCallback((newFilters) => {
+
+
+
+
+
+
+
+
+    const handleFilterChange = useCallback((name, value) => {
+
+
+
+
 
 
 
@@ -241,7 +446,15 @@ export const ResourceListPage = ({
 
 
 
-        setFilters(newFilters);
+
+
+
+
+        setFilters(prevFilters => ({ ...prevFilters, [name]: value }));
+
+
+
+
 
 
 
@@ -253,7 +466,19 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
+
+
+
+
     return (
+
+
+
+
 
 
 
@@ -261,7 +486,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
             {renderHeader({ resourceName, createPath, createText, linkComponent })}
+
+
+
+
 
 
 
@@ -269,7 +502,19 @@ export const ResourceListPage = ({
 
 
 
-            <FilterBar filterOptions={filterOptions} onFilterChange={handleFilterChange} />
+
+
+
+
+            <FilterBar filterOptions={filterOptions} filters={filters} onFilterChange={handleFilterChange} />
+
+
+
+
+
+
+
+
 
 
 
@@ -281,7 +526,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 rows={data?.items}
+
+
+
+
 
 
 
@@ -289,7 +542,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 loading={isLoading}
+
+
+
+
 
 
 
@@ -297,7 +558,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 pagination
+
+
+
+
 
 
 
@@ -305,7 +574,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 page={page}
+
+
+
+
 
 
 
@@ -313,7 +590,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 perPage={perPage}
+
+
+
+
 
 
 
@@ -321,7 +606,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 sorting={sorting}
+
+
+
+
 
 
 
@@ -329,7 +622,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
                 onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
+
+
+
+
 
 
 
@@ -337,7 +638,15 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
             />
+
+
+
+
 
 
 
@@ -345,11 +654,27 @@ export const ResourceListPage = ({
 
 
 
+
+
+
+
     );
 
 
 
+
+
+
+
 };
+
+
+
+
+
+
+
+
 
 
 

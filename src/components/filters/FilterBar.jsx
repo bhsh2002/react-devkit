@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, TextField, MenuItem, Autocomplete, Grid, Button, Collapse } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -12,13 +12,13 @@ const FilterInput = ({ filter, value, onChange }) => {
 
     useEffect(() => {
         if (filter.type === 'text' || filter.type === 'number') {
-            onChange(debouncedInputValue);
+            onChange(filter.name, debouncedInputValue);
         }
-    }, [debouncedInputValue, filter.type, onChange]);
+    }, [debouncedInputValue, filter.type, filter.name, onChange]);
 
     const handleImmediateChange = (newValue) => {
         if (filter.type !== 'text' && filter.type !== 'number') {
-            onChange(newValue);
+            onChange(filter.name, newValue);
         }
     };
 
@@ -79,17 +79,8 @@ const FilterInput = ({ filter, value, onChange }) => {
     }
 };
 
-export const FilterBar = ({ filterOptions, onFilterChange }) => {
-    const [filters, setFilters] = useState({});
+export const FilterBar = ({ filterOptions, filters, onFilterChange }) => {
     const [showFilters, setShowFilters] = useState(true);
-
-    const handleFilterValueChange = useCallback((name, value) => {
-        setFilters(prev => ({ ...prev, [name]: value }));
-    }, []);
-
-    useEffect(() => {
-        onFilterChange(filters);
-    }, [filters, onFilterChange]);
 
     return (
         <Box sx={{ mb: 3 }}>
@@ -103,7 +94,7 @@ export const FilterBar = ({ filterOptions, onFilterChange }) => {
                             <FilterInput
                                 filter={filter}
                                 value={filters[filter.name]}
-                                onChange={(value) => handleFilterValueChange(filter.name, value)}
+                                onChange={onFilterChange}
                             />
                         </Grid>
                     ))}
