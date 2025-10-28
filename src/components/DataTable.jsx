@@ -111,7 +111,7 @@ export const DataTable = ({
             headerName: '#',
             width: 60,
             align: 'center',
-            renderCell: ({ index }) => (page * perPage) + index + 1,
+            renderCell: ({ index }) => ((page - 1) * perPage) + index + 1,
         }] : []),
         ...columns,
     ];

@@ -348,7 +348,7 @@ const CM = ({ icon: e, title: t, value: n, color: r, sx: s, onClick: i }) => /* 
       headerName: "#",
       width: 60,
       align: "center",
-      renderCell: ({ index: I }) => l * u + I + 1
+      renderCell: ({ index: I }) => (l - 1) * u + I + 1
     }] : [],
     ...t
   ], F = (I) => I.sticky ? {
@@ -31320,15 +31320,18 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
 }, tD = ({ filterOptions: e, filters: t, onFilterChange: n }) => {
   const [r, s] = ut(!0);
   return /* @__PURE__ */ E.jsxs(xt, { sx: { mb: 3 }, children: [
-    /* @__PURE__ */ E.jsx(Ir, { onClick: () => s(!r), sx: { mb: 2 }, children: r ? "Hide Filters" : "Show Filters" }),
-    /* @__PURE__ */ E.jsx(Bm, { in: r, children: /* @__PURE__ */ E.jsx(bc, { container: !0, spacing: 2, alignItems: "center", children: e.map((i) => /* @__PURE__ */ E.jsx(bc, { size: { xs: 12, sm: 6, md: 4, lg: 3 }, children: /* @__PURE__ */ E.jsx(
-      eD,
-      {
-        filter: i,
-        value: t[i.name],
-        onChange: n
-      }
-    ) }, i.name)) }) })
+    /* @__PURE__ */ E.jsx(Ir, { onClick: () => s(!r), sx: { mb: 2 }, children: r ? "إخفاء الفلاتر" : "إظهار الفلاتر" }),
+    /* @__PURE__ */ E.jsx(Bm, { in: r, children: /* @__PURE__ */ E.jsx(bc, { container: !0, spacing: 2, alignItems: "center", children: e.map((i) => {
+      const a = i.type === "search" ? { xs: 12, sm: 12, md: 6, lg: 6 } : { xs: 12, sm: 6, md: 3, lg: 3 };
+      return /* @__PURE__ */ E.jsx(bc, { item: !0, ...a, children: /* @__PURE__ */ E.jsx(
+        eD,
+        {
+          filter: i,
+          value: t[i.name],
+          onChange: n
+        }
+      ) }, i.name);
+    }) }) })
   ] });
 }, nD = ({ resourceName: e, createPath: t, createText: n, linkComponent: r }) => {
   const s = r;

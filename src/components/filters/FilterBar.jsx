@@ -106,19 +106,26 @@ export const FilterBar = ({ filterOptions, filters, onFilterChange }) => {
     return (
         <Box sx={{ mb: 3 }}>
             <Button onClick={() => setShowFilters(!showFilters)} sx={{ mb: 2 }}>
-                {showFilters ? 'Hide Filters' : 'Show Filters'}
+                {showFilters ? 'إخفاء الفلاتر' : 'إظهار الفلاتر'}
             </Button>
             <Collapse in={showFilters}>
                 <Grid container spacing={2} alignItems="center">
-                    {filterOptions.map((filter) => (
-                        <Grid size={{ xs:12, sm:6, md:4, lg:3, }} key={filter.name}>
-                            <FilterInput
-                                filter={filter}
-                                value={filters[filter.name]}
-                                onChange={onFilterChange}
-                            />
-                        </Grid>
-                    ))}
+                    {filterOptions.map((filter) => {
+                        const gridProps =
+                            filter.type === 'search'
+                                ? { xs: 12, sm: 12, md: 6, lg: 6 }
+                                : { xs: 12, sm: 6, md: 3, lg: 3 };
+
+                        return (
+                            <Grid item key={filter.name} {...gridProps}>
+                                <FilterInput
+                                    filter={filter}
+                                    value={filters[filter.name]}
+                                    onChange={onFilterChange}
+                                />
+                            </Grid>
+                        );
+                    })}
                 </Grid>
             </Collapse>
         </Box>
