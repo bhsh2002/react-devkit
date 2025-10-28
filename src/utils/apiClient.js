@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const createApiClient = (baseURL, onUnauthorized) => {
+export const createApiClient = (baseURL, { onUnauthorized, interceptors } = {}) => {
   const client = axios.create({ baseURL });
 
   client.interceptors.response.use(
@@ -12,6 +12,12 @@ export const createApiClient = (baseURL, onUnauthorized) => {
       return Promise.reject(err);
     }
   );
+
+  if (interceptors) {
+    interceptors.forEach((interceptor) => {
+      client.interceptors.response.use(interceptor.success, interceptor.error);
+    });
+  }
 
   return client;
 };

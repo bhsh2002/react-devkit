@@ -12,7 +12,9 @@ const errorMap = {
     "Timeout exceeded": "انتهت مهلة الاتصال بالخادم، يرجى المحاولة مرة أخرى.",
 };
 
-export const getTranslatedError = (error) => {
+export const getTranslatedError = (error, customErrorMap = {}) => {
+    const finalErrorMap = { ...errorMap, ...customErrorMap };
+
     if (!error) return "حدث خطأ غير متوقع.";
     const errorData = error.response?.data;
 
@@ -35,8 +37,8 @@ export const getTranslatedError = (error) => {
     }
 
     const genericMessage = error.message;
-    if (genericMessage && errorMap[genericMessage]) {
-        return errorMap[genericMessage];
+    if (genericMessage && finalErrorMap[genericMessage]) {
+        return finalErrorMap[genericMessage];
     }
 
     return "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.";

@@ -1,17 +1,10 @@
 import useSWR from 'swr';
-// import { useNotifier } from '../store/notification-context';
 import { getTranslatedError } from '../utils/errorUtils';
 
 export const useApi = (key, fetcher, options = {}) => {
-//   const { showNotification } = useNotifier();
-
   const { data, error, isLoading, mutate } = useSWR(key, fetcher, {
     ...options,
     onError: (err) => {
-    //   showNotification({
-    //     message: getTranslatedError(err),
-    //     severity: 'error',
-    //   });
       if (options.onError) {
         options.onError(err);
       }
@@ -21,6 +14,7 @@ export const useApi = (key, fetcher, options = {}) => {
   return {
     data,
     error,
+    getTranslatedError,
     isLoading,
     mutate,
   };
