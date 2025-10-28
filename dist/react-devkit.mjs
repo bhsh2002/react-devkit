@@ -1,4 +1,4 @@
-import Me, { createContext as rr, useState as J, useCallback as dt, useContext as Ze, useEffect as Ce, useLayoutEffect as Qr, useMemo as sr, useRef as _e, useDebugValue as es } from "react";
+import Me, { createContext as rr, useState as G, useCallback as dt, useContext as Ze, useEffect as Ce, useLayoutEffect as Qr, useMemo as sr, useRef as _e, useDebugValue as es } from "react";
 import { Paper as St, Box as X, Typography as we, Toolbar as Ie, TableContainer as ts, Table as ns, TableHead as rs, TableRow as ze, TableCell as He, TableSortLabel as ss, TableBody as is, TablePagination as os, CircularProgress as Xe, TextField as on, Avatar as as, Button as Ke, Autocomplete as us, FormControlLabel as ir, Switch as or, Alert as zt, Container as ls, List as cs, ListItem as fs, ListItemButton as ds, ListItemIcon as hs, ListItemText as ps, CssBaseline as ms, AppBar as ys, IconButton as bs, Drawer as xn } from "@mui/material";
 import { ImageNotSupported as gs, Add as xs, Search as Es, Menu as ws } from "@mui/icons-material";
 function Ss(n) {
@@ -65,7 +65,7 @@ function _s() {
           return "Suspense";
         case C:
           return "SuspenseList";
-        case N:
+        case T:
           return "Activity";
       }
       if (typeof y == "object")
@@ -79,14 +79,14 @@ function _s() {
           case S:
             return (y._context.displayName || "Context") + ".Consumer";
           case O:
-            var T = y.render;
-            return y = y.displayName, y || (y = T.displayName || T.name || "", y = y !== "" ? "ForwardRef(" + y + ")" : "ForwardRef"), y;
+            var _ = y.render;
+            return y = y.displayName, y || (y = _.displayName || _.name || "", y = y !== "" ? "ForwardRef(" + y + ")" : "ForwardRef"), y;
           case A:
-            return T = y.displayName || null, T !== null ? T : n(y.type) || "Memo";
-          case _:
-            T = y._payload, y = y._init;
+            return _ = y.displayName || null, _ !== null ? _ : n(y.type) || "Memo";
+          case $:
+            _ = y._payload, y = y._init;
             try {
-              return n(y(T));
+              return n(y(_));
             } catch {
             }
         }
@@ -98,54 +98,54 @@ function _s() {
     function t(y) {
       try {
         e(y);
-        var T = !1;
+        var _ = !1;
       } catch {
-        T = !0;
+        _ = !0;
       }
-      if (T) {
-        T = console;
-        var $ = T.error, L = typeof Symbol == "function" && Symbol.toStringTag && y[Symbol.toStringTag] || y.constructor.name || "Object";
-        return $.call(
-          T,
+      if (_) {
+        _ = console;
+        var P = _.error, I = typeof Symbol == "function" && Symbol.toStringTag && y[Symbol.toStringTag] || y.constructor.name || "Object";
+        return P.call(
+          _,
           "The provided key is an unsupported type %s. This value must be coerced to a string before using it here.",
-          L
+          I
         ), e(y);
       }
     }
     function r(y) {
       if (y === x) return "<>";
-      if (typeof y == "object" && y !== null && y.$$typeof === _)
+      if (typeof y == "object" && y !== null && y.$$typeof === $)
         return "<...>";
       try {
-        var T = n(y);
-        return T ? "<" + T + ">" : "<...>";
+        var _ = n(y);
+        return _ ? "<" + _ + ">" : "<...>";
       } catch {
         return "<...>";
       }
     }
     function s() {
-      var y = I.A;
+      var y = N.A;
       return y === null ? null : y.getOwner();
     }
     function o() {
       return Error("react-stack-top-frame");
     }
     function i(y) {
-      if (M.call(y, "key")) {
-        var T = Object.getOwnPropertyDescriptor(y, "key").get;
-        if (T && T.isReactWarning) return !1;
+      if (U.call(y, "key")) {
+        var _ = Object.getOwnPropertyDescriptor(y, "key").get;
+        if (_ && _.isReactWarning) return !1;
       }
       return y.key !== void 0;
     }
-    function a(y, T) {
-      function $() {
-        z || (z = !0, console.error(
+    function a(y, _) {
+      function P() {
+        H || (H = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
-          T
+          _
         ));
       }
-      $.isReactWarning = !0, Object.defineProperty(y, "key", {
-        get: $,
+      P.isReactWarning = !0, Object.defineProperty(y, "key", {
+        get: P,
         configurable: !0
       });
     }
@@ -155,14 +155,14 @@ function _s() {
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), y = this.props.ref, y !== void 0 ? y : null;
     }
-    function c(y, T, $, L, se, De) {
-      var V = $.ref;
+    function c(y, _, P, I, se, De) {
+      var V = P.ref;
       return y = {
         $$typeof: f,
         type: y,
-        key: T,
-        props: $,
-        _owner: L
+        key: _,
+        props: P,
+        _owner: I
       }, (V !== void 0 ? V : null) !== null ? Object.defineProperty(y, "ref", {
         enumerable: !1,
         get: u
@@ -188,61 +188,61 @@ function _s() {
         value: De
       }), Object.freeze && (Object.freeze(y.props), Object.freeze(y)), y;
     }
-    function l(y, T, $, L, se, De) {
-      var V = T.children;
+    function l(y, _, P, I, se, De) {
+      var V = _.children;
       if (V !== void 0)
-        if (L)
+        if (I)
           if (k(V)) {
-            for (L = 0; L < V.length; L++)
-              d(V[L]);
+            for (I = 0; I < V.length; I++)
+              d(V[I]);
             Object.freeze && Object.freeze(V);
           } else
             console.error(
               "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
             );
         else d(V);
-      if (M.call(T, "key")) {
+      if (U.call(_, "key")) {
         V = n(y);
-        var ge = Object.keys(T).filter(function(Oe) {
+        var ge = Object.keys(_).filter(function(Oe) {
           return Oe !== "key";
         });
-        L = 0 < ge.length ? "{key: someKey, " + ge.join(": ..., ") + ": ...}" : "{key: someKey}", ke[V + L] || (ge = 0 < ge.length ? "{" + ge.join(": ..., ") + ": ...}" : "{}", console.error(
+        I = 0 < ge.length ? "{key: someKey, " + ge.join(": ..., ") + ": ...}" : "{key: someKey}", ke[V + I] || (ge = 0 < ge.length ? "{" + ge.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
 React keys must be passed directly to JSX without using spread:
   let props = %s;
   <%s key={someKey} {...props} />`,
-          L,
+          I,
           V,
           ge,
           V
-        ), ke[V + L] = !0);
+        ), ke[V + I] = !0);
       }
-      if (V = null, $ !== void 0 && (t($), V = "" + $), i(T) && (t(T.key), V = "" + T.key), "key" in T) {
-        $ = {};
-        for (var Be in T)
-          Be !== "key" && ($[Be] = T[Be]);
-      } else $ = T;
+      if (V = null, P !== void 0 && (t(P), V = "" + P), i(_) && (t(_.key), V = "" + _.key), "key" in _) {
+        P = {};
+        for (var Be in _)
+          Be !== "key" && (P[Be] = _[Be]);
+      } else P = _;
       return V && a(
-        $,
+        P,
         typeof y == "function" ? y.displayName || y.name || "Unknown" : y
       ), c(
         y,
         V,
-        $,
+        P,
         s(),
         se,
         De
       );
     }
     function d(y) {
-      b(y) ? y._store && (y._store.validated = 1) : typeof y == "object" && y !== null && y.$$typeof === _ && (y._payload.status === "fulfilled" ? b(y._payload.value) && y._payload.value._store && (y._payload.value._store.validated = 1) : y._store && (y._store.validated = 1));
+      b(y) ? y._store && (y._store.validated = 1) : typeof y == "object" && y !== null && y.$$typeof === $ && (y._payload.status === "fulfilled" ? b(y._payload.value) && y._payload.value._store && (y._payload.value._store.validated = 1) : y._store && (y._store.validated = 1));
     }
     function b(y) {
       return typeof y == "object" && y !== null && y.$$typeof === f;
     }
-    var g = Me, f = Symbol.for("react.transitional.element"), m = Symbol.for("react.portal"), x = Symbol.for("react.fragment"), p = Symbol.for("react.strict_mode"), w = Symbol.for("react.profiler"), S = Symbol.for("react.consumer"), v = Symbol.for("react.context"), O = Symbol.for("react.forward_ref"), R = Symbol.for("react.suspense"), C = Symbol.for("react.suspense_list"), A = Symbol.for("react.memo"), _ = Symbol.for("react.lazy"), N = Symbol.for("react.activity"), j = Symbol.for("react.client.reference"), I = g.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, M = Object.prototype.hasOwnProperty, k = Array.isArray, K = console.createTask ? console.createTask : function() {
+    var g = Me, f = Symbol.for("react.transitional.element"), m = Symbol.for("react.portal"), x = Symbol.for("react.fragment"), p = Symbol.for("react.strict_mode"), w = Symbol.for("react.profiler"), S = Symbol.for("react.consumer"), v = Symbol.for("react.context"), O = Symbol.for("react.forward_ref"), R = Symbol.for("react.suspense"), C = Symbol.for("react.suspense_list"), A = Symbol.for("react.memo"), $ = Symbol.for("react.lazy"), T = Symbol.for("react.activity"), j = Symbol.for("react.client.reference"), N = g.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, U = Object.prototype.hasOwnProperty, k = Array.isArray, z = console.createTask ? console.createTask : function() {
       return null;
     };
     g = {
@@ -250,29 +250,29 @@ React keys must be passed directly to JSX without using spread:
         return y();
       }
     };
-    var z, ue = {}, H = g.react_stack_bottom_frame.bind(
+    var H, ue = {}, W = g.react_stack_bottom_frame.bind(
       g,
       o
-    )(), be = K(r(o)), ke = {};
-    Je.Fragment = x, Je.jsx = function(y, T, $) {
-      var L = 1e4 > I.recentlyCreatedOwnerStacks++;
+    )(), be = z(r(o)), ke = {};
+    Je.Fragment = x, Je.jsx = function(y, _, P) {
+      var I = 1e4 > N.recentlyCreatedOwnerStacks++;
       return l(
         y,
-        T,
-        $,
+        _,
+        P,
         !1,
-        L ? Error("react-stack-top-frame") : H,
-        L ? K(r(y)) : be
+        I ? Error("react-stack-top-frame") : W,
+        I ? z(r(y)) : be
       );
-    }, Je.jsxs = function(y, T, $) {
-      var L = 1e4 > I.recentlyCreatedOwnerStacks++;
+    }, Je.jsxs = function(y, _, P) {
+      var I = 1e4 > N.recentlyCreatedOwnerStacks++;
       return l(
         y,
-        T,
-        $,
+        _,
+        P,
         !0,
-        L ? Error("react-stack-top-frame") : H,
-        L ? K(r(y)) : be
+        I ? Error("react-stack-top-frame") : W,
+        I ? z(r(y)) : be
       );
     };
   })()), Je;
@@ -332,47 +332,52 @@ const $a = ({ icon: n, title: e, value: t, color: r, sx: s, onClick: o }) => /* 
     toolbar: S,
     noRowsOverlay: v = Rs,
     loadingOverlay: O = vs
-  } = x, R = (_) => {
+  } = x, R = (T) => {
     if (!b) return;
-    const N = g.find((I) => I.field === _);
-    let j = N ? N.sort === "asc" ? [{ field: _, sort: "desc" }] : [] : [{ field: _, sort: "asc" }];
-    f(j);
+    const j = g.find((U) => U.field === T);
+    let N = j ? j.sort === "asc" ? [{ field: T, sort: "desc" }] : [] : [{ field: T, sort: "asc" }];
+    f(N);
   }, C = g.length > 0 ? g[0] : null, A = [
     ...m ? [{
       field: "__rowNumber__",
       headerName: "#",
       width: 60,
       align: "center",
-      renderCell: ({ index: _ }) => a * c + _ + 1
+      renderCell: ({ index: T }) => a * c + T + 1
     }] : [],
     ...e
-  ];
+  ], $ = (T) => T.sticky ? {
+    position: "sticky",
+    [T.sticky]: 0,
+    background: "white",
+    zIndex: 1
+  } : {};
   return /* @__PURE__ */ E.jsxs(St, { sx: w, children: [
     S && /* @__PURE__ */ E.jsx(Ie, { children: /* @__PURE__ */ E.jsx(S, { ...p.toolbar || {} }) }),
     /* @__PURE__ */ E.jsx(X, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ E.jsx(ts, { children: /* @__PURE__ */ E.jsxs(ns, { stickyHeader: !0, children: [
-      /* @__PURE__ */ E.jsx(rs, { children: /* @__PURE__ */ E.jsx(ze, { children: A.map((_) => /* @__PURE__ */ E.jsx(
+      /* @__PURE__ */ E.jsx(rs, { children: /* @__PURE__ */ E.jsx(ze, { children: A.map((T) => /* @__PURE__ */ E.jsx(
         He,
         {
-          align: _.align || "inherit",
-          width: _.width,
-          sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
-          sortDirection: C?.field === _.field ? C.sort : !1,
-          children: _.sortable && b ? /* @__PURE__ */ E.jsx(
+          align: T.align || "inherit",
+          width: T.width,
+          sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", ...$(T) },
+          sortDirection: C?.field === T.field ? C.sort : !1,
+          children: T.sortable && b ? /* @__PURE__ */ E.jsx(
             ss,
             {
-              active: C?.field === _.field,
-              direction: C?.field === _.field ? C.sort : "asc",
-              onClick: () => R(_.field),
-              children: _.headerName
+              active: C?.field === T.field,
+              direction: C?.field === T.field ? C.sort : "asc",
+              onClick: () => R(T.field),
+              children: T.headerName
             }
-          ) : _.headerName
+          ) : T.headerName
         },
-        _.field
+        T.field
       )) }) }),
-      /* @__PURE__ */ E.jsx(is, { children: r ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(O, { ...p.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ E.jsx(we, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(v, { ...p.noRowsOverlay || {} }) }) }) : n.map((_, N) => /* @__PURE__ */ E.jsx(ze, { hover: !0, children: A.map((j) => {
-        const I = j.field.split(".").reduce((M, k) => M?.[k], _);
-        return /* @__PURE__ */ E.jsx(He, { align: j.align || "inherit", sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }, children: j.renderCell ? j.renderCell({ value: I, row: _, id: t(_), index: N }) : I }, j.field);
-      }) }, t(_))) })
+      /* @__PURE__ */ E.jsx(is, { children: r ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(O, { ...p.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ E.jsx(we, { color: "error", children: s.message || "An error occurred." }) }) }) : n.length === 0 ? /* @__PURE__ */ E.jsx(ze, { children: /* @__PURE__ */ E.jsx(He, { colSpan: A.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(v, { ...p.noRowsOverlay || {} }) }) }) : n.map((T, j) => /* @__PURE__ */ E.jsx(ze, { hover: !0, children: A.map((N) => {
+        const U = N.field.split(".").reduce((k, z) => k?.[z], T);
+        return /* @__PURE__ */ E.jsx(He, { align: N.align || "inherit", sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", ...$(N) }, children: N.renderCell ? N.renderCell({ value: U, row: T, id: t(T), index: j }) : U }, N.field);
+      }) }, t(T))) })
     ] }) }) }),
     o && !s && n.length > 0 && /* @__PURE__ */ E.jsx(
       os,
@@ -380,20 +385,20 @@ const $a = ({ icon: n, title: e, value: t, color: r, sx: s, onClick: o }) => /* 
         component: "div",
         count: i,
         page: a - 1,
-        onPageChange: (_, N) => u(N),
+        onPageChange: (T, j) => u(j),
         rowsPerPage: c,
-        onRowsPerPageChange: (_) => l(parseInt(_.target.value, 10)),
+        onRowsPerPageChange: (T) => l(parseInt(T.target.value, 10)),
         rowsPerPageOptions: d,
         showFirstButton: !0,
         showLastButton: !0,
         labelRowsPerPage: null,
-        labelDisplayedRows: ({ from: _, to: N, count: j }) => `${_} - ${N} | ${j}`,
+        labelDisplayedRows: ({ from: T, to: j, count: N }) => `${T} - ${j} | ${N}`,
         sx: { display: "flex", justifyContent: "center" }
       }
     )
   ] });
 }, Qe = rr(null), ar = ({ initialValues: n = {}, onSubmit: e, validationSchema: t, children: r, ...s }) => {
-  const [o, i] = J(n || {}), [a, u] = J({}), c = dt((b, g) => {
+  const [o, i] = G(n || {}), [a, u] = G({}), c = dt((b, g) => {
     i((f) => ({
       ...f,
       [b]: g
@@ -437,7 +442,7 @@ const $a = ({ icon: n, title: e, value: t, color: r, sx: s, onClick: o }) => /* 
     }
   );
 }, Na = ({ name: n, label: e = "Upload File", initialPreview: t }) => {
-  const r = Ze(Qe), [s, o] = J(t || null);
+  const r = Ze(Qe), [s, o] = G(t || null);
   if (!r)
     throw new Error("FileUploadField must be used within a Form component");
   const { setFieldValue: i, values: a } = r, u = a[n];
@@ -474,7 +479,7 @@ const $a = ({ icon: n, title: e, value: t, color: r, sx: s, onClick: o }) => /* 
   const i = Ze(Qe);
   if (!i)
     throw new Error("AutocompleteField must be used within a Form component");
-  const { values: a, setFieldValue: u, errors: c } = i, [l, d] = J([]), [b, g] = J(!1), [f, m] = J("");
+  const { values: a, setFieldValue: u, errors: c } = i, [l, d] = G([]), [b, g] = G(!1), [f, m] = G("");
   Ce(() => {
     let w = !0;
     return g(!0), t(f).then((S) => {
@@ -811,13 +816,13 @@ async function hr(...n) {
       A,
       0
     ];
-    const _ = !D(u), N = f(), j = N.data, I = N._c, M = D(I) ? j : I;
-    if (_ && (u = fe(u) ? u(M, j) : u, m({
+    const $ = !D(u), T = f(), j = T.data, N = T._c, U = D(N) ? j : N;
+    if ($ && (u = fe(u) ? u(U, j) : u, m({
       data: u,
-      _c: M
+      _c: U
     })), fe(O))
       try {
-        O = O(M);
+        O = O(U);
       } catch (k) {
         R = k, C = !0;
       }
@@ -827,13 +832,13 @@ async function hr(...n) {
       }), A !== p[g][0]) {
         if (C) throw R;
         return O;
-      } else C && _ && c(R) && (i = !0, m({
-        data: M,
+      } else C && $ && c(R) && (i = !0, m({
+        data: U,
         _c: Y
       }));
     if (i && !C)
       if (fe(i)) {
-        const k = i(O, M);
+        const k = i(O, U);
         m({
           data: k,
           error: Y,
@@ -994,84 +999,84 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
 }), Lt = {
   dedupe: !0
 }, kn = Promise.resolve(Y), ai = (n, e, t) => {
-  const { cache: r, compare: s, suspense: o, fallbackData: i, revalidateOnMount: a, revalidateIfStale: u, refreshInterval: c, refreshWhenHidden: l, refreshWhenOffline: d, keepPreviousData: b } = t, [g, f, m, x] = ye.get(r), [p, w] = un(n), S = _e(!1), v = _e(!1), O = _e(p), R = _e(e), C = _e(t), A = () => C.current, _ = () => A().isVisible() && A().isOnline(), [N, j, I, M] = dr(r, p), k = _e({}).current, K = D(i) ? D(t.fallback) ? Y : t.fallback[p] : i, z = (P, q) => {
-    for (const W in k) {
-      const U = W;
-      if (U === "data") {
-        if (!s(P[U], q[U]) && (!D(P[U]) || !s(se, q[U])))
+  const { cache: r, compare: s, suspense: o, fallbackData: i, revalidateOnMount: a, revalidateIfStale: u, refreshInterval: c, refreshWhenHidden: l, refreshWhenOffline: d, keepPreviousData: b } = t, [g, f, m, x] = ye.get(r), [p, w] = un(n), S = _e(!1), v = _e(!1), O = _e(p), R = _e(e), C = _e(t), A = () => C.current, $ = () => A().isVisible() && A().isOnline(), [T, j, N, U] = dr(r, p), k = _e({}).current, z = D(i) ? D(t.fallback) ? Y : t.fallback[p] : i, H = (L, q) => {
+    for (const J in k) {
+      const M = J;
+      if (M === "data") {
+        if (!s(L[M], q[M]) && (!D(L[M]) || !s(se, q[M])))
           return !1;
-      } else if (q[U] !== P[U])
+      } else if (q[M] !== L[M])
         return !1;
     }
     return !0;
   }, ue = sr(() => {
-    const P = !p || !e ? !1 : D(a) ? A().isPaused() || o ? !1 : u !== !1 : a, q = (Q) => {
+    const L = !p || !e ? !1 : D(a) ? A().isPaused() || o ? !1 : u !== !1 : a, q = (Q) => {
       const he = Se(Q);
-      return delete he._k, P ? {
+      return delete he._k, L ? {
         isValidating: !0,
         isLoading: !0,
         ...he
       } : he;
-    }, W = N(), U = M(), oe = q(W), $e = W === U ? oe : q(U);
-    let G = oe;
+    }, J = T(), M = U(), oe = q(J), $e = J === M ? oe : q(M);
+    let K = oe;
     return [
       () => {
-        const Q = q(N());
-        return z(Q, G) ? (G.data = Q.data, G.isLoading = Q.isLoading, G.isValidating = Q.isValidating, G.error = Q.error, G) : (G = Q, Q);
+        const Q = q(T());
+        return H(Q, K) ? (K.data = Q.data, K.isLoading = Q.isLoading, K.isValidating = Q.isValidating, K.error = Q.error, K) : (K = Q, Q);
       },
       () => $e
     ];
   }, [
     r,
     p
-  ]), H = ks.useSyncExternalStore(dt(
-    (P) => I(p, (q, W) => {
-      z(W, q) || P();
+  ]), W = ks.useSyncExternalStore(dt(
+    (L) => N(p, (q, J) => {
+      H(J, q) || L();
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       r,
       p
     ]
-  ), ue[0], ue[1]), be = !S.current, ke = g[p] && g[p].length > 0, y = H.data, T = D(y) ? K && fr(K) ? Pt(K) : K : y, $ = H.error, L = _e(T), se = b ? D(y) ? D(L.current) ? T : L.current : y : T, De = ke && !D($) ? !1 : be && !D(a) ? a : A().isPaused() ? !1 : o ? D(T) ? !1 : u : D(T) || u, V = !!(p && e && be && De), ge = D(H.isValidating) ? V : H.isValidating, Be = D(H.isLoading) ? V : H.isLoading, Oe = dt(
-    async (P) => {
+  ), ue[0], ue[1]), be = !S.current, ke = g[p] && g[p].length > 0, y = W.data, _ = D(y) ? z && fr(z) ? Pt(z) : z : y, P = W.error, I = _e(_), se = b ? D(y) ? D(I.current) ? _ : I.current : y : _, De = ke && !D(P) ? !1 : be && !D(a) ? a : A().isPaused() ? !1 : o ? D(_) ? !1 : u : D(_) || u, V = !!(p && e && be && De), ge = D(W.isValidating) ? V : W.isValidating, Be = D(W.isLoading) ? V : W.isLoading, Oe = dt(
+    async (L) => {
       const q = R.current;
       if (!p || !q || v.current || A().isPaused())
         return !1;
-      let W, U, oe = !0;
-      const $e = P || {}, G = !m[p] || !$e.dedupe, Q = () => Cn ? !v.current && p === O.current && S.current : p === O.current, he = {
+      let J, M, oe = !0;
+      const $e = L || {}, K = !m[p] || !$e.dedupe, Q = () => Cn ? !v.current && p === O.current && S.current : p === O.current, he = {
         isValidating: !1,
         isLoading: !1
       }, yn = () => {
         j(he);
       }, bn = () => {
         const ie = m[p];
-        ie && ie[1] === U && delete m[p];
+        ie && ie[1] === M && delete m[p];
       }, gn = {
         isValidating: !0
       };
-      D(N().data) && (gn.isLoading = !0);
+      D(T().data) && (gn.isLoading = !0);
       try {
-        if (G && (j(gn), t.loadingTimeout && D(N().data) && setTimeout(() => {
+        if (K && (j(gn), t.loadingTimeout && D(T().data) && setTimeout(() => {
           oe && Q() && A().onLoadingSlow(p, t);
         }, t.loadingTimeout), m[p] = [
           q(w),
           Xt()
-        ]), [W, U] = m[p], W = await W, G && setTimeout(bn, t.dedupingInterval), !m[p] || m[p][1] !== U)
-          return G && Q() && A().onDiscarded(p), !1;
+        ]), [J, M] = m[p], J = await J, K && setTimeout(bn, t.dedupingInterval), !m[p] || m[p][1] !== M)
+          return K && Q() && A().onDiscarded(p), !1;
         he.error = Y;
         const ie = f[p];
         if (!D(ie) && // case 1
-        (U <= ie[0] || // case 2
-        U <= ie[1] || // case 3
+        (M <= ie[0] || // case 2
+        M <= ie[1] || // case 3
         ie[1] === 0))
-          return yn(), G && Q() && A().onDiscarded(p), !1;
-        const pe = N().data;
-        he.data = s(pe, W) ? pe : W, G && Q() && A().onSuccess(W, p, t);
+          return yn(), K && Q() && A().onDiscarded(p), !1;
+        const pe = T().data;
+        he.data = s(pe, J) ? pe : J, K && Q() && A().onSuccess(J, p, t);
       } catch (ie) {
         bn();
         const pe = A(), { shouldRetryOnError: At } = pe;
-        pe.isPaused() || (he.error = ie, G && Q() && (pe.onError(ie, p, pe), (At === !0 || fe(At) && At(ie)) && (!A().revalidateOnFocus || !A().revalidateOnReconnect || _()) && pe.onErrorRetry(ie, p, pe, (Xr) => {
+        pe.isPaused() || (he.error = ie, K && Q() && (pe.onError(ie, p, pe), (At === !0 || fe(At) && At(ie)) && (!A().revalidateOnFocus || !A().revalidateOnReconnect || $()) && pe.onErrorRetry(ie, p, pe, (Xr) => {
           const Ct = g[p];
           Ct && Ct[0] && Ct[0](vn, Xr);
         }, {
@@ -1098,23 +1103,23 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
     ]
   ), mn = dt(
     // Use callback to make sure `keyRef.current` returns latest result every time
-    (...P) => hr(r, O.current, ...P),
+    (...L) => hr(r, O.current, ...L),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
   if (Dt(() => {
-    R.current = e, C.current = t, D(y) || (L.current = y);
+    R.current = e, C.current = t, D(y) || (I.current = y);
   }), Dt(() => {
     if (!p) return;
-    const P = Oe.bind(Y, Lt);
+    const L = Oe.bind(Y, Lt);
     let q = 0;
     A().revalidateOnFocus && (q = Date.now() + A().focusThrottleInterval);
-    const U = oi(p, g, (oe, $e = {}) => {
+    const M = oi(p, g, (oe, $e = {}) => {
       if (oe == ur) {
-        const G = Date.now();
-        A().revalidateOnFocus && G > q && _() && (q = G + A().focusThrottleInterval, P());
+        const K = Date.now();
+        A().revalidateOnFocus && K > q && $() && (q = K + A().focusThrottleInterval, L());
       } else if (oe == lr)
-        A().revalidateOnReconnect && _() && P();
+        A().revalidateOnReconnect && $() && L();
       else {
         if (oe == cr)
           return Oe();
@@ -1124,22 +1129,22 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
     });
     return v.current = !1, O.current = p, S.current = !0, j({
       _k: w
-    }), De && (m[p] || (D(T) || Ye ? P() : qs(P))), () => {
-      v.current = !0, U();
+    }), De && (m[p] || (D(_) || Ye ? L() : qs(L))), () => {
+      v.current = !0, M();
     };
   }, [
     p
   ]), Dt(() => {
-    let P;
+    let L;
     function q() {
-      const U = fe(c) ? c(N().data) : c;
-      U && P !== -1 && (P = setTimeout(W, U));
+      const M = fe(c) ? c(T().data) : c;
+      M && L !== -1 && (L = setTimeout(J, M));
     }
-    function W() {
-      !N().error && (l || A().isVisible()) && (d || A().isOnline()) ? Oe(Lt).then(q) : q();
+    function J() {
+      !T().error && (l || A().isVisible()) && (d || A().isOnline()) ? Oe(Lt).then(q) : q();
     }
     return q(), () => {
-      P && (clearTimeout(P), P = -1);
+      L && (clearTimeout(L), L = -1);
     };
   }, [
     c,
@@ -1147,15 +1152,15 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
     d,
     p
   ]), es(se), o) {
-    const P = p && D(T);
-    if (!Cn && Ye && P)
+    const L = p && D(_);
+    if (!Cn && Ye && L)
       throw new Error("Fallback data is required when using Suspense in SSR.");
-    P && (R.current = e, C.current = t, v.current = !1);
-    const q = x[p], W = !D(q) && P ? mn(q) : kn;
-    if (Pt(W), !D($) && P)
-      throw $;
-    const U = P ? Oe(Lt) : kn;
-    !D(se) && P && (U.status = "fulfilled", U.value = !0), Pt(U);
+    L && (R.current = e, C.current = t, v.current = !1);
+    const q = x[p], J = !D(q) && L ? mn(q) : kn;
+    if (Pt(J), !D(P) && L)
+      throw P;
+    const M = L ? Oe(Lt) : kn;
+    !D(se) && L && (M.status = "fulfilled", M.value = !0), Pt(M);
   }
   return {
     mutate: mn,
@@ -1163,7 +1168,7 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
       return k.data = !0, se;
     },
     get error() {
-      return k.error = !0, $;
+      return k.error = !0, P;
     },
     get isValidating() {
       return k.isValidating = !0, ge;
@@ -1220,7 +1225,7 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
     mutate: i
   };
 }, Ia = (n, { onSuccess: e, onError: t } = {}) => {
-  const [r, s] = J(!1);
+  const [r, s] = G(!1);
   return { handleMutation: async (i) => {
     s(!0);
     try {
@@ -1233,7 +1238,7 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
     }
   }, isMutating: r, getTranslatedError: yr };
 }, di = (n, e) => {
-  const [t, r] = J(n);
+  const [t, r] = G(n);
   return Ce(() => {
     const s = setTimeout(() => {
       r(n);
@@ -1293,19 +1298,19 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
   renderHeader: b = hi,
   renderFilters: g = pi
 }) => {
-  const [f, m] = J(1), [x, p] = J(10), [w, S] = J([]), [v, O] = J(""), [R, C] = J(
-    () => u.reduce((k, K) => ({ ...k, [K.name]: !1 }), {})
-  ), A = di(v, 500), { data: _, isLoading: N, error: j, mutate: I } = fi(
+  const [f, m] = G(1), [x, p] = G(10), [w, S] = G([]), [v, O] = G(""), [R, C] = G(
+    () => u.reduce((k, z) => ({ ...k, [z.name]: !1 }), {})
+  ), A = di(v, 500), { data: $, isLoading: T, error: j, mutate: N } = fi(
     [n, f, x, A, R.include_deleted],
     () => t.list({ page: f, per_page: x, q: A, deleted_state: R.include_deleted ? "all" : "active" }),
     { keepPreviousData: !0 }
   );
   Ce(() => {
-    I();
-  }, [_]);
-  const M = (k) => {
-    const { name: K, checked: z } = k.target;
-    C((ue) => ({ ...ue, [K]: z })), m(1);
+    N();
+  }, [$]);
+  const U = (k) => {
+    const { name: z, checked: H } = k.target;
+    C((ue) => ({ ...ue, [z]: H })), m(1);
   };
   return /* @__PURE__ */ E.jsxs(X, { children: [
     b({ resourceName: n, createPath: s, createText: o, linkComponent: d }),
@@ -1315,18 +1320,18 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
       setSearchQuery: O,
       filterOptions: u,
       filters: R,
-      handleFilterChange: M,
+      handleFilterChange: U,
       searchPlaceholder: a
     }),
     /* @__PURE__ */ E.jsx(
       As,
       {
-        rows: _?.items,
+        rows: $?.items,
         columns: e,
-        loading: N,
+        loading: T,
         error: j,
         pagination: !0,
-        rowCount: _?.pagination.total || 0,
+        rowCount: $?.pagination.total || 0,
         page: f,
         onPageChange: m,
         perPage: x,
@@ -1365,7 +1370,7 @@ const Pt = Me.use || // This extra generic is to avoid TypeScript mixing up the 
   requestAdapter: a = (c) => c,
   renderActions: u = mi
 }) => {
-  const [c, l] = J(null), [d, b] = J(!1), [g, f] = J(null), [m, x] = J(!1), p = e != null;
+  const [c, l] = G(null), [d, b] = G(!1), [g, f] = G(null), [m, x] = G(!1), p = e != null;
   Ce(() => {
     p && (b(!0), f(null), t.getOne(e).then((v) => l(i(v))).catch((v) => f(v)).finally(() => b(!1)));
   }, [t, e, p, i]);
@@ -1411,8 +1416,8 @@ function yi() {
       var w = l(p);
       return u.get(p) || u.set(p, function(v, O) {
         for (var R = 0, C = w.length, A = v; R < C - 1; ) {
-          var _ = w[R];
-          if (_ === "__proto__" || _ === "constructor" || _ === "prototype")
+          var $ = w[R];
+          if ($ === "__proto__" || $ === "constructor" || $ === "prototype")
             return v;
           A = A[w[R++]];
         }
@@ -1785,15 +1790,15 @@ function Ne(n) {
       context: m
     };
     function S(j = {}) {
-      const I = wr(Object.assign({
+      const N = wr(Object.assign({
         value: t,
         originalValue: o,
         label: i.spec.label,
         path: j.path || r,
         spec: i.spec,
         disableStackTrace: j.disableStackTrace || p
-      }, d, j.params), w), M = new ee(ee.formatError(j.message || b, I), t, I.path, j.type || c, I.disableStackTrace);
-      return M.params = I, M;
+      }, d, j.params), w), U = new ee(ee.formatError(j.message || b, N), t, N.path, j.type || c, N.disableStackTrace);
+      return U.params = N, U;
     }
     const v = x ? a : u;
     let O = {
@@ -1816,19 +1821,19 @@ function Ne(n) {
     };
     if (g && Te(t))
       return R(!0);
-    let _;
+    let $;
     try {
-      var N;
-      if (_ = l.call(O, t, O), typeof ((N = _) == null ? void 0 : N.then) == "function") {
+      var T;
+      if ($ = l.call(O, t, O), typeof ((T = $) == null ? void 0 : T.then) == "function") {
         if (s.sync)
           throw new Error(`Validation test of type: "${O.type}" returned a Promise during a synchronous validate. This test will finish after the validate call has returned`);
-        return Promise.resolve(_).then(R, C);
+        return Promise.resolve($).then(R, C);
       }
     } catch (j) {
       C(j);
       return;
     }
-    R(_);
+    R($);
   }
   return e.OPTIONS = n, e;
 }
@@ -3063,7 +3068,7 @@ const Xi = ({ isSubmitting: n }) => /* @__PURE__ */ E.jsx(
   headerActions: r,
   children: s
 }) => {
-  const [o, i] = J(!1), a = () => {
+  const [o, i] = G(!1), a = () => {
     i(!o);
   }, u = /* @__PURE__ */ E.jsxs(X, { children: [
     t ? /* @__PURE__ */ E.jsx(Ie, { sx: { justifyContent: "center" }, children: t }) : null,
@@ -4391,78 +4396,78 @@ const Wr = (n) => {
       onUploadProgress: R,
       responseType: C,
       headers: A,
-      withCredentials: _ = "same-origin",
-      fetchOptions: N
+      withCredentials: $ = "same-origin",
+      fetchOptions: T
     } = Wr(f), j = e || fetch;
     C = C ? (C + "").toLowerCase() : "text";
-    let I = ba([w, S && S.toAbortSignal()], v), M = null;
-    const k = I && I.unsubscribe && (() => {
-      I.unsubscribe();
+    let N = ba([w, S && S.toAbortSignal()], v), U = null;
+    const k = N && N.unsubscribe && (() => {
+      N.unsubscribe();
     });
-    let K;
+    let z;
     try {
-      if (R && c && x !== "get" && x !== "head" && (K = await g(A, p)) !== 0) {
+      if (R && c && x !== "get" && x !== "head" && (z = await g(A, p)) !== 0) {
         let y = new t(m, {
           method: "POST",
           body: p,
           duplex: "half"
-        }), T;
-        if (h.isFormData(p) && (T = y.headers.get("content-type")) && A.setContentType(T), y.body) {
-          const [$, L] = Wn(
-            K,
+        }), _;
+        if (h.isFormData(p) && (_ = y.headers.get("content-type")) && A.setContentType(_), y.body) {
+          const [P, I] = Wn(
+            z,
             wt(Jn(R))
           );
-          p = Kn(y.body, Yn, $, L);
+          p = Kn(y.body, Yn, P, I);
         }
       }
-      h.isString(_) || (_ = _ ? "include" : "omit");
-      const z = o && "credentials" in t.prototype, ue = {
-        ...N,
-        signal: I,
+      h.isString($) || ($ = $ ? "include" : "omit");
+      const H = o && "credentials" in t.prototype, ue = {
+        ...T,
+        signal: N,
         method: x.toUpperCase(),
         headers: A.normalize().toJSON(),
         body: p,
         duplex: "half",
-        credentials: z ? _ : void 0
+        credentials: H ? $ : void 0
       };
-      M = o && new t(m, ue);
-      let H = await (o ? j(M, N) : j(m, ue));
+      U = o && new t(m, ue);
+      let W = await (o ? j(U, T) : j(m, ue));
       const be = l && (C === "stream" || C === "response");
       if (l && (O || be && k)) {
         const y = {};
         ["status", "statusText", "headers"].forEach((se) => {
-          y[se] = H[se];
+          y[se] = W[se];
         });
-        const T = h.toFiniteNumber(H.headers.get("content-length")), [$, L] = O && Wn(
-          T,
+        const _ = h.toFiniteNumber(W.headers.get("content-length")), [P, I] = O && Wn(
+          _,
           wt(Jn(O), !0)
         ) || [];
-        H = new r(
-          Kn(H.body, Yn, $, () => {
-            L && L(), k && k();
+        W = new r(
+          Kn(W.body, Yn, P, () => {
+            I && I(), k && k();
           }),
           y
         );
       }
       C = C || "text";
-      let ke = await d[h.findKey(d, C) || "text"](H, f);
-      return !be && k && k(), await new Promise((y, T) => {
-        zr(y, T, {
+      let ke = await d[h.findKey(d, C) || "text"](W, f);
+      return !be && k && k(), await new Promise((y, _) => {
+        zr(y, _, {
           data: ke,
-          headers: re.from(H.headers),
-          status: H.status,
-          statusText: H.statusText,
+          headers: re.from(W.headers),
+          status: W.status,
+          statusText: W.statusText,
           config: f,
-          request: M
+          request: U
         });
       });
-    } catch (z) {
-      throw k && k(), z && z.name === "TypeError" && /Load failed|fetch/i.test(z.message) ? Object.assign(
-        new F("Network Error", F.ERR_NETWORK, f, M),
+    } catch (H) {
+      throw k && k(), H && H.name === "TypeError" && /Load failed|fetch/i.test(H.message) ? Object.assign(
+        new F("Network Error", F.ERR_NETWORK, f, U),
         {
-          cause: z.cause || z
+          cause: H.cause || H
         }
-      ) : F.from(z, z && z.code, f, M);
+      ) : F.from(H, H && H.code, f, U);
     }
   };
 }, Oa = /* @__PURE__ */ new Map(), Jr = (n) => {

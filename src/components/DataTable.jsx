@@ -36,6 +36,7 @@ const DefaultLoadingOverlay = () => (
  * @property {boolean} [sortable=false] - If true, the column can be sorted.
  * @property {'inherit'|'left'|'center'|'right'|'justify'} [align] - The alignment of the cell content.
  * @property {function(object): React.ReactNode} [renderCell] - A function to custom render the cell content. Receives an object with `value`, `row`, `id`, and `index`.
+ * @property {'left'|'right'} [sticky] - If set, the column will be sticky to the specified side.
  */
 
 /**
@@ -115,6 +116,16 @@ export const DataTable = ({
         ...columns,
     ];
 
+    const getStickyStyles = (col) => {
+        if (!col.sticky) return {};
+        return {
+            position: 'sticky',
+            [col.sticky]: 0,
+            background: 'white',
+            zIndex: 1,
+        };
+    };
+
     return (
         <Paper sx={sx}>
             {ToolbarSlot && <Toolbar><ToolbarSlot {...(slotProps.toolbar || {})} /></Toolbar>}
@@ -128,7 +139,7 @@ export const DataTable = ({
                                         key={col.field}
                                         align={col.align || 'inherit'}
                                         width={col.width}
-                                        sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                                        sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}
                                         sortDirection={currentSort?.field === col.field ? currentSort.sort : false}
                                     >
                                         {col.sortable && sorting ? (
@@ -159,7 +170,7 @@ export const DataTable = ({
                                         {finalColumns.map((col) => {
                                             const value = col.field.split('.').reduce((o, i) => o?.[i], row);
                                             return (
-                                                <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                                <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}>
                                                     {col.renderCell
                                                         ? col.renderCell({ value, row, id: getRowId(row), index })
                                                         : value}
