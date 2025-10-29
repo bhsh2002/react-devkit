@@ -39,21 +39,28 @@ export const ResourceListPage = ({
     showRowNumber = true,
     linkComponent,
     renderHeader = defaultRenderHeader,
+    requestAdapter = (params) => params,
+    responseAdapter = (data) => data,
 }) => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
     const [sortModel, setSortModel] = useState([]);
     const [filters, setFilters] = useState({});
 
-    const apiParams = { page, per_page: perPage, ...filters };
+    const baseApiParams = { page, per_page: perPage, ...filters };
     if (sortModel.length > 0) {
-        apiParams.sort_by = sortModel[0].field;
-        apiParams.sort_order = sortModel[0].sort;
+        baseApiParams.sort_by = sortModel[0].field;
+        baseApiParams.sort_order = sortModel[0].sort;
     }
+
+    const apiParams = requestAdapter(baseApiParams);
 
     const { data, isLoading, error } = useApi(
         [resourceName, apiParams],
-        () => api.list(apiParams),
+        async () => {
+            const response = await api.list(apiParams);
+            return responseAdapter(response);
+        },
         { keepPreviousData: true }
     );
 
@@ -92,16 +99,3 @@ export const ResourceListPage = ({
         </Box>
     );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
