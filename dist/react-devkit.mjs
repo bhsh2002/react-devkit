@@ -361,7 +361,7 @@ const CM = ({ icon: e, title: t, value: n, color: r, sx: s, onClick: i }) => /* 
   return /* @__PURE__ */ E.jsxs(ei, { sx: C, children: [
     w && /* @__PURE__ */ E.jsx(Tr, { children: /* @__PURE__ */ E.jsx(w, { ...b.toolbar || {} }) }),
     /* @__PURE__ */ E.jsx(xt, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ E.jsx(Am, { sx: { height: O }, children: /* @__PURE__ */ E.jsxs(Fm, { stickyHeader: !0, children: [
-      /* @__PURE__ */ E.jsx($m, { children: /* @__PURE__ */ E.jsx(Gr, { selected: !0, children: I.map((k) => /* @__PURE__ */ E.jsx(
+      /* @__PURE__ */ E.jsx($m, { children: /* @__PURE__ */ E.jsx(Gr, { children: I.map((k) => /* @__PURE__ */ E.jsx(
         Xr,
         {
           align: k.align || "inherit",
@@ -380,7 +380,7 @@ const CM = ({ icon: e, title: t, value: n, color: r, sx: s, onClick: i }) => /* 
         },
         k.field
       )) }) }),
-      /* @__PURE__ */ E.jsx(_m, { children: r ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(P, { ...b.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ E.jsx(In, { color: "error", children: s.message || "An error occurred." }) }) }) : e.length === 0 ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(S, { ...b.noRowsOverlay || {} }) }) }) : e.map((k, v) => /* @__PURE__ */ E.jsx(Gr, { hover: !0, children: I.map((D) => {
+      /* @__PURE__ */ E.jsx(_m, { children: r ? /* @__PURE__ */ E.jsx(Gr, { selected: !0, children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(P, { ...b.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ E.jsx(Gr, { selected: !0, children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ E.jsx(In, { color: "error", children: s.message || "An error occurred." }) }) }) : e.length === 0 ? /* @__PURE__ */ E.jsx(Gr, { selected: !0, children: /* @__PURE__ */ E.jsx(Xr, { colSpan: I.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(S, { ...b.noRowsOverlay || {} }) }) }) : e.map((k, v) => /* @__PURE__ */ E.jsx(Gr, { hover: !0, children: I.map((D) => {
         const T = D.field.split(".").reduce((N, A) => N?.[A], k);
         return /* @__PURE__ */ E.jsx(Xr, { align: D.align || "inherit", sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", ...$(D) }, children: D.renderCell ? D.renderCell({ value: T, row: k, id: n(k), index: v }) : T }, D.field);
       }) }, n(k))) })

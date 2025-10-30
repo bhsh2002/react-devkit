@@ -134,7 +134,7 @@ export const DataTable = ({
                 <TableContainer sx={{ height }}>
                     <Table stickyHeader>
                         <TableHead>
-                            <TableRow selected>
+                            <TableRow>
                                 {finalColumns.map((col) => (
                                     <TableCell
                                         key={col.field}
@@ -160,11 +160,11 @@ export const DataTable = ({
                         </TableHead>
                         <TableBody>
                             {loading ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} /></TableCell></TableRow>
+                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} /></TableCell></TableRow>
                             ) : error ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none', textAlign: 'center' }}><Typography color="error">{error.message || 'An error occurred.'}</Typography></TableCell></TableRow>
+                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none', textAlign: 'center' }}><Typography color="error">{error.message || 'An error occurred.'}</Typography></TableCell></TableRow>
                             ) : rows.length === 0 ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
+                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
                             ) : (
                                 rows.map((row, index) => (
                                     <TableRow hover key={getRowId(row)}>
