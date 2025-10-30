@@ -37,6 +37,7 @@ export const ResourceListPage = ({
     searchPlaceholder = 'Search...',
     sorting = false,
     showRowNumber = true,
+    height,
     linkComponent,
     renderHeader = defaultRenderHeader,
     requestAdapter = (params) => params,
@@ -95,6 +96,7 @@ export const ResourceListPage = ({
                 sortModel={sortModel}
                 onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
                 showRowNumber={showRowNumber}
+                height={height}
             />
         </Box>
     );

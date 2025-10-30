@@ -89,7 +89,7 @@ export const DataTable = ({
     slots = {},
     slotProps = {},
     sx,
-    height = 'auto',
+    height = '90dvh',
 }) => {
     const {
         toolbar: ToolbarSlot,
