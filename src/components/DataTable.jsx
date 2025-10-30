@@ -14,6 +14,7 @@ import {
     Typography,
     CircularProgress,
     Toolbar,
+    IconButton,
 } from '@mui/material';
 import NextIcon from '@mui/icons-material/ArrowForwardIos';
 import PreviousIcon from '@mui/icons-material/ArrowBackIos';
@@ -209,7 +210,14 @@ export const DataTable = ({
                     labelRowsPerPage={null}
                     labelDisplayedRows={({ from, to, count }) => `${from} - ${to} | ${count}`}
                     sx={{ display: 'flex', justifyContent: 'center' }}
-                    slotProps={{ actions: { firstButtonIcon: FirstIcon, lastButtonIcon: LastIcon, nextButtonIcon: NextIcon, previousButtonIcon: PreviousIcon }}}
+                      slotProps={{
+                            actions: {
+                            firstButtonIcon: <FirstIcon />,
+                            lastButtonIcon: <LastIcon />,
+                            previousButtonIcon: <PreviousIcon />,
+                            nextButtonIcon: <NextIcon />,
+                            },
+                        }}
                 />
             )}
         </Paper>
