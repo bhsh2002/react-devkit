@@ -198,6 +198,7 @@ export const DataTable = ({
             </Box>
             {pagination && !error && rows.length > 0 && (
                 <TablePagination
+                    dir='rtl'
                     component="div"
                     count={rowCount}
                     page={page - 1}
@@ -210,14 +211,14 @@ export const DataTable = ({
                     labelRowsPerPage={null}
                     labelDisplayedRows={({ from, to, count }) => `${from} - ${to} | ${count}`}
                     sx={{ display: 'flex', justifyContent: 'center' }}
-                      slotProps={{
-                            actions: {
-                            firstButtonIcon: <FirstIcon />,
-                            lastButtonIcon: <LastIcon />,
-                            previousButtonIcon: <PreviousIcon />,
-                            nextButtonIcon: <NextIcon />,
-                            },
-                        }}
+                    // slotProps={{
+                    //     actions: {
+                    //         firstButtonIcon: <FirstIcon />,
+                    //         lastButtonIcon: <LastIcon />,
+                    //         previousButtonIcon: <PreviousIcon />,
+                    //         nextButtonIcon: <NextIcon />,
+                    //     },
+                    // }}
                 />
             )}
         </Paper>
