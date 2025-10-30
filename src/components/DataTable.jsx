@@ -160,14 +160,14 @@ export const DataTable = ({
                         </TableHead>
                         <TableBody>
                             {loading ? (
-                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} /></TableCell></TableRow>
+                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} /></TableCell></TableRow>
                             ) : error ? (
-                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none', textAlign: 'center' }}><Typography color="error">{error.message || 'An error occurred.'}</Typography></TableCell></TableRow>
+                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none', textAlign: 'center' }}><Typography color="error">{error.message || 'An error occurred.'}</Typography></TableCell></TableRow>
                             ) : rows.length === 0 ? (
-                                <TableRow selected><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
+                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
                             ) : (
                                 rows.map((row, index) => (
-                                    <TableRow hover key={getRowId(row)}>
+                                    <TableRow hover selected key={getRowId(row)}>
                                         {finalColumns.map((col) => {
                                             const value = col.field.split('.').reduce((o, i) => o?.[i], row);
                                             return (
