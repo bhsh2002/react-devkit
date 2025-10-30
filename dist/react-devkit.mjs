@@ -4493,7 +4493,7 @@ const Xb = () => /* @__PURE__ */ E.jsx(xt, { sx: { p: 4, textAlign: "center" }, 
     i && !s && e.length > 0 && /* @__PURE__ */ E.jsx(
       Vm,
       {
-        dir: "rtl",
+        dir: "ltr",
         component: "div",
         count: a,
         page: l - 1,

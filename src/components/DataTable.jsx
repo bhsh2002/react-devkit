@@ -198,7 +198,7 @@ export const DataTable = ({
             </Box>
             {pagination && !error && rows.length > 0 && (
                 <TablePagination
-                    dir='rtl'
+                    dir='ltr'
                     component="div"
                     count={rowCount}
                     page={page - 1}
