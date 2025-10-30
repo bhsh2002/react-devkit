@@ -89,6 +89,7 @@ export const DataTable = ({
     slots = {},
     slotProps = {},
     sx,
+    height = 'auto',
 }) => {
     const {
         toolbar: ToolbarSlot,
@@ -130,7 +131,7 @@ export const DataTable = ({
         <Paper sx={sx}>
             {ToolbarSlot && <Toolbar><ToolbarSlot {...(slotProps.toolbar || {})} /></Toolbar>}
             <Box sx={{ width: '100%', overflowX: 'auto' }}>
-                <TableContainer>
+                <TableContainer sx={{ height }}>
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>
@@ -189,7 +190,7 @@ export const DataTable = ({
                     component="div"
                     count={rowCount}
                     page={page - 1}
-                    onPageChange={(e, newPage) => onPageChange(newPage)}
+                    onPageChange={(e, newPage) => onPageChange(newPage + 1)}
                     rowsPerPage={perPage}
                     onRowsPerPageChange={(e) => onPerPageChange(parseInt(e.target.value, 10))}
                     rowsPerPageOptions={perPageOptions}

@@ -47,8 +47,9 @@ describe('DataTable', () => {
         columns={mockColumns}
         rows={mockRows}
         pagination
-        page={0}
-        pageSize={2}
+        page={1}
+        perPage={2}
+        perPageOptions={[2, 10, 25, 100]}
         rowCount={10}
         onPageChange={onPageChange}
       />
@@ -59,7 +60,7 @@ describe('DataTable', () => {
     fireEvent.click(nextPageButton);
 
     // Expect the callback to have been called with the new page number
-    expect(onPageChange).toHaveBeenCalledWith(1);
+    expect(onPageChange).toHaveBeenCalledWith(2);
   });
 
   test('handles sorting correctly', () => {

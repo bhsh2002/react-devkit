@@ -81,12 +81,12 @@ export const ResourceListPage = ({
             <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
 
             <DataTable
-                rows={data?.items}
+                rows={data?.items || []}
                 columns={columns}
                 loading={isLoading}
                 error={error}
                 pagination
-                rowCount={data?.pagination.total || 0}
+                rowCount={(data && data.pagination) ? data.pagination.total : 0}
                 page={page}
                 onPageChange={setPage}
                 perPage={perPage}

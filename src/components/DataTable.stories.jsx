@@ -84,13 +84,21 @@ export const WithPagination = {
     ...Default.args,
     pagination: true,
     rowCount: 100, // Total rows on server
-    page: 0,
-    pageSize: 5,
-    // In a real app, onPageChange and onPageSizeChange would be connected to state
+    page: 1,
+    perPage: 5,
+    // In a real app, onPageChange and onPerPageChange would be connected to state
     // Storybook's "actions" addon will log these events
     onPageChange: (page) => console.log('Page changed to:', page),
-    onPageSizeChange: (size) => console.log('Page size changed to:', size),
+    onPerPageChange: (size) => console.log('Page size changed to:', size),
   },
+};
+
+export const WithFixedHeight = {
+    args: {
+        ...Default.args,
+        rows: [...mockRows, ...mockRows, ...mockRows, ...mockRows], // more rows to show scrolling
+        height: 400,
+    },
 };
 
 export const WithSorting = {
