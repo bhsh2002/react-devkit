@@ -212,8 +212,8 @@ export const DataTable = ({
                     sx={{ display: 'flex', justifyContent: 'center' }}
                     slotProps={{
                         actions: {
-                            firstButtonIcon: <FirstIcon />,
-                            lastButtonIcon: <LastIcon />,
+                            firstButtonIcon: <LastIcon />,
+                            lastButtonIcon: <FirstIcon />,
                             previousButtonIcon: <PreviousIcon />,
                             nextButtonIcon: <NextIcon />,
                         },

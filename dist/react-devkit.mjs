@@ -4515,8 +4515,8 @@ const Xb = Dt(/* @__PURE__ */ S.jsx("path", {
         sx: { display: "flex", justifyContent: "center" },
         slotProps: {
           actions: {
-            firstButtonIcon: /* @__PURE__ */ S.jsx(Zb, {}),
-            lastButtonIcon: /* @__PURE__ */ S.jsx(Jb, {}),
+            firstButtonIcon: /* @__PURE__ */ S.jsx(Jb, {}),
+            lastButtonIcon: /* @__PURE__ */ S.jsx(Zb, {}),
             previousButtonIcon: /* @__PURE__ */ S.jsx(Qb, {}),
             nextButtonIcon: /* @__PURE__ */ S.jsx(Xb, {})
           }
