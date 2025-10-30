@@ -382,10 +382,10 @@ const CM = ({ icon: e, title: t, value: n, color: r, sx: s, onClick: i }) => /* 
       )) }) }),
       /* @__PURE__ */ E.jsx(_m, { children: r ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: N.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(F, { ...b.loadingOverlay || {} }) }) }) : s ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: N.length, sx: { border: "none", textAlign: "center" }, children: /* @__PURE__ */ E.jsx(In, { color: "error", children: s.message || "An error occurred." }) }) }) : e.length === 0 ? /* @__PURE__ */ E.jsx(Gr, { children: /* @__PURE__ */ E.jsx(Xr, { colSpan: N.length, sx: { border: "none" }, children: /* @__PURE__ */ E.jsx(D, { ...b.noRowsOverlay || {} }) }) }) : e.map((k, T) => {
         const M = n(k), I = w === M;
-        Gr, N.map((_) => {
+        return /* @__PURE__ */ E.jsx(Gr, { hover: !0, selected: I, onClick: () => S(M), sx: { cursor: "pointer" }, children: N.map((_) => {
           const K = _.field.split(".").reduce((L, V) => L?.[V], k);
           return /* @__PURE__ */ E.jsx(Xr, { align: _.align || "inherit", sx: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", ...v(_) }, children: _.renderCell ? _.renderCell({ value: K, row: k, id: n(k), index: T }) : K }, _.field);
-        }), n(k);
+        }) }, n(k));
       }) })
     ] }) }) }),
     i && !s && e.length > 0 && /* @__PURE__ */ E.jsx(

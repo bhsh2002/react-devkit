@@ -171,18 +171,20 @@ export const DataTable = ({
                                 rows.map((row, index) => {
                                     const rowId = getRowId(row);
                                     const isSelected = selectedRowId === rowId;
-                                    <TableRow hover selected={isSelected} onClick={() => setSelectedRowId(rowId)} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
-                                        {finalColumns.map((col) => {
-                                            const value = col.field.split('.').reduce((o, i) => o?.[i], row);
-                                            return (
-                                                <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}>
-                                                    {col.renderCell
-                                                        ? col.renderCell({ value, row, id: getRowId(row), index })
-                                                        : value}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
+                                    return (
+                                        <TableRow hover selected={isSelected} onClick={() => setSelectedRowId(rowId)} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
+                                            {finalColumns.map((col) => {
+                                                const value = col.field.split('.').reduce((o, i) => o?.[i], row);
+                                                return (
+                                                    <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}>
+                                                        {col.renderCell
+                                                            ? col.renderCell({ value, row, id: getRowId(row), index })
+                                                            : value}
+                                                    </TableCell>
+                                                );
+                                            })}
+                                        </TableRow>
+                                    )
                                 })
                             )}
                         </TableBody>
