@@ -91,6 +91,8 @@ export const DataTable = ({
     sx,
     height = '90dvh',
 }) => {
+    const [selectedRowId, setSelectedRowId] = useState(null);
+
     const {
         toolbar: ToolbarSlot,
         noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,
@@ -166,8 +168,10 @@ export const DataTable = ({
                             ) : rows.length === 0 ? (
                                 <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
                             ) : (
-                                rows.map((row, index) => (
-                                    <TableRow hover selected key={getRowId(row)}>
+                                rows.map((row, index) => {
+                                    const rowId = getRowId(row);
+                                    const isSelected = selectedRowId === rowId;
+                                    <TableRow hover selected={isSelected} onClick={() => setSelectedRowId(rowId)} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
                                         {finalColumns.map((col) => {
                                             const value = col.field.split('.').reduce((o, i) => o?.[i], row);
                                             return (
@@ -179,7 +183,7 @@ export const DataTable = ({
                                             );
                                         })}
                                     </TableRow>
-                                ))
+                                })
                             )}
                         </TableBody>
                     </Table>
