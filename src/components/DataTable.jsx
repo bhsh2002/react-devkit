@@ -15,6 +15,10 @@ import {
     CircularProgress,
     Toolbar,
 } from '@mui/material';
+import NextIcon from '@mui/icons-material/ArrowForwardIos';
+import PreviousIcon from '@mui/icons-material/ArrowBackIos';
+import FirstIcon from '@mui/icons-material/FirstPage';
+import LastIcon from '@mui/icons-material/LastPage';
 
 const DefaultNoRowsOverlay = () => (
     <Box sx={{ p: 4, textAlign: 'center' }}>
@@ -205,6 +209,7 @@ export const DataTable = ({
                     labelRowsPerPage={null}
                     labelDisplayedRows={({ from, to, count }) => `${from} - ${to} | ${count}`}
                     sx={{ display: 'flex', justifyContent: 'center' }}
+                    slotProps={{ actions: { firstButtonIcon: FirstIcon, lastButtonIcon: LastIcon, nextButtonIcon: NextIcon, previousButtonIcon: PreviousIcon }}}
                 />
             )}
         </Paper>
