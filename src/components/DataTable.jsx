@@ -134,7 +134,7 @@ export const DataTable = ({
                 <TableContainer sx={{ height }}>
                     <Table stickyHeader>
                         <TableHead>
-                            <TableRow>
+                            <TableRow selected>
                                 {finalColumns.map((col) => (
                                     <TableCell
                                         key={col.field}

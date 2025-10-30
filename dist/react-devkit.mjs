@@ -361,7 +361,7 @@ const CM = ({ icon: e, title: t, value: n, color: r, sx: s, onClick: i }) => /* 
   return /* @__PURE__ */ E.jsxs(ei, { sx: C, children: [
     w && /* @__PURE__ */ E.jsx(Tr, { children: /* @__PURE__ */ E.jsx(w, { ...b.toolbar || {} }) }),
     /* @__PURE__ */ E.jsx(xt, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ E.jsx(Am, { sx: { height: O }, children: /* @__PURE__ */ E.jsxs(Fm, { stickyHeader: !0, children: [
-      /* @__PURE__ */ E.jsx($m, { children: /* @__PURE__ */ E.jsx(Gr, { children: I.map((k) => /* @__PURE__ */ E.jsx(
+      /* @__PURE__ */ E.jsx($m, { children: /* @__PURE__ */ E.jsx(Gr, { selected: !0, children: I.map((k) => /* @__PURE__ */ E.jsx(
         Xr,
         {
           align: k.align || "inherit",
