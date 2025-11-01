@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { DataCard } from './DataCard';
-import { Chip, Box, Button } from '@mui/material';
+import { Chip, Box, Button, Card, CardMedia, CardContent, Typography } from '@mui/material';
 
 export default {
   title: 'Components/DataCard',
@@ -68,16 +68,26 @@ export const Loading = {
   },
 };
 
-export const WithPagination = {
+export const CustomCard = {
   args: {
     ...Default.args,
-    pagination: true,
-    rowCount: 100, // Total rows on server
-    page: 1,
-    perPage: 5,
-    // In a real app, onPageChange and onPerPageChange would be connected to state
-    // Storybook's "actions" addon will log these events
-    onPageChange: (page) => console.log('Page changed to:', page),
-    onPerPageChange: (size) => console.log('Page size changed to:', size),
+    renderCard: (row) => (
+      <Card>
+        <CardMedia
+          component="img"
+          height="140"
+          image={`https://i.pravatar.cc/150?u=${row.id}`}
+          alt={row.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {row.name}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {row.email}
+          </Typography>
+        </CardContent>
+      </Card>
+    ),
   },
 };

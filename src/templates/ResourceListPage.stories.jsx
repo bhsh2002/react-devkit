@@ -5,7 +5,7 @@ import React from 'react';
 
 import { ResourceListPage } from './ResourceListPage';
 
-import { Chip, Box, Button } from '@mui/material';
+import { Chip, Box, Button, Card, CardMedia, CardContent, Typography } from '@mui/material';
 
 
 
@@ -143,17 +143,101 @@ export const Default = {
 
 
 
-export const CardView = {
+export const CustomCardView = {
+
+
 
   args: {
 
+
+
     ...Default.args,
+
+
 
     defaultView: 'card',
 
+
+
+    renderCard: (row) => (
+
+
+
+      <Card>
+
+
+
+        <CardMedia
+
+
+
+          component="img"
+
+
+
+          height="140"
+
+
+
+          image={`https://i.pravatar.cc/150?u=${row.id}`}
+
+
+
+          alt={row.name}
+
+
+
+        />
+
+
+
+        <CardContent>
+
+
+
+          <Typography gutterBottom variant="h5" component="div">
+
+
+
+            {row.name}
+
+
+
+          </Typography>
+
+
+
+          <Typography variant="body2" color="text.secondary">
+
+
+
+            {row.email}
+
+
+
+          </Typography>
+
+
+
+        </CardContent>
+
+
+
+      </Card>
+
+
+
+    ),
+
+
+
   },
 
-  name: 'Card View',
+
+
+  name: 'Custom Card View',
+
+
 
 };
 

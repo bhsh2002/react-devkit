@@ -57,6 +57,7 @@ export const ResourceListPage = ({
     requestAdapter = (params) => params,
     responseAdapter = (data) => data,
     defaultView = 'table',
+    renderCard,
 }) => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
@@ -133,6 +134,7 @@ export const ResourceListPage = ({
                     onPageChange={setPage}
                     perPage={perPage}
                     onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
+                    renderCard={renderCard}
                 />
             )}
         </Box>
