@@ -68,9 +68,16 @@ export const Loading = {
   },
 };
 
-export const Empty = {
+export const WithPagination = {
   args: {
     ...Default.args,
-    rows: [],
+    pagination: true,
+    rowCount: 100, // Total rows on server
+    page: 1,
+    perPage: 5,
+    // In a real app, onPageChange and onPerPageChange would be connected to state
+    // Storybook's "actions" addon will log these events
+    onPageChange: (page) => console.log('Page changed to:', page),
+    onPerPageChange: (size) => console.log('Page size changed to:', size),
   },
 };

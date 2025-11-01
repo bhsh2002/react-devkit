@@ -127,6 +127,12 @@ export const ResourceListPage = ({
                     columns={columns}
                     loading={isLoading}
                     error={error}
+                    pagination
+                    rowCount={(data && data.pagination) ? data.pagination.total : 0}
+                    page={page}
+                    onPageChange={setPage}
+                    perPage={perPage}
+                    onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                 />
             )}
         </Box>
