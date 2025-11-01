@@ -31283,11 +31283,7 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
           label: e.label,
           value: t || null,
           onChange: a,
-          renderInput: (l) => /* @__PURE__ */ E.jsx(Zn, { ...l, fullWidth: !0 }),
-          slotProps: {
-            leftArrowIcon: /* @__PURE__ */ E.jsx("span", { children: ">" }),
-            rightArrowIcon: /* @__PURE__ */ E.jsx("span", { children: ">" })
-          }
+          renderInput: (l) => /* @__PURE__ */ E.jsx(Zn, { ...l, fullWidth: !0 })
         }
       ) });
     case "select":
