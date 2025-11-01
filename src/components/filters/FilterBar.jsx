@@ -59,10 +59,10 @@ const FilterInput = ({ filter, value, onChange }) => {
                         renderInput={(params) => <TextField {...params} fullWidth />}
                         slotProps={{
                             desktopPaper: {
-                                dir: 'rtl',
+                                dir: 'ltr',
                             },
                             mobilePaper: {
-                                dir: 'rtl',
+                                dir: 'ltr',
                             },
                         }}
                     />
