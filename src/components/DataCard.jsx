@@ -89,7 +89,7 @@ export const DataCard = ({
     <Paper sx={{ p: 2, borderRadius: 3, ...sx }}>
             <Grid container spacing={2}>
                 {rows.map((row) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={getRowId(row)}>
+                    <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3}} key={getRowId(row)}>
                         {renderCard ? (
                             renderCard(row)
                         ) : (

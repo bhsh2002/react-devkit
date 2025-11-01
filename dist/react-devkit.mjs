@@ -4554,7 +4554,7 @@ const iv = Wt(/* @__PURE__ */ x.jsx("path", {
     errorOverlay: O = uv
   } = i;
   return r ? /* @__PURE__ */ x.jsx(b, {}) : s ? /* @__PURE__ */ x.jsx(O, { message: s.message, onRetry: h }) : e.length === 0 ? /* @__PURE__ */ x.jsx(m, {}) : /* @__PURE__ */ x.jsxs(Wo, { sx: { p: 2, borderRadius: 3, ...a }, children: [
-    /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: e.map((E) => /* @__PURE__ */ x.jsx(Nr, { item: !0, xs: 12, sm: 6, md: 4, lg: 3, children: p ? p(E) : /* @__PURE__ */ x.jsx(rf, { children: /* @__PURE__ */ x.jsx(of, { children: t.map((S) => /* @__PURE__ */ x.jsxs(dt, { sx: { mb: 1 }, children: [
+    /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: e.map((E) => /* @__PURE__ */ x.jsx(Nr, { size: { xs: 12, sm: 6, md: 4, lg: 3 }, children: p ? p(E) : /* @__PURE__ */ x.jsx(rf, { children: /* @__PURE__ */ x.jsx(of, { children: t.map((S) => /* @__PURE__ */ x.jsxs(dt, { sx: { mb: 1 }, children: [
       /* @__PURE__ */ x.jsx(Dt, { variant: "body2", color: "text.secondary", children: S.headerName }),
       /* @__PURE__ */ x.jsx(Dt, { variant: "body1", children: S.renderCell ? S.renderCell({ value: E[S.field], row: E, id: n(E) }) : E[S.field] })
     ] }, S.field)) }) }) }, n(E))) }),
