@@ -13,8 +13,8 @@ describe('ResourceListPage', () => {
   test('fetches and displays data successfully', async () => {
     const mockApi = {
       list: vi.fn().mockResolvedValue({ 
-        data: [{ id: 1, name: 'Test Resource' }], 
-        meta: { total: 1 }
+        items: [{ id: 1, name: 'Test Resource' }], 
+        pagination: { total: 1 }
       }),
     };
 
