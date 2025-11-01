@@ -4516,7 +4516,7 @@ const lv = Wt(/* @__PURE__ */ x.jsx("path", {
   /* @__PURE__ */ x.jsx(Vf, { sx: { fontSize: 60, mb: 2, opacity: 0.5 } }),
   /* @__PURE__ */ x.jsx(Dt, { variant: "h6", children: "لا يوجد بيانات لعرضها" }),
   /* @__PURE__ */ x.jsx(Dt, { variant: "body2", children: "حاول تعديل الفلاتر أو إضافة عناصر جديدة." })
-] }), uv = () => /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: Array.from({ length: 8 }).map((e, t) => /* @__PURE__ */ x.jsx(Nr, { item: !0, xs: 12, sm: 6, md: 4, lg: 3, children: /* @__PURE__ */ x.jsxs(rf, { sx: { borderRadius: 3, boxShadow: 2 }, children: [
+] }), uv = () => /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: Array.from({ length: 8 }).map((e, t) => /* @__PURE__ */ x.jsx(Nr, { size: { xs: 12, sm: 6, md: 4, lg: 3 }, children: /* @__PURE__ */ x.jsxs(rf, { sx: { borderRadius: 3, boxShadow: 2 }, children: [
   /* @__PURE__ */ x.jsx(ps, { variant: "rectangular", height: 140 }),
   /* @__PURE__ */ x.jsxs(of, { children: [
     /* @__PURE__ */ x.jsx(ps, { width: "60%" }),

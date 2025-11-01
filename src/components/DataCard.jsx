@@ -24,7 +24,7 @@ const DefaultNoRowsOverlay = () => (
 const DefaultLoadingOverlay = () => (
   <Grid container spacing={2}>
     {Array.from({ length: 8 }).map((_, i) => (
-      <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3}} key={i}>
         <Card sx={{ borderRadius: 3, boxShadow: 2 }}>
           <Skeleton variant="rectangular" height={140} />
           <CardContent>
