@@ -31285,12 +31285,8 @@ const ya = yt.use || // This extra generic is to avoid TypeScript mixing up the 
           onChange: a,
           renderInput: (l) => /* @__PURE__ */ E.jsx(Zn, { ...l, fullWidth: !0 }),
           slotProps: {
-            desktopPaper: {
-              dir: "ltr"
-            },
-            mobilePaper: {
-              dir: "ltr"
-            }
+            leftArrowIcon: /* @__PURE__ */ E.jsx("span", { children: ">" }),
+            rightArrowIcon: /* @__PURE__ */ E.jsx("span", { children: ">" })
           }
         }
       ) });

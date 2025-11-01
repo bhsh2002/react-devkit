@@ -58,12 +58,8 @@ const FilterInput = ({ filter, value, onChange }) => {
                         onChange={handleImmediateChange}
                         renderInput={(params) => <TextField {...params} fullWidth />}
                         slotProps={{
-                            desktopPaper: {
-                                dir: 'ltr',
-                            },
-                            mobilePaper: {
-                                dir: 'ltr',
-                            },
+                            leftArrowIcon: <span>{'>'}</span>,
+                            rightArrowIcon: <span>{'>'}</span>,
                         }}
                     />
                 </LocalizationProvider>
