@@ -4553,7 +4553,7 @@ const lv = Wt(/* @__PURE__ */ x.jsx("path", {
     errorOverlay: b = dv
   } = i;
   return r ? /* @__PURE__ */ x.jsx(m, {}) : s ? /* @__PURE__ */ x.jsx(b, { message: s.message, onRetry: h }) : e.length === 0 ? /* @__PURE__ */ x.jsx(p, {}) : /* @__PURE__ */ x.jsxs(Wo, { sx: { p: 2, borderRadius: 3, ...a }, children: [
-    /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: e.map((E, O) => /* @__PURE__ */ x.jsx(Nr, { item: !0, xs: 12, sm: 6, md: 4, lg: 3, children: /* @__PURE__ */ x.jsx(st, { children: /* @__PURE__ */ x.jsxs(
+    /* @__PURE__ */ x.jsx(Nr, { container: !0, spacing: 2, children: e.map((E, O) => /* @__PURE__ */ x.jsx(Nr, { size: { xs: 12, sm: 6, md: 4, lg: 3 }, children: /* @__PURE__ */ x.jsx(st, { children: /* @__PURE__ */ x.jsxs(
       rf,
       {
         sx: {
