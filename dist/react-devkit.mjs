@@ -4606,7 +4606,8 @@ const lv = Wt(/* @__PURE__ */ x.jsx("path", {
         rowsPerPageOptions: y,
         showFirstButton: !0,
         showLastButton: !0,
-        labelDisplayedRows: ({ from: E, to: S, count: C }) => `${E} - ${S} من ${C}`,
+        labelRowsPerPage: null,
+        labelDisplayedRows: ({ from: E, to: S, count: C }) => `${E} - ${S} | ${C}`,
         sx: { display: "flex", justifyContent: "center", mt: 2 }
       }
     )
