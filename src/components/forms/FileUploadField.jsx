@@ -1,7 +1,6 @@
-
 import React, { useContext, useState, useEffect } from 'react';
-import { Box, Button, Avatar } from '@mui/material';
-import { ImageNotSupported as ImageNotSupportedIcon } from '@mui/icons-material';
+import { Box, Button, Avatar, Typography } from '@mui/material';
+import { PictureAsPdf as PdfIcon, Description as FileIcon, Movie as VideoIcon, ImageNotSupported as ImageNotSupportedIcon } from '@mui/icons-material';
 import { FormContext } from './Form';
 
 /**
@@ -12,54 +11,94 @@ import { FormContext } from './Form';
  * @param {string} props.name - @en The name of the field. This is required to register the field with the parent Form. @ar اسم الحقل. هذا الحقل مطلوب لتسجيله في النموذج الأب.
  * @param {string} [props.label='Upload File'] - @en The label for the upload button. @ar التسمية لزر الرفع.
  * @param {string} [props.initialPreview] - @en An optional URL for an initial preview image, used in "edit" mode. @ar رابط اختياري لصورة معاينة أولية، يُستخدم في وضع "التعديل".
+ * @param {string} [props.accept='image/*'] - @en The accepted file types for upload. Defaults to all file types. @ar أنواع الملفات المقبولة للرفع. الافتراضي هو جميع أنواع الملفات.
  */
-export const FileUploadField = ({ name, label = 'Upload File', initialPreview }) => {
-    const formContext = useContext(FormContext);
-    const [preview, setPreview] = useState(initialPreview || null);
+export const FileUploadField = ({
+  name,
+  label = 'Upload File',
+  initialPreview,
+  accept = '*/*',
+}) => {
+  const formContext = useContext(FormContext);
+  const [preview, setPreview] = useState(initialPreview || null);
+  const [fileType, setFileType] = useState(null);
 
-    if (!formContext) {
-        throw new Error('FileUploadField must be used within a Form component');
+  if (!formContext) {
+    throw new Error('FileUploadField must be used within a Form component');
+  }
+
+  const { setFieldValue, values } = formContext;
+  const file = values[name];
+
+  useEffect(() => {
+    if (initialPreview) {
+      setPreview(initialPreview);
+    }
+  }, [initialPreview]);
+
+  useEffect(() => {
+    if (!file) {
+      setPreview(initialPreview || null);
+      setFileType(null);
+    }
+  }, [file, initialPreview]);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFieldValue(name, selectedFile);
+      setFileType(selectedFile.type);
+
+      if (selectedFile.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onloadend = () => setPreview(reader.result);
+        reader.readAsDataURL(selectedFile);
+      } else {
+        setPreview(null);
+      }
+    }
+  };
+
+  const renderPreview = () => {
+    if (fileType?.startsWith('image/') && preview) {
+      return <Avatar src={preview} sx={{ width: 100, height: 100 }} />;
     }
 
-    const { setFieldValue, values } = formContext;
-    const file = values[name];
+    if (fileType?.startsWith('video/')) {
+      return (
+        <video width="120" height="100" controls>
+          <source src={URL.createObjectURL(file)} type={fileType} />
+          Your browser does not support video preview.
+        </video>
+      );
+    }
 
-    useEffect(() => {
-        if (initialPreview) {
-            setPreview(initialPreview);
-        }
-    }, [initialPreview]);
+    if (fileType === 'application/pdf') {
+      return <PdfIcon sx={{ fontSize: 60, color: 'error.main' }} />;
+    }
 
-    useEffect(() => {
-        // If the file is cleared externally, clear the preview
-        if (!file) {
-            setPreview(initialPreview || null);
-        }
-    }, [file, initialPreview]);
+    if (fileType) {
+      return <FileIcon sx={{ fontSize: 60, color: 'text.secondary' }} />;
+    }
 
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        if (selectedFile) {
-            setFieldValue(name, selectedFile);
+    return <ImageNotSupportedIcon sx={{ fontSize: 60, color: 'text.disabled' }} />;
+  };
 
-            // Create a preview
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreview(reader.result);
-            };
-            reader.readAsDataURL(selectedFile);
-        }
-    };
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+      {renderPreview()}
+      {file && <Typography variant="body2">{file.name}</Typography>}
 
-    return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-            <Avatar src={preview} sx={{ width: 100, height: 100 }}>
-                {!preview && <ImageNotSupportedIcon sx={{ width: '70%', height: '70%' }} />}
-            </Avatar>
-            <Button variant="outlined" component="label">
-                {label}
-                <input type="file" hidden accept="image/*" onChange={handleFileChange} data-testid="file-upload-input" />
-            </Button>
-        </Box>
-    );
+      <Button variant="outlined" component="label">
+        {label}
+        <input
+          type="file"
+          hidden
+          accept={accept}
+          onChange={handleFileChange}
+          data-testid="file-upload-input"
+        />
+      </Button>
+    </Box>
+  );
 };
