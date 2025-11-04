@@ -15,11 +15,13 @@ import {
     CircularProgress,
     Toolbar,
 } from '@mui/material';
+import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
 
 const DefaultNoRowsOverlay = () => (
-    <Box sx={{ p: 4, textAlign: 'center' }}>
-        <Typography color="text.secondary">No rows</Typography>
-    </Box>
+  <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
+    <ImageNotSupportedIcon sx={{ fontSize: 60, mb: 2, opacity: 0.5 }} />
+    <Typography variant="h6">لا يوجد بيانات لعرضها</Typography>
+  </Box>
 );
 
 const DefaultLoadingOverlay = () => (

@@ -82,6 +82,9 @@ const FilterInput = ({ filter, value, onChange }) => {
                 <Autocomplete
                     options={filter.options || []}
                     getOptionLabel={(option) => option.label || ''}
+                    loading={filter.loading || false}
+                    loadingText={filter.loadingText || 'جاري التحميل...'}
+                    noOptionsText={filter.noOptionsText || 'لا توجد خيارات'}
                     value={value || null}
                     onChange={(event, newValue) => handleImmediateChange(newValue)}
                     renderInput={(params) => <TextField {...params} label={filter.label} />}

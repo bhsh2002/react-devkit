@@ -17,7 +17,6 @@ const DefaultNoRowsOverlay = () => (
   <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
     <ImageNotSupportedIcon sx={{ fontSize: 60, mb: 2, opacity: 0.5 }} />
     <Typography variant="h6">لا يوجد بيانات لعرضها</Typography>
-    <Typography variant="body2">حاول تعديل الفلاتر أو إضافة عناصر جديدة.</Typography>
   </Box>
 );
 
