@@ -85,7 +85,7 @@ const FilterInput = ({ filter, value, onChange }) => {
                     loading={filter.loading || false}
                     loadingText={filter.loadingText || 'جاري التحميل...'}
                     noOptionsText={filter.noOptionsText || 'لا توجد خيارات'}
-                    value={value.value || null}
+                    value={value["value"] || null}
                     onChange={(event, newValue) => handleImmediateChange(newValue)}
                     renderInput={(params) => <TextField {...params} label={filter.label} />}
                     // Add fetchOptions logic here if needed
