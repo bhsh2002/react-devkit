@@ -32,7 +32,7 @@ const defaultRenderActions = ({ isSubmitting, onCancel }) => (
  * A fully dynamic page template for creating or editing a resource.
  * 
  * @param {object} props - The component props.
- * @param {string} props.resourceName - The singular name of the resource.
+ * @param {string} props.title - The title of the component.
  * @param {string|number} [props.id] - The ID of the resource to edit.
  * @param {object} props.api - API object with `getOne`, `create`, and `update` methods.
  * @param {React.ElementType} props.FormComponent - A component that renders the form fields.
@@ -43,7 +43,7 @@ const defaultRenderActions = ({ isSubmitting, onCancel }) => (
  * @param {function({isSubmitting: boolean, onCancel: function}): React.ReactNode} [props.renderActions] - Function to render action buttons.
  */
 export const ResourceFormPage = ({
-    resourceName,
+    title,
     id,
     api,
     FormComponent,
@@ -86,15 +86,13 @@ export const ResourceFormPage = ({
         }
     };
 
-    const pageTitle = isEditMode ? `Edit ${resourceName}` : `Create ${resourceName}`;
-
     if (loading) return <CircularProgress />;
     if (error && !isSubmitting) return <Alert severity="error">{error.message || 'Failed to load resource data.'}</Alert>;
 
     return (
         <Box>
             <Toolbar sx={{ p: '0 !important', mb: 2 }}>
-                <Typography variant="h4" component="h1">{pageTitle}</Typography>
+                <Typography variant="h4" component="h1">{title}</Typography>
             </Toolbar>
             <Paper sx={{ p: 3 }}>
                 {(!isEditMode || initialData) && (

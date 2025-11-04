@@ -31589,7 +31589,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   ),
   t && /* @__PURE__ */ x.jsx(lr, { variant: "outlined", onClick: t, disabled: e, children: "Cancel" })
 ] }), HM = ({
-  resourceName: e,
+  title: e,
   id: t,
   api: n,
   FormComponent: r,
@@ -31602,20 +31602,20 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
 }) => {
   const [u, d] = rt(null), [f, g] = rt(!1), [y, h] = rt(null), [p, m] = rt(!1), b = t != null;
   ar(() => {
-    b && (g(!0), h(null), n.getOne(t).then((S) => d(a(S))).catch((S) => h(S)).finally(() => g(!1)));
+    b && (g(!0), h(null), n.getOne(t).then((E) => d(a(E))).catch((E) => h(E)).finally(() => g(!1)));
   }, [n, t, b, a]);
-  const O = async (S) => {
+  const O = async (E) => {
     m(!0), h(null);
-    const C = l(S);
+    const S = l(E);
     try {
-      const P = b ? await n.update(t, C) : await n.create(C);
-      s(P.data);
-    } catch (P) {
-      h(P), m(!1);
+      const C = b ? await n.update(t, S) : await n.create(S);
+      s(C.data);
+    } catch (C) {
+      h(C), m(!1);
     }
-  }, E = b ? `Edit ${e}` : `Create ${e}`;
+  };
   return f ? /* @__PURE__ */ x.jsx(zo, {}) : y && !p ? /* @__PURE__ */ x.jsx(Pa, { severity: "error", children: y.message || "Failed to load resource data." }) : /* @__PURE__ */ x.jsxs(ct, { children: [
-    /* @__PURE__ */ x.jsx(Rr, { sx: { p: "0 !important", mb: 2 }, children: /* @__PURE__ */ x.jsx(Dt, { variant: "h4", component: "h1", children: E }) }),
+    /* @__PURE__ */ x.jsx(Rr, { sx: { p: "0 !important", mb: 2 }, children: /* @__PURE__ */ x.jsx(Dt, { variant: "h4", component: "h1", children: e }) }),
     /* @__PURE__ */ x.jsx(Wo, { sx: { p: 3 }, children: (!b || u) && /* @__PURE__ */ x.jsxs(Bf, { onSubmit: O, initialValues: u, children: [
       /* @__PURE__ */ x.jsx(r, {}),
       y && p && /* @__PURE__ */ x.jsx(Pa, { severity: "error", sx: { mt: 2 }, children: y.message || "An error occurred during submission." }),
