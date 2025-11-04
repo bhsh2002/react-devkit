@@ -31418,7 +31418,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
           loading: e.loading || !1,
           loadingText: e.loadingText || "جاري التحميل...",
           noOptionsText: e.noOptionsText || "لا توجد خيارات",
-          value: t.value || null,
+          value: t?.value || null,
           onChange: (l, c) => a(c),
           renderInput: (l) => /* @__PURE__ */ x.jsx(Zn, { ...l, label: e.label })
         }
