@@ -31393,7 +31393,8 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
           label: e.label,
           value: t || null,
           onChange: a,
-          renderInput: (l) => /* @__PURE__ */ x.jsx(Zn, { ...l, fullWidth: !0 })
+          renderInput: (l) => /* @__PURE__ */ x.jsx(Zn, { ...l, fullWidth: !0 }),
+          sx: { width: "100%" }
         }
       ) });
     case "select":
