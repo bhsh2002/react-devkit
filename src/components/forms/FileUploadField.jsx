@@ -63,6 +63,9 @@ export const FileUploadField = ({
     if (fileType?.startsWith('image/') && preview) {
       return <Avatar src={preview} sx={{ width: 100, height: 100 }} />;
     }
+    else if (fileType?.startsWith('image/') && !preview){
+        <ImageNotSupportedIcon sx={{ fontSize: 60, color: 'text.disabled' }} />
+    }
 
     if (fileType?.startsWith('video/')) {
       return (
@@ -81,7 +84,7 @@ export const FileUploadField = ({
       return <FileIcon sx={{ fontSize: 60, color: 'text.secondary' }} />;
     }
 
-    return <ImageNotSupportedIcon sx={{ fontSize: 60, color: 'text.disabled' }} />;
+    return <FileIcon sx={{ fontSize: 60, color: 'text.disabled' }} />;
   };
 
   return (
