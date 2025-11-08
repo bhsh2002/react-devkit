@@ -4706,58 +4706,59 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
   name: e,
   label: t,
   fetchOptions: n,
-  getOptionLabel: r = (a) => a.label,
+  getOptionLabel: r = (l) => l.label,
   multiple: s = !1,
-  ...i
+  onChange: i,
+  ...a
 }) => {
-  const a = Bo(Ko);
-  if (!a)
+  const l = Bo(Ko);
+  if (!l)
     throw new Error("AutocompleteField must be used within a Form component");
-  const { values: l, setFieldValue: c, errors: u } = a, [d, f] = rt([]), [g, y] = rt(!1), [h, p] = rt("");
+  const { values: c, setFieldValue: u, errors: d } = l, [f, g] = rt([]), [y, h] = rt(!1), [p, m] = rt("");
   ar(() => {
-    let O = !0;
-    return y(!0), n(h).then((E) => {
-      O && f(E || []);
+    let E = !0;
+    return h(!0), n(p).then((S) => {
+      E && g(S || []);
     }).catch(() => {
-      O && f([]);
+      E && g([]);
     }).finally(() => {
-      O && y(!1);
+      E && h(!1);
     }), () => {
-      O = !1;
+      E = !1;
     };
-  }, [h, n]);
-  const m = (O, E) => {
-    c(e, E);
-  }, b = u?.[e];
+  }, [p, n]);
+  const b = (E, S) => {
+    u(e, S), typeof i == "function" && i(E, S);
+  }, O = d?.[e];
   return /* @__PURE__ */ x.jsx(
     lf,
     {
       multiple: s,
-      options: d,
-      loading: g,
+      options: f,
+      loading: y,
       getOptionLabel: r,
-      value: l[e] || (s ? [] : null),
-      onChange: m,
-      onInputChange: (O, E) => {
-        p(E);
+      value: c[e] || (s ? [] : null),
+      onChange: b,
+      onInputChange: (E, S) => {
+        m(S);
       },
-      renderInput: (O) => /* @__PURE__ */ x.jsx(
+      renderInput: (E) => /* @__PURE__ */ x.jsx(
         Zn,
         {
-          ...O,
+          ...E,
           label: t,
-          error: !!b,
-          helperText: b,
+          error: !!O,
+          helperText: O,
           InputProps: {
-            ...O.InputProps,
+            ...E.InputProps,
             endAdornment: /* @__PURE__ */ x.jsxs(x.Fragment, { children: [
-              g ? /* @__PURE__ */ x.jsx(zo, { color: "inherit", size: 20 }) : null,
-              O.InputProps.endAdornment
+              y ? /* @__PURE__ */ x.jsx(zo, { color: "inherit", size: 20 }) : null,
+              E.InputProps.endAdornment
             ] })
           }
         }
       ),
-      ...i
+      ...a
     }
   );
 }, zM = ({ name: e, label: t, ...n }) => {

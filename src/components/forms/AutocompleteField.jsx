@@ -20,6 +20,7 @@ export const AutocompleteField = ({
     fetchOptions, 
     getOptionLabel = (option) => option.label, 
     multiple = false,
+    onChange: customOnChange,
     ...rest
 }) => {
     const formContext = useContext(FormContext);
@@ -61,6 +62,9 @@ export const AutocompleteField = ({
 
     const handleChange = (event, newValue) => {
         setFieldValue(name, newValue);
+        if (typeof customOnChange === 'function') {
+            customOnChange(event, newValue);
+        }
     };
 
     const fieldError = errors?.[name];
