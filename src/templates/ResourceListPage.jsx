@@ -6,7 +6,7 @@ import { DataTable, DataCard } from '../components';
 import { FilterBar } from '../components/filters/FilterBar';
 import { useApi } from '../hooks';
 
-const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent, view, onVievChange }) => {
+const defaultRenderHeader = ({ resourceName, createPath, createText, linkComponent, view, onViewChange }) => {
     const Link = linkComponent;
     return (
         <Toolbar sx={{ p: '0 !important', mb: 2, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: { xs: 'flex-start', sm: 'center' } }}>
@@ -16,7 +16,7 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
             {view && <ToggleButtonGroup
                 value={view}
                 exclusive
-                onChange={onVievChange}
+                onChange={onViewChange}
                 aria-label="view"
                 sx={{ mr: { xs: 0, sm: 2 }, mb: { xs: 2, sm: 0 } }}
             >
@@ -100,7 +100,7 @@ export const ResourceListPage = ({
 
     return (
         <Box>
-            {renderHeader({ resourceName, createPath, createText, linkComponent, view, onVievChange: handleViewChange })}
+            {renderHeader({ resourceName, createPath, createText, linkComponent, view, onViewChange: handleViewChange })}
             
             <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
 
@@ -122,7 +122,7 @@ export const ResourceListPage = ({
                     showRowNumber={showRowNumber}
                     height={height}
                 />
-            ) : view === 'card' (
+            ) : view === 'card' ? (
                 <DataCard
                     rows={data?.items || []}
                     columns={columns}
@@ -136,7 +136,7 @@ export const ResourceListPage = ({
                     onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                     renderCard={renderCard}
                 />
-            )}
+            ) : null}
         </Box>
     );
 };

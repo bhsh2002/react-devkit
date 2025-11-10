@@ -31469,7 +31469,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
       ) }, i.name);
     }) }) })
   ] });
-}, yD = ({ resourceName: e, createPath: t, createText: n, linkComponent: r, view: s, onVievChange: i }) => {
+}, yD = ({ resourceName: e, createPath: t, createText: n, linkComponent: r, view: s, onViewChange: i }) => {
   const a = r;
   return /* @__PURE__ */ x.jsxs(Rr, { sx: { p: "0 !important", mb: 2, display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "flex-start", sm: "center" } }, children: [
     /* @__PURE__ */ x.jsx(Dt, { variant: "h4", component: "h1", sx: { flexGrow: 1, mb: { xs: 2, sm: 0 } }, children: e }),
@@ -31534,7 +31534,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
     ...i
   ];
   return /* @__PURE__ */ x.jsxs(ct, { children: [
-    g({ resourceName: e, createPath: r, createText: s, linkComponent: f, view: A, onVievChange: _ }),
+    g({ resourceName: e, createPath: r, createText: s, linkComponent: f, view: A, onViewChange: _ }),
     /* @__PURE__ */ x.jsx(gD, { filterOptions: Y, filters: D, onFilterChange: N }),
     !A || A === "table" ? /* @__PURE__ */ x.jsx(
       lv,
@@ -31559,26 +31559,24 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
         showRowNumber: u,
         height: d
       }
-    ) : A === "card"(
-      /* @__PURE__ */ x.jsx(
-        pv,
-        {
-          rows: k?.items || [],
-          columns: t,
-          loading: T,
-          error: M,
-          pagination: !0,
-          rowCount: k && k.pagination ? k.pagination.total : 0,
-          page: b,
-          onPageChange: O,
-          perPage: E,
-          onPerPageChange: (L) => {
-            S(L), O(1);
-          },
-          renderCard: m
-        }
-      )
-    )
+    ) : A === "card" ? /* @__PURE__ */ x.jsx(
+      pv,
+      {
+        rows: k?.items || [],
+        columns: t,
+        loading: T,
+        error: M,
+        pagination: !0,
+        rowCount: k && k.pagination ? k.pagination.total : 0,
+        page: b,
+        onPageChange: O,
+        perPage: E,
+        onPerPageChange: (L) => {
+          S(L), O(1);
+        },
+        renderCard: m
+      }
+    ) : null
   ] });
 }, bD = ({ isSubmitting: e, onCancel: t }) => /* @__PURE__ */ x.jsxs(ct, { sx: { mt: 3, display: "flex", gap: 2 }, children: [
   /* @__PURE__ */ x.jsx(
