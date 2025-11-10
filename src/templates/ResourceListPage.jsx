@@ -13,12 +13,12 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
             <Typography variant="h4" component="h1" sx={{ flexGrow: 1, mb: { xs: 2, sm: 0 } }}>
                 {resourceName}
             </Typography>
-            <ToggleButtonGroup
+            {view && <ToggleButtonGroup
                 value={view}
                 exclusive
                 onChange={onVievChange}
                 aria-label="view"
-                sx={{ mr: 2 }}
+                sx={{ mr: { xs: 0, sm: 2 }, mb: { xs: 2, sm: 0 } }}
             >
                 <ToggleButton value="table" aria-label="table view">
                     <ViewListIcon />
@@ -26,7 +26,7 @@ const defaultRenderHeader = ({ resourceName, createPath, createText, linkCompone
                 <ToggleButton value="card" aria-label="card view">
                     <ViewModuleIcon />
                 </ToggleButton>
-            </ToggleButtonGroup>
+            </ToggleButtonGroup>}
             {createPath && (
                 <Button
                     variant="contained"
@@ -56,7 +56,7 @@ export const ResourceListPage = ({
     renderHeader = defaultRenderHeader,
     requestAdapter = (params) => params,
     responseAdapter = (data) => data,
-    defaultView = 'table',
+    defaultView = null,
     renderCard,
 }) => {
     const [page, setPage] = useState(1);
@@ -104,7 +104,7 @@ export const ResourceListPage = ({
             
             <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
 
-            {view === 'table' ? (
+            {!view || view === 'table' ? (
                 <DataTable
                     rows={data?.items || []}
                     columns={columns}
@@ -122,7 +122,7 @@ export const ResourceListPage = ({
                     showRowNumber={showRowNumber}
                     height={height}
                 />
-            ) : (
+            ) : view === 'list' (
                 <DataCard
                     rows={data?.items || []}
                     columns={columns}

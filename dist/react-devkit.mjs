@@ -31473,14 +31473,14 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   const a = r;
   return /* @__PURE__ */ x.jsxs(Rr, { sx: { p: "0 !important", mb: 2, display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "flex-start", sm: "center" } }, children: [
     /* @__PURE__ */ x.jsx(Dt, { variant: "h4", component: "h1", sx: { flexGrow: 1, mb: { xs: 2, sm: 0 } }, children: e }),
-    /* @__PURE__ */ x.jsxs(
+    s && /* @__PURE__ */ x.jsxs(
       Xm,
       {
         value: s,
         exclusive: !0,
         onChange: i,
         "aria-label": "view",
-        sx: { mr: 2 },
+        sx: { mr: { xs: 0, sm: 2 }, mb: { xs: 2, sm: 0 } },
         children: [
           /* @__PURE__ */ x.jsx(wc, { value: "table", "aria-label": "table view", children: /* @__PURE__ */ x.jsx(dg, {}) }),
           /* @__PURE__ */ x.jsx(wc, { value: "card", "aria-label": "card view", children: /* @__PURE__ */ x.jsx(fg, {}) })
@@ -31513,7 +31513,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   renderHeader: g = yD,
   requestAdapter: y = (b) => b,
   responseAdapter: h = (b) => b,
-  defaultView: p = "table",
+  defaultView: p = null,
   renderCard: m
 }) => {
   const [b, O] = rt(1), [E, S] = rt(10), [C, P] = rt([]), [D, F] = rt({}), [A, j] = rt(p), I = { page: b, per_page: E, ...D };
@@ -31536,7 +31536,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
   return /* @__PURE__ */ x.jsxs(ct, { children: [
     g({ resourceName: e, createPath: r, createText: s, linkComponent: f, view: A, onVievChange: _ }),
     /* @__PURE__ */ x.jsx(gD, { filterOptions: Y, filters: D, onFilterChange: N }),
-    A === "table" ? /* @__PURE__ */ x.jsx(
+    !A || A === "table" ? /* @__PURE__ */ x.jsx(
       lv,
       {
         rows: k?.items || [],
@@ -31559,23 +31559,25 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
         showRowNumber: u,
         height: d
       }
-    ) : /* @__PURE__ */ x.jsx(
-      pv,
-      {
-        rows: k?.items || [],
-        columns: t,
-        loading: T,
-        error: M,
-        pagination: !0,
-        rowCount: k && k.pagination ? k.pagination.total : 0,
-        page: b,
-        onPageChange: O,
-        perPage: E,
-        onPerPageChange: (L) => {
-          S(L), O(1);
-        },
-        renderCard: m
-      }
+    ) : A === "list"(
+      /* @__PURE__ */ x.jsx(
+        pv,
+        {
+          rows: k?.items || [],
+          columns: t,
+          loading: T,
+          error: M,
+          pagination: !0,
+          rowCount: k && k.pagination ? k.pagination.total : 0,
+          page: b,
+          onPageChange: O,
+          perPage: E,
+          onPerPageChange: (L) => {
+            S(L), O(1);
+          },
+          renderCard: m
+        }
+      )
     )
   ] });
 }, bD = ({ isSubmitting: e, onCancel: t }) => /* @__PURE__ */ x.jsxs(ct, { sx: { mt: 3, display: "flex", gap: 2 }, children: [
