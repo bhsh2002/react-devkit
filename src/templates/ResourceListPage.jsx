@@ -122,7 +122,7 @@ export const ResourceListPage = ({
                     showRowNumber={showRowNumber}
                     height={height}
                 />
-            ) : view === 'list' (
+            ) : view === 'card' (
                 <DataCard
                     rows={data?.items || []}
                     columns={columns}

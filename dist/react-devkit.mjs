@@ -31559,7 +31559,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
         showRowNumber: u,
         height: d
       }
-    ) : A === "list"(
+    ) : A === "card"(
       /* @__PURE__ */ x.jsx(
         pv,
         {
