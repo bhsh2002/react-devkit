@@ -31610,7 +31610,7 @@ const ba = yt.use || // This extra generic is to avoid TypeScript mixing up the 
     const S = l(E);
     try {
       const C = b ? await n.update(t, S) : await n.create(S);
-      s(C.data);
+      s(C.data), m(!1);
     } catch (C) {
       h(C), m(!1);
     }

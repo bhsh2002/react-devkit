@@ -80,6 +80,7 @@ export const ResourceFormPage = ({
                 : await api.create(adaptedData);
             
             onSuccess(savedData.data);
+            setIsSubmitting(false);
         } catch (err) { 
             setError(err);
             setIsSubmitting(false);
