@@ -25,7 +25,7 @@ export const TextField = ({ name, label, onChange: customOnChange, ...rest }) =>
     const handleChange = (event) => {
         setFieldValue(name, event.target.value);
         if (typeof customOnChange === 'function') {
-            customOnChange(event, newValue);
+            customOnChange(event, event.target.value);
         }
     };
 

@@ -4644,7 +4644,7 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
   if (!s)
     throw new Error("TextField must be used within a Form component");
   const { values: i, setFieldValue: a, errors: l } = s, c = l[e], u = (d) => {
-    a(e, d.target.value), typeof n == "function" && n(d, newValue);
+    a(e, d.target.value), typeof n == "function" && n(d, d.target.value);
   };
   return /* @__PURE__ */ x.jsx(
     Zn,
