@@ -4639,23 +4639,23 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
     errors: l
   };
   return /* @__PURE__ */ x.jsx(Ko.Provider, { value: f, children: /* @__PURE__ */ x.jsx("form", { onSubmit: d, ...s, children: r }) });
-}, uu = ({ name: e, label: t, ...n }) => {
-  const r = Bo(Ko);
-  if (!r)
+}, uu = ({ name: e, label: t, onChange: n, ...r }) => {
+  const s = Bo(Ko);
+  if (!s)
     throw new Error("TextField must be used within a Form component");
-  const { values: s, setFieldValue: i, errors: a } = r, l = a[e], c = (u) => {
-    i(e, u.target.value);
+  const { values: i, setFieldValue: a, errors: l } = s, c = l[e], u = (d) => {
+    a(e, d.target.value), typeof n == "function" && n(d, newValue);
   };
   return /* @__PURE__ */ x.jsx(
     Zn,
     {
       name: e,
       label: t,
-      value: s[e] || "",
-      onChange: c,
-      error: !!l,
-      helperText: l || "",
-      ...n
+      value: i[e] || "",
+      onChange: u,
+      error: !!c,
+      helperText: c || "",
+      ...r
     }
   );
 }, BM = ({

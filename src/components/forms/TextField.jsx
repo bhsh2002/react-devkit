@@ -11,7 +11,7 @@ import { FormContext } from './Form';
  * @param {string} props.name - @en The name of the field. This is required to register the field with the parent Form. @ar اسم الحقل. هذا الحقل مطلوب لتسجيله في النموذج الأب.
  * @param {string} props.label - @en The label for the text field. @ar التسمية لحقل النص.
  */
-export const TextField = ({ name, label, ...rest }) => {
+export const TextField = ({ name, label, onChange: customOnChange, ...rest }) => {
     const formContext = useContext(FormContext);
 
     if (!formContext) {
@@ -24,6 +24,9 @@ export const TextField = ({ name, label, ...rest }) => {
 
     const handleChange = (event) => {
         setFieldValue(name, event.target.value);
+        if (typeof customOnChange === 'function') {
+            customOnChange(event, newValue);
+        }
     };
 
     return (
