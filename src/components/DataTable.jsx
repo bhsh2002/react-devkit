@@ -81,6 +81,7 @@ export const DataTable = ({
     rowCount = 0,
     page = 1,
     onPageChange = () => {},
+    onRowClick = () => {},
     perPage = 10,
     onPerPageChange = () => {},
     perPageOptions = [10, 25, 100],
@@ -174,7 +175,7 @@ export const DataTable = ({
                                     const rowId = getRowId(row);
                                     const isSelected = selectedRowId === rowId;
                                     return (
-                                        <TableRow hover selected={isSelected} onClick={() => { setSelectedRowId(rowId); props.onRowClick && props.onRowClick(row);}} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
+                                        <TableRow hover selected={isSelected} onClick={() => { setSelectedRowId(rowId); onRowClick && onRowClick(row);}} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
                                             {finalColumns.map((col) => {
                                                 const value = col.field.split('.').reduce((o, i) => o?.[i], row);
                                                 return (
