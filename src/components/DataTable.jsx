@@ -174,7 +174,7 @@ export const DataTable = ({
                                     const rowId = getRowId(row);
                                     const isSelected = selectedRowId === rowId;
                                     return (
-                                        <TableRow hover selected={isSelected} onClick={() => setSelectedRowId(rowId)} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
+                                        <TableRow hover selected={isSelected} onClick={() => { setSelectedRowId(rowId); props.onRowClick && props.onRowClick(row);}} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
                                             {finalColumns.map((col) => {
                                                 const value = col.field.split('.').reduce((o, i) => o?.[i], row);
                                                 return (
