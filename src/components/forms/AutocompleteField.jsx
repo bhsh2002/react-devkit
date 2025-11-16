@@ -20,6 +20,8 @@ import { FormContext } from "./Form";
 export const AutocompleteField = ({
   name,
   label,
+  noOptionsText = "No options",
+  loadingText = "Loading…",
   fetchOptions,
   getOptionLabel = (option) => option.label,
   multiple = false,
@@ -82,6 +84,8 @@ export const AutocompleteField = ({
   return (
     <MuiAutocomplete
       multiple={multiple}
+      noOptionsText={noOptionsText}
+      loadingText={loadingText}
       options={options}
       loading={loading}
       getOptionLabel={getOptionLabel}
