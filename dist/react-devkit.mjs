@@ -4465,7 +4465,7 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
     let U = 0;
     const q = () => {
       const te = F.current[j];
-      te ? te.scrollIntoView({ behavior: "smooth", block: "center" }) : U < T && (U++, setTimeout(q, B));
+      te ? te.scrollIntoView({ behavior: "auto", block: "center" }) : U < T && (U++, setTimeout(q, B));
     };
     q();
   };

@@ -119,7 +119,7 @@ export const DataTable = ({
     const tryScroll = () => {
       const el = rowRefs.current[rowId];
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.scrollIntoView({ behavior: "auto", block: "center" });
       } else if (attempts < retries) {
         attempts++;
         setTimeout(tryScroll, delay);
