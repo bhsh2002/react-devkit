@@ -24,6 +24,7 @@ export const AutocompleteField = ({
   getOptionLabel = (option) => option.label,
   multiple = false,
   onChange: customOnChange,
+  resetTrigger,
   ...rest
 }) => {
   const formContext = useContext(FormContext);
@@ -40,8 +41,6 @@ export const AutocompleteField = ({
   useEffect(() => {
     let active = true;
     setLoading(true);
-
-    setFieldValue(name, multiple ? [] : null);
 
     fetchOptions(inputValue)
       .then((fetchedOptions) => {
@@ -63,13 +62,13 @@ export const AutocompleteField = ({
     return () => {
       active = false;
     };
-  }, [inputValue]);
+  }, [inputValue, resetTrigger]);
 
   useEffect(() => {
     setFieldValue(name, multiple ? [] : null);
     setOptions([]);
     setInputValue("");
-  }, [rest.resetTrigger]);
+  }, [resetTrigger]);
 
   const handleChange = (event, newValue) => {
     setFieldValue(name, newValue);
