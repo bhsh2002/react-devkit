@@ -113,14 +113,27 @@ export const DataTable = ({
     loadingOverlay: LoadingOverlaySlot = DefaultLoadingOverlay,
   } = slots;
 
+  const scrollToRowWithRetry = (rowId, retries = 15, delay = 80) => {
+    let attempts = 0;
+
+    const tryScroll = () => {
+      const el = rowRefs.current[rowId];
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else if (attempts < retries) {
+        attempts++;
+        setTimeout(tryScroll, delay);
+      }
+    };
+
+    tryScroll();
+  };
+
   useEffect(() => {
-    if (selectedRowId && rowRefs.current[selectedRowId]) {
-      rowRefs.current[selectedRowId].scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+    if (selectedRowId) {
+      scrollToRowWithRetry(selectedRowId);
     }
-  }, [selectedRowId]);
+  }, [selectedRowId, rows, page]);
 
   const handleSortClick = (field) => {
     if (!sorting) return;
@@ -168,7 +181,10 @@ export const DataTable = ({
         </Toolbar>
       )}
       <Box sx={{ width: "100%", overflowX: "auto" }}>
-        <TableContainer ref={tableContainerRef} sx={{ height, overflowY: "auto" }}>
+        <TableContainer
+          ref={tableContainerRef}
+          sx={{ height, overflowY: "auto" }}
+        >
           <Table stickyHeader>
             <TableHead>
               <TableRow>
