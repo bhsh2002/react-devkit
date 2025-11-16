@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Box,
   Paper,
@@ -102,6 +102,7 @@ export const DataTable = ({
   sx,
   height = "90dvh",
 }) => {
+  const rowRefs = useRef({});
   const [internalSelectedRowId, setInternalSelectedRowId] = useState(null);
   const selectedRowId = externalSelectedRowId ?? internalSelectedRowId;
 
@@ -110,6 +111,15 @@ export const DataTable = ({
     noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,
     loadingOverlay: LoadingOverlaySlot = DefaultLoadingOverlay,
   } = slots;
+
+  useEffect(() => {
+    if (selectedRowId && rowRefs.current[selectedRowId]) {
+      rowRefs.current[selectedRowId].scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }, [selectedRowId]);
 
   const handleSortClick = (field) => {
     if (!sorting) return;
@@ -233,6 +243,7 @@ export const DataTable = ({
                   const isSelected = selectedRowId === rowId;
                   return (
                     <TableRow
+                      ref={(el) => (rowRefs.current[rowId] = el)}
                       hover
                       selected={isSelected}
                       onClick={() => {
