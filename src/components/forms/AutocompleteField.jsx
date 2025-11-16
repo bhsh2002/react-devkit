@@ -77,8 +77,10 @@ export const AutocompleteField = ({
             getOptionLabel={getOptionLabel}
             value={values[name] || (multiple ? [] : null)}
             onChange={handleChange}
-            onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
+            onInputChange={(event, newInputValue, reason) => {
+                if (reason === "input") {
+                    setInputValue(newInputValue);
+                }
             }}
             renderInput={(params) => (
                 <TextField

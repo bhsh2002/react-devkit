@@ -4743,8 +4743,8 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
       getOptionLabel: r,
       value: c[e] || (s ? [] : null),
       onChange: b,
-      onInputChange: (E, S) => {
-        m(S);
+      onInputChange: (E, S, C) => {
+        C === "input" && m(S);
       },
       renderInput: (E) => /* @__PURE__ */ x.jsx(
         Zn,
