@@ -103,6 +103,7 @@ export const FileUploadField = ({
         {label}{required ? " *" : ""}
         <input
           type="file"
+          required={required}
           hidden
           accept={accept}
           onChange={handleFileChange}
