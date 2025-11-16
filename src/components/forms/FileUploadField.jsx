@@ -1,7 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Box, Button, Avatar, Typography } from '@mui/material';
-import { PictureAsPdf as PdfIcon, Description as FileIcon, Movie as VideoIcon, ImageNotSupported as ImageNotSupportedIcon } from '@mui/icons-material';
-import { FormContext } from './Form';
+import React, { useContext, useState, useEffect } from "react";
+import { Box, Button, Avatar, Typography } from "@mui/material";
+import {
+  PictureAsPdf as PdfIcon,
+  Description as FileIcon,
+  Movie as VideoIcon,
+  ImageNotSupported as ImageNotSupportedIcon,
+} from "@mui/icons-material";
+import { FormContext } from "./Form";
 
 /**
  * @en A file upload component with a preview, designed to work within a `<Form>`. It handles the file selection and preview logic internally and registers the selected file with the parent form.
@@ -15,19 +20,20 @@ import { FormContext } from './Form';
  */
 export const FileUploadField = ({
   name,
-  label = 'Upload File',
+  label = "Upload File",
   initialPreview,
-  accept = '*/*',
+  accept = "*/*",
+  required = false,
 }) => {
   const formContext = useContext(FormContext);
   const [preview, setPreview] = useState(initialPreview || null);
   const [fileType, setFileType] = useState(null);
 
   if (!formContext) {
-    throw new Error('FileUploadField must be used within a Form component');
+    throw new Error("FileUploadField must be used within a Form component");
   }
 
-  const { setFieldValue, values } = formContext;
+  const { setFieldValue, values, errors } = formContext;
   const file = values[name];
 
   useEffect(() => {
@@ -49,7 +55,7 @@ export const FileUploadField = ({
       setFieldValue(name, selectedFile);
       setFileType(selectedFile.type);
 
-      if (selectedFile.type.startsWith('image/')) {
+      if (selectedFile.type.startsWith("image/")) {
         const reader = new FileReader();
         reader.onloadend = () => setPreview(reader.result);
         reader.readAsDataURL(selectedFile);
@@ -59,15 +65,16 @@ export const FileUploadField = ({
     }
   };
 
+  const fieldError = errors?.[name];
+
   const renderPreview = () => {
-    if (fileType?.startsWith('image/') && preview) {
+    if (fileType?.startsWith("image/") && preview) {
       return <Avatar src={preview} sx={{ width: 100, height: 100 }} />;
-    }
-    else if (fileType?.startsWith('image/') && !preview){
-        <ImageNotSupportedIcon sx={{ fontSize: 60, color: 'text.disabled' }} />
+    } else if (fileType?.startsWith("image/") && !preview) {
+      <ImageNotSupportedIcon sx={{ fontSize: 60, color: "text.disabled" }} />;
     }
 
-    if (fileType?.startsWith('video/')) {
+    if (fileType?.startsWith("video/")) {
       return (
         <video width="120" height="100" controls>
           <source src={URL.createObjectURL(file)} type={fileType} />
@@ -76,19 +83,26 @@ export const FileUploadField = ({
       );
     }
 
-    if (fileType === 'application/pdf') {
-      return <PdfIcon sx={{ fontSize: 60, color: 'error.main' }} />;
+    if (fileType === "application/pdf") {
+      return <PdfIcon sx={{ fontSize: 60, color: "error.main" }} />;
     }
 
     if (fileType) {
-      return <FileIcon sx={{ fontSize: 60, color: 'text.secondary' }} />;
+      return <FileIcon sx={{ fontSize: 60, color: "text.secondary" }} />;
     }
 
-    return <FileIcon sx={{ fontSize: 60, color: 'text.disabled' }} />;
+    return <FileIcon sx={{ fontSize: 60, color: "text.disabled" }} />;
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
+      }}
+    >
       {renderPreview()}
       {file && <Typography variant="body2">{file.name}</Typography>}
 
@@ -102,6 +116,11 @@ export const FileUploadField = ({
           data-testid="file-upload-input"
         />
       </Button>
+      {fieldError && (
+        <Typography variant="caption" color="error">
+          {fieldError}
+        </Typography>
+      )}
     </Box>
   );
 };
