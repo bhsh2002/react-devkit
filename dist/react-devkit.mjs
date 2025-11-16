@@ -4698,7 +4698,6 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
         "input",
         {
           type: "file",
-          required: s,
           hidden: !0,
           accept: r,
           onChange: h
