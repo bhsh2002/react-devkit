@@ -1,33 +1,39 @@
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-    Box,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    TablePagination,
-    TableSortLabel,
-    Typography,
-    CircularProgress,
-    Toolbar,
-} from '@mui/material';
-import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+  Box,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TablePagination,
+  TableSortLabel,
+  Typography,
+  CircularProgress,
+  Toolbar,
+} from "@mui/material";
+import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 
 const DefaultNoRowsOverlay = () => (
-  <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
+  <Box sx={{ textAlign: "center", py: 8, color: "text.secondary" }}>
     <ImageNotSupportedIcon sx={{ fontSize: 60, mb: 2, opacity: 0.5 }} />
     <Typography variant="h6">لا يوجد بيانات لعرضها</Typography>
   </Box>
 );
 
 const DefaultLoadingOverlay = () => (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', p: 4 }}>
-        <CircularProgress />
-    </Box>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      p: 4,
+    }}
+  >
+    <CircularProgress />
+  </Box>
 );
 
 /**
@@ -49,7 +55,7 @@ const DefaultLoadingOverlay = () => (
 
 /**
  * A generic and customizable data table component built on top of Material-UI.
- * 
+ *
  * @param {object} props - The component props.
  * @param {Array<object>} [props.rows=[]] - The array of data rows to display.
  * @param {Array<DataTableColumn>} [props.columns=[]] - The array of column definitions.
@@ -72,144 +78,226 @@ const DefaultLoadingOverlay = () => (
  * @param {object} [props.sx] - Custom styles for the root Paper component.
  */
 export const DataTable = ({
-    rows = [],
-    columns = [],
-    getRowId = (row) => row.id,
-    loading = false,
-    error,
-    pagination = false,
-    rowCount = 0,
-    page = 1,
-    onPageChange = () => {},
-    onRowClick = () => {},
-    perPage = 10,
-    onPerPageChange = () => {},
-    perPageOptions = [10, 25, 100],
-    sorting = false,
-    sortModel = [],
-    onSortModelChange = () => {},
-    showRowNumber = true,
-    slots = {},
-    slotProps = {},
-    sx,
-    height = '90dvh',
+  rows = [],
+  columns = [],
+  getRowId = (row) => row.id,
+  loading = false,
+  error,
+  pagination = false,
+  rowCount = 0,
+  page = 1,
+  onPageChange = () => {},
+  onRowClick = () => {},
+  selectedRowId: externalSelectedRowId,
+  onSelectedRowIdChange = () => {},
+  perPage = 10,
+  onPerPageChange = () => {},
+  perPageOptions = [10, 25, 100],
+  sorting = false,
+  sortModel = [],
+  onSortModelChange = () => {},
+  showRowNumber = true,
+  slots = {},
+  slotProps = {},
+  sx,
+  height = "90dvh",
 }) => {
-    const [selectedRowId, setSelectedRowId] = useState(null);
+  const [internalSelectedRowId, setInternalSelectedRowId] = useState(null);
+  const selectedRowId = externalSelectedRowId ?? internalSelectedRowId;
 
-    const {
-        toolbar: ToolbarSlot,
-        noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,
-        loadingOverlay: LoadingOverlaySlot = DefaultLoadingOverlay,
-    } = slots;
+  const {
+    toolbar: ToolbarSlot,
+    noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,
+    loadingOverlay: LoadingOverlaySlot = DefaultLoadingOverlay,
+  } = slots;
 
-    const handleSortClick = (field) => {
-        if (!sorting) return;
-        const existingSort = sortModel.find((s) => s.field === field);
-        let newSortModel = existingSort ? (existingSort.sort === 'asc' ? [{ field, sort: 'desc' }] : []) : [{ field, sort: 'asc' }];
-        onSortModelChange(newSortModel);
-    };
+  const handleSortClick = (field) => {
+    if (!sorting) return;
+    const existingSort = sortModel.find((s) => s.field === field);
+    let newSortModel = existingSort
+      ? existingSort.sort === "asc"
+        ? [{ field, sort: "desc" }]
+        : []
+      : [{ field, sort: "asc" }];
+    onSortModelChange(newSortModel);
+  };
 
-    const currentSort = sortModel.length > 0 ? sortModel[0] : null;
+  const currentSort = sortModel.length > 0 ? sortModel[0] : null;
 
-    const finalColumns = [
-        ...(showRowNumber ? [{
-            field: '__rowNumber__',
-            headerName: '#',
+  const finalColumns = [
+    ...(showRowNumber
+      ? [
+          {
+            field: "__rowNumber__",
+            headerName: "#",
             width: 60,
-            align: 'center',
-            renderCell: ({ index }) => ((page - 1) * perPage) + index + 1,
-        }] : []),
-        ...columns,
-    ];
+            align: "center",
+            renderCell: ({ index }) => (page - 1) * perPage + index + 1,
+          },
+        ]
+      : []),
+    ...columns,
+  ];
 
-    const getStickyStyles = (col) => {
-        if (!col.sticky) return {};
-        return {
-            position: 'sticky',
-            [col.sticky]: 0,
-            background: 'white',
-            zIndex: 1,
-        };
+  const getStickyStyles = (col) => {
+    if (!col.sticky) return {};
+    return {
+      position: "sticky",
+      [col.sticky]: 0,
+      background: "white",
+      zIndex: 1,
     };
+  };
 
-    return (
-        <Paper sx={sx}>
-            {ToolbarSlot && <Toolbar><ToolbarSlot {...(slotProps.toolbar || {})} /></Toolbar>}
-            <Box sx={{ width: '100%', overflowX: 'auto' }}>
-                <TableContainer sx={{ height }}>
-                    <Table stickyHeader>
-                        <TableHead>
-                            <TableRow>
-                                {finalColumns.map((col) => (
-                                    <TableCell
-                                        key={col.field}
-                                        align={col.align || 'inherit'}
-                                        width={col.width}
-                                        sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}
-                                        sortDirection={currentSort?.field === col.field ? currentSort.sort : false}
-                                    >
-                                        {col.sortable && sorting ? (
-                                            <TableSortLabel
-                                                active={currentSort?.field === col.field}
-                                                direction={currentSort?.field === col.field ? currentSort.sort : 'asc'}
-                                                onClick={() => handleSortClick(col.field)}
-                                            >
-                                                {col.headerName}
-                                            </TableSortLabel>
-                                        ) : (
-                                            col.headerName
-                                        )}
-                                    </TableCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {loading ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} /></TableCell></TableRow>
-                            ) : error ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none', textAlign: 'center' }}><Typography color="error">{error.message || 'An error occurred.'}</Typography></TableCell></TableRow>
-                            ) : rows.length === 0 ? (
-                                <TableRow><TableCell colSpan={finalColumns.length} sx={{ border: 'none' }}><NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} /></TableCell></TableRow>
-                            ) : (
-                                rows.map((row, index) => {
-                                    const rowId = getRowId(row);
-                                    const isSelected = selectedRowId === rowId;
-                                    return (
-                                        <TableRow hover selected={isSelected} onClick={() => { setSelectedRowId(rowId); onRowClick && onRowClick(row);}} sx={{ cursor: 'pointer' }} key={getRowId(row)}>
-                                            {finalColumns.map((col) => {
-                                                const value = col.field.split('.').reduce((o, i) => o?.[i], row);
-                                                return (
-                                                    <TableCell key={col.field} align={col.align || 'inherit'} sx={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', ...getStickyStyles(col) }}>
-                                                        {col.renderCell
-                                                            ? col.renderCell({ value, row, id: getRowId(row), index })
-                                                            : value}
-                                                    </TableCell>
-                                                );
-                                            })}
-                                        </TableRow>
-                                    )
+  return (
+    <Paper sx={sx}>
+      {ToolbarSlot && (
+        <Toolbar>
+          <ToolbarSlot {...(slotProps.toolbar || {})} />
+        </Toolbar>
+      )}
+      <Box sx={{ width: "100%", overflowX: "auto" }}>
+        <TableContainer sx={{ height }}>
+          <Table stickyHeader>
+            <TableHead>
+              <TableRow>
+                {finalColumns.map((col) => (
+                  <TableCell
+                    key={col.field}
+                    align={col.align || "inherit"}
+                    width={col.width}
+                    sx={{
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      ...getStickyStyles(col),
+                    }}
+                    sortDirection={
+                      currentSort?.field === col.field
+                        ? currentSort.sort
+                        : false
+                    }
+                  >
+                    {col.sortable && sorting ? (
+                      <TableSortLabel
+                        active={currentSort?.field === col.field}
+                        direction={
+                          currentSort?.field === col.field
+                            ? currentSort.sort
+                            : "asc"
+                        }
+                        onClick={() => handleSortClick(col.field)}
+                      >
+                        {col.headerName}
+                      </TableSortLabel>
+                    ) : (
+                      col.headerName
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {loading ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={finalColumns.length}
+                    sx={{ border: "none" }}
+                  >
+                    <LoadingOverlaySlot {...(slotProps.loadingOverlay || {})} />
+                  </TableCell>
+                </TableRow>
+              ) : error ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={finalColumns.length}
+                    sx={{ border: "none", textAlign: "center" }}
+                  >
+                    <Typography color="error">
+                      {error.message || "An error occurred."}
+                    </Typography>
+                  </TableCell>
+                </TableRow>
+              ) : rows.length === 0 ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={finalColumns.length}
+                    sx={{ border: "none" }}
+                  >
+                    <NoRowsOverlaySlot {...(slotProps.noRowsOverlay || {})} />
+                  </TableCell>
+                </TableRow>
+              ) : (
+                rows.map((row, index) => {
+                  const rowId = getRowId(row);
+                  const isSelected = selectedRowId === rowId;
+                  return (
+                    <TableRow
+                      hover
+                      selected={isSelected}
+                      onClick={() => {
+                        setInternalSelectedRowId(rowId);
+                        onSelectedRowIdChange(rowId);
+                        onRowClick(row);
+                        onRowClick && onRowClick(row);
+                      }}
+                      sx={{ cursor: "pointer" }}
+                      key={getRowId(row)}
+                    >
+                      {finalColumns.map((col) => {
+                        const value = col.field
+                          .split(".")
+                          .reduce((o, i) => o?.[i], row);
+                        return (
+                          <TableCell
+                            key={col.field}
+                            align={col.align || "inherit"}
+                            sx={{
+                              whiteSpace: "nowrap",
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              ...getStickyStyles(col),
+                            }}
+                          >
+                            {col.renderCell
+                              ? col.renderCell({
+                                  value,
+                                  row,
+                                  id: getRowId(row),
+                                  index,
                                 })
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Box>
-            {pagination && !error && rows.length > 0 && (
-                <TablePagination
-                    component="div"
-                    count={rowCount}
-                    page={page - 1}
-                    onPageChange={(e, newPage) => onPageChange(newPage + 1)}
-                    rowsPerPage={perPage}
-                    onRowsPerPageChange={(e) => onPerPageChange(parseInt(e.target.value, 10))}
-                    rowsPerPageOptions={perPageOptions}
-                    showFirstButton
-                    showLastButton
-                    labelRowsPerPage={null}
-                    labelDisplayedRows={({ from, to, count }) => `${from} - ${to} | ${count}`}
-                    sx={{ display: 'flex', justifyContent: 'center' }}
-                />
-            )}
-        </Paper>
-    );
+                              : value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      {pagination && !error && rows.length > 0 && (
+        <TablePagination
+          component="div"
+          count={rowCount}
+          page={page - 1}
+          onPageChange={(e, newPage) => onPageChange(newPage + 1)}
+          rowsPerPage={perPage}
+          onRowsPerPageChange={(e) =>
+            onPerPageChange(parseInt(e.target.value, 10))
+          }
+          rowsPerPageOptions={perPageOptions}
+          showFirstButton
+          showLastButton
+          labelRowsPerPage={null}
+          labelDisplayedRows={({ from, to, count }) =>
+            `${from} - ${to} | ${count}`
+          }
+          sx={{ display: "flex", justifyContent: "center" }}
+        />
+      )}
+    </Paper>
+  );
 };
