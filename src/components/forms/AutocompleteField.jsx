@@ -1,7 +1,10 @@
-
-import React, { useState, useEffect, useContext } from 'react';
-import { Autocomplete as MuiAutocomplete, TextField, CircularProgress } from '@mui/material';
-import { FormContext } from './Form';
+import React, { useState, useEffect, useContext } from "react";
+import {
+  Autocomplete as MuiAutocomplete,
+  TextField,
+  CircularProgress,
+} from "@mui/material";
+import { FormContext } from "./Form";
 
 /**
  * @en A form field for selecting a value from a list of options that are fetched from an API. It is a wrapper around Material-UI's Autocomplete component.
@@ -14,94 +17,102 @@ import { FormContext } from './Form';
  * @param {function(object): string} [props.getOptionLabel] - @en A function that returns the string label for a given option. Defaults to `option.label`. @ar دالة تُرجع التسمية النصية لخيار معين. الافتراضي هو `option.label`.
  * @param {boolean} [props.multiple=false] - @en If true, the user can select multiple options. @ar إذا كانت true، يمكن للمستخدم اختيار خيارات متعددة.
  */
-export const AutocompleteField = ({ 
-    name, 
-    label, 
-    fetchOptions, 
-    getOptionLabel = (option) => option.label, 
-    multiple = false,
-    onChange: customOnChange,
-    ...rest
+export const AutocompleteField = ({
+  name,
+  label,
+  fetchOptions,
+  getOptionLabel = (option) => option.label,
+  multiple = false,
+  onChange: customOnChange,
+  ...rest
 }) => {
-    const formContext = useContext(FormContext);
-    if (!formContext) {
-        throw new Error('AutocompleteField must be used within a Form component');
-    }
+  const formContext = useContext(FormContext);
+  if (!formContext) {
+    throw new Error("AutocompleteField must be used within a Form component");
+  }
 
-    const { values, setFieldValue, errors } = formContext;
+  const { values, setFieldValue, errors } = formContext;
 
-    const [options, setOptions] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+  const [options, setOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-    useEffect(() => {
-        let active = true;
-        setLoading(true);
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
 
-        setFieldValue(name, multiple ? [] : null);
+    setFieldValue(name, multiple ? [] : null);
 
-        fetchOptions(inputValue)
-            .then(fetchedOptions => {
-                if (active) {
-                    setOptions(fetchedOptions || []);
-                }
-            })
-            .catch(() => {
-                if (active) {
-                    setOptions([]);
-                }
-            })
-            .finally(() => {
-                if (active) {
-                    setLoading(false);
-                }
-            });
-
-        return () => {
-            active = false;
-        };
-    }, [inputValue, fetchOptions]);
-
-    const handleChange = (event, newValue) => {
-        setFieldValue(name, newValue);
-        if (typeof customOnChange === 'function') {
-            customOnChange(event, newValue);
+    fetchOptions(inputValue)
+      .then((fetchedOptions) => {
+        if (active) {
+          setOptions(fetchedOptions || []);
         }
+      })
+      .catch(() => {
+        if (active) {
+          setOptions([]);
+        }
+      })
+      .finally(() => {
+        if (active) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
     };
+  }, [inputValue]);
 
-    const fieldError = errors?.[name];
+  useEffect(() => {
+    setFieldValue(name, multiple ? [] : null);
+    setOptions([]);
+    setInputValue("");
+  }, [rest.resetTrigger]);
 
-    return (
-        <MuiAutocomplete
-            multiple={multiple}
-            options={options}
-            loading={loading}
-            getOptionLabel={getOptionLabel}
-            value={values[name] || (multiple ? [] : null)}
-            onChange={handleChange}
-            onInputChange={(event, newInputValue, reason) => {
-                if (reason === "input") {
-                    setInputValue(newInputValue);
-                }
-            }}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    label={label}
-                    error={!!fieldError}
-                    helperText={fieldError}
-                    InputProps={{
-                        ...params.InputProps,
-                        endAdornment: (
-                            <>
-                                {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                                {params.InputProps.endAdornment}
-                            </>
-                        ),
-                    }}
-                />
-            )}
-            {...rest}
+  const handleChange = (event, newValue) => {
+    setFieldValue(name, newValue);
+    if (typeof customOnChange === "function") {
+      customOnChange(event, newValue);
+    }
+  };
+
+  const fieldError = errors?.[name];
+
+  return (
+    <MuiAutocomplete
+      multiple={multiple}
+      options={options}
+      loading={loading}
+      getOptionLabel={getOptionLabel}
+      value={values[name] || (multiple ? [] : null)}
+      onChange={handleChange}
+      onInputChange={(event, newInputValue, reason) => {
+        if (reason === "input") {
+          setInputValue(newInputValue);
+        }
+      }}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label={label}
+          error={!!fieldError}
+          helperText={fieldError}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <>
+                {loading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : null}
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
         />
-    );
+      )}
+      {...rest}
+    />
+  );
 };
