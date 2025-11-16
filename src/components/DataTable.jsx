@@ -102,6 +102,7 @@ export const DataTable = ({
   sx,
   height = "90dvh",
 }) => {
+  const tableContainerRef = useRef(null);
   const rowRefs = useRef({});
   const [internalSelectedRowId, setInternalSelectedRowId] = useState(null);
   const selectedRowId = externalSelectedRowId ?? internalSelectedRowId;
@@ -167,7 +168,7 @@ export const DataTable = ({
         </Toolbar>
       )}
       <Box sx={{ width: "100%", overflowX: "auto" }}>
-        <TableContainer sx={{ height, overflowY: "auto" }}>
+        <TableContainer ref={tableContainerRef} sx={{ height, overflowY: "auto" }}>
           <Table stickyHeader>
             <TableHead>
               <TableRow>
@@ -249,7 +250,6 @@ export const DataTable = ({
                       onClick={() => {
                         setInternalSelectedRowId(rowId);
                         onSelectedRowIdChange(rowId);
-                        onRowClick(row);
                         onRowClick && onRowClick(row);
                       }}
                       sx={{ cursor: "pointer" }}
