@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Box, Button, Typography, Toolbar, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { Add as AddIcon, ViewList as ViewListIcon, ViewModule as ViewModuleIcon } from '@mui/icons-material';
 import { DataTable, DataCard } from '../components';
@@ -56,6 +56,7 @@ export const ResourceListPage = ({
     renderHeader = defaultRenderHeader,
     requestAdapter = (params) => params,
     responseAdapter = (data) => data,
+    autoRefresh = false,
     defaultView = null,
     renderCard,
 }) => {
@@ -73,7 +74,7 @@ export const ResourceListPage = ({
 
     const apiParams = requestAdapter(baseApiParams);
 
-    const { data, isLoading, error } = useApi(
+    const { data, isLoading, error, mutate } = useApi(
         [resourceName, apiParams],
         async () => {
             const response = await api.list(apiParams);
@@ -81,6 +82,15 @@ export const ResourceListPage = ({
         },
         { keepPreviousData: true }
     );
+    
+    useEffect(() => {
+        const interval = setInterval(() => {
+        mutate();
+        }, 60000);
+
+        return () => clearInterval(interval);
+    }, []);
+
 
     const handleFilterChange = useCallback((name, value) => {
         setPage(1);
