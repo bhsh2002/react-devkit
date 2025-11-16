@@ -38,6 +38,8 @@ export const AutocompleteField = ({
         let active = true;
         setLoading(true);
 
+        setFieldValue(name, multiple ? [] : null);
+
         fetchOptions(inputValue)
             .then(fetchedOptions => {
                 if (active) {

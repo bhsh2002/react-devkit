@@ -4721,7 +4721,7 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
   const { values: c, setFieldValue: u, errors: d } = l, [f, g] = rt([]), [y, h] = rt(!1), [p, m] = rt("");
   ar(() => {
     let E = !0;
-    return h(!0), n(p).then((S) => {
+    return h(!0), u(e, s ? [] : null), n(p).then((S) => {
       E && g(S || []);
     }).catch(() => {
       E && g([]);
