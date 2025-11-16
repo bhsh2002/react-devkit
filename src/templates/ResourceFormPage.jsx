@@ -47,6 +47,7 @@ export const ResourceFormPage = ({
     id,
     api,
     FormComponent,
+    validationSchema,
     onSuccess = () => {},
     onCancel,
     responseAdapter = (data) => data,
@@ -97,7 +98,7 @@ export const ResourceFormPage = ({
             </Toolbar>
             <Paper sx={{ p: 3 }}>
                 {(!isEditMode || initialData) && (
-                    <Form onSubmit={handleSubmit} initialValues={initialData}>
+                    <Form onSubmit={handleSubmit} initialValues={initialData} validationSchema={validationSchema}>
                         <FormComponent />
 
                         {error && isSubmitting && (

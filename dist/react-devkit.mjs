@@ -31608,33 +31608,34 @@ const ba = gt.use || // This extra generic is to avoid TypeScript mixing up the 
   id: t,
   api: n,
   FormComponent: r,
-  onSuccess: s = () => {
+  validationSchema: s,
+  onSuccess: i = () => {
   },
-  onCancel: i,
-  responseAdapter: a = (u) => u,
-  requestAdapter: l = (u) => u,
-  renderActions: c = bD
+  onCancel: a,
+  responseAdapter: l = (d) => d,
+  requestAdapter: c = (d) => d,
+  renderActions: u = bD
 }) => {
-  const [u, d] = rt(null), [f, g] = rt(!1), [y, h] = rt(null), [p, m] = rt(!1), b = t != null;
+  const [d, f] = rt(null), [g, y] = rt(!1), [h, p] = rt(null), [m, b] = rt(!1), O = t != null;
   Nn(() => {
-    b && (g(!0), h(null), n.getOne(t).then((E) => d(a(E))).catch((E) => h(E)).finally(() => g(!1)));
-  }, [n, t, b, a]);
-  const O = async (E) => {
-    m(!0), h(null);
-    const S = l(E);
+    O && (y(!0), p(null), n.getOne(t).then((S) => f(l(S))).catch((S) => p(S)).finally(() => y(!1)));
+  }, [n, t, O, l]);
+  const E = async (S) => {
+    b(!0), p(null);
+    const C = c(S);
     try {
-      const C = b ? await n.update(t, S) : await n.create(S);
-      s(C.data), m(!1);
-    } catch (C) {
-      h(C), m(!1);
+      const T = O ? await n.update(t, C) : await n.create(C);
+      i(T.data), b(!1);
+    } catch (T) {
+      p(T), b(!1);
     }
   };
-  return f ? /* @__PURE__ */ x.jsx(zo, {}) : y && !p ? /* @__PURE__ */ x.jsx(Pa, { severity: "error", children: y.message || "Failed to load resource data." }) : /* @__PURE__ */ x.jsxs(ct, { children: [
+  return g ? /* @__PURE__ */ x.jsx(zo, {}) : h && !m ? /* @__PURE__ */ x.jsx(Pa, { severity: "error", children: h.message || "Failed to load resource data." }) : /* @__PURE__ */ x.jsxs(ct, { children: [
     /* @__PURE__ */ x.jsx(Rr, { sx: { p: "0 !important", mb: 2 }, children: /* @__PURE__ */ x.jsx(Ct, { variant: "h4", component: "h1", children: e }) }),
-    /* @__PURE__ */ x.jsx(Wo, { sx: { p: 3 }, children: (!b || u) && /* @__PURE__ */ x.jsxs(Bf, { onSubmit: O, initialValues: u, children: [
+    /* @__PURE__ */ x.jsx(Wo, { sx: { p: 3 }, children: (!O || d) && /* @__PURE__ */ x.jsxs(Bf, { onSubmit: E, initialValues: d, validationSchema: s, children: [
       /* @__PURE__ */ x.jsx(r, {}),
-      y && p && /* @__PURE__ */ x.jsx(Pa, { severity: "error", sx: { mt: 2 }, children: y.message || "An error occurred during submission." }),
-      c({ isSubmitting: p, onCancel: i })
+      h && m && /* @__PURE__ */ x.jsx(Pa, { severity: "error", sx: { mt: 2 }, children: h.message || "An error occurred during submission." }),
+      u({ isSubmitting: m, onCancel: a })
     ] }) })
   ] });
 };
