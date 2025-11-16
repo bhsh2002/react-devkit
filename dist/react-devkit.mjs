@@ -4492,7 +4492,7 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
   } : {};
   return /* @__PURE__ */ x.jsxs(Wo, { sx: C, children: [
     N && /* @__PURE__ */ x.jsx(Rr, { children: /* @__PURE__ */ x.jsx(N, { ...S.toolbar || {} }) }),
-    /* @__PURE__ */ x.jsx(ct, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ x.jsx(Bm, { sx: { height: P }, children: /* @__PURE__ */ x.jsxs(Wm, { stickyHeader: !0, children: [
+    /* @__PURE__ */ x.jsx(ct, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ x.jsx(Bm, { sx: { height: P, overflowY: "auto" }, children: /* @__PURE__ */ x.jsxs(Wm, { stickyHeader: !0, children: [
       /* @__PURE__ */ x.jsx(zm, { children: /* @__PURE__ */ x.jsx(Xr, { children: I.map((W) => /* @__PURE__ */ x.jsx(
         Qr,
         {

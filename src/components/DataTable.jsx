@@ -167,7 +167,7 @@ export const DataTable = ({
         </Toolbar>
       )}
       <Box sx={{ width: "100%", overflowX: "auto" }}>
-        <TableContainer sx={{ height }}>
+        <TableContainer sx={{ height, overflowY: "auto" }}>
           <Table stickyHeader>
             <TableHead>
               <TableRow>
