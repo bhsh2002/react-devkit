@@ -27,6 +27,7 @@ export const AutocompleteField = ({
   multiple = false,
   onChange: customOnChange,
   resetTrigger,
+  required = false,
   ...rest
 }) => {
   const formContext = useContext(FormContext);
@@ -100,6 +101,7 @@ export const AutocompleteField = ({
         <TextField
           {...params}
           label={label}
+          required={required}
           error={!!fieldError}
           helperText={fieldError}
           InputProps={{

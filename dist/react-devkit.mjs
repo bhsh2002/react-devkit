@@ -4712,64 +4712,66 @@ const dl = Wt(/* @__PURE__ */ x.jsx("path", {
   noOptionsText: n = "No options",
   loadingText: r = "Loading…",
   fetchOptions: s,
-  getOptionLabel: i = (d) => d.label,
+  getOptionLabel: i = (f) => f.label,
   multiple: a = !1,
   onChange: l,
   resetTrigger: c,
-  ...u
+  required: u = !1,
+  ...d
 }) => {
-  const d = Bo(Ko);
-  if (!d)
+  const f = Bo(Ko);
+  if (!f)
     throw new Error("AutocompleteField must be used within a Form component");
-  const { values: f, setFieldValue: g, errors: y } = d, [h, p] = rt([]), [m, b] = rt(!1), [O, C] = rt("");
+  const { values: g, setFieldValue: y, errors: h } = f, [p, m] = rt([]), [b, O] = rt(!1), [C, S] = rt("");
   Nn(() => {
-    let T = !0;
-    return b(!0), s(O).then((k) => {
-      T && p(k || []);
+    let k = !0;
+    return O(!0), s(C).then((F) => {
+      k && m(F || []);
     }).catch(() => {
-      T && p([]);
+      k && m([]);
     }).finally(() => {
-      T && b(!1);
+      k && O(!1);
     }), () => {
-      T = !1;
+      k = !1;
     };
-  }, [O, c]), Nn(() => {
-    g(e, a ? [] : null), p([]), C("");
+  }, [C, c]), Nn(() => {
+    y(e, a ? [] : null), m([]), S("");
   }, [c]);
-  const S = (T, k) => {
-    g(e, k), typeof l == "function" && l(T, k);
-  }, E = y?.[e];
+  const E = (k, F) => {
+    y(e, F), typeof l == "function" && l(k, F);
+  }, T = h?.[e];
   return /* @__PURE__ */ x.jsx(
     lf,
     {
       multiple: a,
       noOptionsText: n,
       loadingText: r,
-      options: h,
-      loading: m,
+      options: p,
+      loading: b,
       getOptionLabel: i,
-      value: f[e] || (a ? [] : null),
-      onChange: S,
-      onInputChange: (T, k, F) => {
-        F === "input" && C(k);
+      value: g[e] || (a ? [] : null),
+      onChange: E,
+      onInputChange: (k, F, A) => {
+        A === "input" && S(F);
       },
-      renderInput: (T) => /* @__PURE__ */ x.jsx(
+      renderInput: (k) => /* @__PURE__ */ x.jsx(
         Jn,
         {
-          ...T,
+          ...k,
           label: t,
-          error: !!E,
-          helperText: E,
+          required: u,
+          error: !!T,
+          helperText: T,
           InputProps: {
-            ...T.InputProps,
+            ...k.InputProps,
             endAdornment: /* @__PURE__ */ x.jsxs(x.Fragment, { children: [
-              m ? /* @__PURE__ */ x.jsx(zo, { color: "inherit", size: 20 }) : null,
-              T.InputProps.endAdornment
+              b ? /* @__PURE__ */ x.jsx(zo, { color: "inherit", size: 20 }) : null,
+              k.InputProps.endAdornment
             ] })
           }
         }
       ),
-      ...u
+      ...d
     }
   );
 }, zM = ({ name: e, label: t, ...n }) => {
