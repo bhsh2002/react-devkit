@@ -20,20 +20,20 @@ import { FormContext } from "./Form";
  */
 export const FileUploadField = ({
   name,
-  label = "Upload File",
+  label = 'Upload File',
   initialPreview,
-  accept = "*/*",
-  required = false,
+  accept = '*/*',
+  required = false,       // ⬅ تمت الإضافة هنا
 }) => {
   const formContext = useContext(FormContext);
   const [preview, setPreview] = useState(initialPreview || null);
   const [fileType, setFileType] = useState(null);
 
   if (!formContext) {
-    throw new Error("FileUploadField must be used within a Form component");
+    throw new Error('FileUploadField must be used within a Form component');
   }
 
-  const { setFieldValue, values, errors } = formContext;
+  const { setFieldValue, values, errors } = formContext;  // ⬅ جلب errors
   const file = values[name];
 
   useEffect(() => {
@@ -51,11 +51,12 @@ export const FileUploadField = ({
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
+    setFieldValue(name, selectedFile || null);
+
     if (selectedFile) {
-      setFieldValue(name, selectedFile);
       setFileType(selectedFile.type);
 
-      if (selectedFile.type.startsWith("image/")) {
+      if (selectedFile.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onloadend = () => setPreview(reader.result);
         reader.readAsDataURL(selectedFile);
@@ -65,57 +66,49 @@ export const FileUploadField = ({
     }
   };
 
-  const fieldError = errors?.[name];
+  const fieldError = errors?.[name];  // ⬅ قراءة رسالة الخطأ
 
   const renderPreview = () => {
-    if (fileType?.startsWith("image/") && preview) {
+    if (fileType?.startsWith('image/') && preview) {
       return <Avatar src={preview} sx={{ width: 100, height: 100 }} />;
     } else if (fileType?.startsWith("image/") && !preview) {
       <ImageNotSupportedIcon sx={{ fontSize: 60, color: "text.disabled" }} />;
     }
 
-    if (fileType?.startsWith("video/")) {
+    if (fileType?.startsWith('video/')) {
       return (
         <video width="120" height="100" controls>
           <source src={URL.createObjectURL(file)} type={fileType} />
-          Your browser does not support video preview.
         </video>
       );
     }
 
-    if (fileType === "application/pdf") {
-      return <PdfIcon sx={{ fontSize: 60, color: "error.main" }} />;
+    if (fileType === 'application/pdf') {
+      return <PdfIcon sx={{ fontSize: 60, color: 'error.main' }} />;
     }
 
     if (fileType) {
-      return <FileIcon sx={{ fontSize: 60, color: "text.secondary" }} />;
+      return <FileIcon sx={{ fontSize: 60, color: 'text.secondary' }} />;
     }
 
-    return <FileIcon sx={{ fontSize: 60, color: "text.disabled" }} />;
+    return <FileIcon sx={{ fontSize: 60, color: 'text.disabled' }} />;
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
       {renderPreview()}
       {file && <Typography variant="body2">{file.name}</Typography>}
 
-      <Button variant="outlined" component="label">
-        {label}
+      <Button variant="outlined" component="label" color={fieldError ? "error" : "primary"}>
+        {label}{required ? " *" : ""}
         <input
           type="file"
           hidden
           accept={accept}
           onChange={handleFileChange}
-          data-testid="file-upload-input"
         />
       </Button>
+
       {fieldError && (
         <Typography variant="caption" color="error">
           {fieldError}
