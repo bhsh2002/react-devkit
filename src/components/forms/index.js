@@ -3,3 +3,4 @@ export * from './TextField';
 export * from './FileUploadField';
 export * from './AutocompleteField';
 export * from './SwitchField';
+export * from './SelectField';
