@@ -120,7 +120,7 @@ export const ResourceListPage = ({
                     columns={columns}
                     loading={isLoading}
                     error={error}
-                    pagination
+                    pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}
                     page={page}
                     onPageChange={setPage}
@@ -138,7 +138,7 @@ export const ResourceListPage = ({
                     columns={columns}
                     loading={isLoading}
                     error={error}
-                    pagination
+                    pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}
                     page={page}
                     onPageChange={setPage}
