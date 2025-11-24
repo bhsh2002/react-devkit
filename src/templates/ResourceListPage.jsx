@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, use } from 'react';
 import { Box, Button, Typography, Toolbar, ToggleButtonGroup, ToggleButton } from '@mui/material';
 import { Add as AddIcon, ViewList as ViewListIcon, ViewModule as ViewModuleIcon } from '@mui/icons-material';
 import { DataTable, DataCard } from '../components';
@@ -59,6 +59,7 @@ export const ResourceListPage = ({
     autoRefresh = false,
     defaultView = null,
     renderCard,
+    resetTrigger,
 }) => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
@@ -84,13 +85,18 @@ export const ResourceListPage = ({
     );
     
     useEffect(() => {
-        const interval = setInterval(() => {
-        mutate();
-        }, 60000);
+        const interval = autoRefresh ? setInterval(() => {
+            mutate();
+        }, autoRefresh) : null;
 
-        return () => clearInterval(interval);
+        return () => {
+            if (interval) clearInterval(interval);
+        };
     }, []);
 
+    useEffect(() => {
+        mutate();
+    }, [apiParams, mutate, resetTrigger]);
 
     const handleFilterChange = useCallback((name, value) => {
         setPage(1);
