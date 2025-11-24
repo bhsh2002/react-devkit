@@ -109,7 +109,7 @@ export const SelectField = ({
 
         {!loading &&
           options.map((option) => (
-            <MenuItem key={option.value || option.id} value={typeof option === "string" ? option : option.value}>
+            <MenuItem key={option.value || option.id} value={option?.value || option}>
               {getOptionLabel(option)}
             </MenuItem>
           ))}
