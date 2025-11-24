@@ -4934,7 +4934,7 @@ const fl = zt(/* @__PURE__ */ x.jsx("path", {
         children: [
           b && /* @__PURE__ */ x.jsx(Ns, { disabled: !0, children: r }),
           !b && p.length === 0 && /* @__PURE__ */ x.jsx(Ns, { disabled: !0, children: n }),
-          !b && p.map((E) => /* @__PURE__ */ x.jsx(Ns, { value: E === typeof E === "object" ? E.value : E, children: i(E) }, E.value || E.id))
+          !b && p.map((E) => /* @__PURE__ */ x.jsx(Ns, { value: typeof E == "string" ? E : E.value, children: i(E) }, E.value || E.id))
         ]
       }
     ),
