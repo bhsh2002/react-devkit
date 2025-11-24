@@ -109,7 +109,7 @@ export const SelectField = ({
 
         {!loading &&
           options.map((option) => (
-            <MenuItem key={option.value || option.id} value={option}>
+            <MenuItem key={option.value || option.id} value={option.value}>
               {getOptionLabel(option)}
             </MenuItem>
           ))}
