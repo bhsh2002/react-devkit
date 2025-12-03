@@ -30,11 +30,10 @@ export const BarChart = ({ xAxis, series, width, height = 300, title, sx, rtl })
       <Box sx={{ width: '100%', height: height }}>
         <MuiBarChart
           xAxis={processedXAxis}
+          yAxis={[{ position: rtl ? 'right' : 'left' }]}
           series={series}
           width={width}
           height={height}
-          leftAxis={rtl ? null : undefined}
-          rightAxis={rtl ? {} : undefined}
         />
       </Box>
     </Paper>

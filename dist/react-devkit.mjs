@@ -25037,11 +25037,10 @@ const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, r
       ch,
       {
         xAxis: l,
+        yAxis: [{ position: a ? "right" : "left" }],
         series: t,
         width: r,
-        height: o,
-        leftAxis: a ? null : void 0,
-        rightAxis: a ? {} : void 0
+        height: o
       }
     ) })
   ] });
@@ -26865,11 +26864,10 @@ const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, r
       uh,
       {
         xAxis: l,
+        yAxis: [{ position: a ? "right" : "left" }],
         series: t,
         width: r,
-        height: o,
-        leftAxis: a ? null : void 0,
-        rightAxis: a ? {} : void 0
+        height: o
       }
     ) })
   ] });
