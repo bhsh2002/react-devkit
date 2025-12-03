@@ -53,6 +53,7 @@
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@mui/x-charts": "^8.20.0",
     "@mui/x-date-pickers": "^8.15.0",
     "axios": "^1.13.0",
     "date-fns": "^4.1.0",
