@@ -25029,25 +25029,31 @@ process.env.NODE_ENV !== "production" && (ch.propTypes = {
     width: n.number
   })]).isRequired)
 });
-const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, children: [
-  i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
-  /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
-    ch,
-    {
-      xAxis: e,
-      series: t,
-      width: r,
-      height: o
-    }
-  ) })
-] });
+const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a }) => {
+  const l = a ? e.map((c) => ({ ...c, reverse: !0 })) : e;
+  return /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, dir: a ? "rtl" : "ltr", children: [
+    i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
+    /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
+      ch,
+      {
+        xAxis: l,
+        series: t,
+        width: r,
+        height: o,
+        leftAxis: a ? null : void 0,
+        rightAxis: a ? {} : void 0
+      }
+    ) })
+  ] });
+};
 k2.propTypes = {
   xAxis: n.array.isRequired,
   series: n.array.isRequired,
   width: n.number,
   height: n.number,
   title: n.string,
-  sx: n.object
+  sx: n.object,
+  rtl: n.bool
 };
 function P2(e) {
   return ye("MuiBarElement", e);
@@ -26851,25 +26857,31 @@ process.env.NODE_ENV !== "production" && (uh.propTypes = {
     width: n.number
   })]).isRequired)
 });
-const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, children: [
-  i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
-  /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
-    uh,
-    {
-      xAxis: e,
-      series: t,
-      width: r,
-      height: o
-    }
-  ) })
-] });
+const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a }) => {
+  const l = a ? e.map((c) => ({ ...c, reverse: !0 })) : e;
+  return /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, dir: a ? "rtl" : "ltr", children: [
+    i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
+    /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
+      uh,
+      {
+        xAxis: l,
+        series: t,
+        width: r,
+        height: o,
+        leftAxis: a ? null : void 0,
+        rightAxis: a ? {} : void 0
+      }
+    ) })
+  ] });
+};
 tV.propTypes = {
   xAxis: n.array.isRequired,
   series: n.array.isRequired,
   width: n.number,
   height: n.number,
   title: n.string,
-  sx: n.object
+  sx: n.object,
+  rtl: n.bool
 };
 const nV = ["className", "classes", "color", "dataIndex", "id", "isFaded", "isHighlighted", "isFocused", "onClick", "cornerRadius", "startAngle", "endAngle", "innerRadius", "outerRadius", "paddingAngle", "skipAnimation", "stroke", "skipInteraction"];
 function rV(e) {
@@ -27763,14 +27775,21 @@ process.env.NODE_ENV !== "production" && (ph.propTypes = {
    */
   width: n.number
 });
-const OV = ({ series: e, width: t, height: r = 300, title: o, sx: i }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...i }, elevation: 2, children: [
+const OV = ({ series: e, width: t, height: r = 300, title: o, sx: i, rtl: s }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...i }, elevation: 2, dir: s ? "rtl" : "ltr", children: [
   o && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: o }),
   /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: r, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ x.jsx(
     ph,
     {
       series: e,
       width: t,
-      height: r
+      height: r,
+      slotProps: {
+        legend: {
+          direction: "row",
+          position: { vertical: "bottom", horizontal: "middle" },
+          padding: 0
+        }
+      }
     }
   ) })
 ] });
@@ -27779,7 +27798,8 @@ OV.propTypes = {
   width: n.number,
   height: n.number,
   title: n.string,
-  sx: n.object
+  sx: n.object,
+  rtl: n.bool
 };
 const wV = ({ children: e, spacing: t = 2, sx: r }) => /* @__PURE__ */ x.jsx(vo, { container: !0, spacing: t, sx: r, children: e });
 wV.propTypes = {

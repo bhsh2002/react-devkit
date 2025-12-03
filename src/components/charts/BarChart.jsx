@@ -13,11 +13,15 @@ import PropTypes from 'prop-types';
  * @param {number} [props.width] - @en The width of the chart. @ar عرض الرسم البياني.
  * @param {number} [props.height=300] - @en The height of the chart. @ar ارتفاع الرسم البياني.
  * @param {string} [props.title] - @en The title of the chart. @ar عنوان الرسم البياني.
- * @param {object} [props.sx] - @en Custom styles for the container. @ar أنماط مخصصة للحاوية.
+ * @param {boolean} [props.rtl] - @en Enable Right-to-Left support (reverses X-axis and moves Y-axis to right). @ar تفعيل دعم الاتجاه من اليمين إلى اليسار (يعكس المحور السيني وينقل المحور الصادي إلى اليمين).
  */
-export const BarChart = ({ xAxis, series, width, height = 300, title, sx }) => {
+export const BarChart = ({ xAxis, series, width, height = 300, title, sx, rtl }) => {
+  const processedXAxis = rtl
+    ? xAxis.map((axis) => ({ ...axis, reverse: true }))
+    : xAxis;
+
   return (
-    <Paper sx={{ p: 2, ...sx }} elevation={2}>
+    <Paper sx={{ p: 2, ...sx }} elevation={2} dir={rtl ? 'rtl' : 'ltr'}>
       {title && (
         <Typography variant="h6" gutterBottom>
           {title}
@@ -25,10 +29,12 @@ export const BarChart = ({ xAxis, series, width, height = 300, title, sx }) => {
       )}
       <Box sx={{ width: '100%', height: height }}>
         <MuiBarChart
-          xAxis={xAxis}
+          xAxis={processedXAxis}
           series={series}
           width={width}
           height={height}
+          leftAxis={rtl ? null : undefined}
+          rightAxis={rtl ? {} : undefined}
         />
       </Box>
     </Paper>
@@ -42,4 +48,5 @@ BarChart.propTypes = {
   height: PropTypes.number,
   title: PropTypes.string,
   sx: PropTypes.object,
+  rtl: PropTypes.bool,
 };

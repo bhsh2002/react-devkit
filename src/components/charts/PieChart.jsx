@@ -12,11 +12,11 @@ import PropTypes from 'prop-types';
  * @param {number} [props.width] - @en The width of the chart. @ar عرض الرسم البياني.
  * @param {number} [props.height=300] - @en The height of the chart. @ar ارتفاع الرسم البياني.
  * @param {string} [props.title] - @en The title of the chart. @ar عنوان الرسم البياني.
- * @param {object} [props.sx] - @en Custom styles for the container. @ar أنماط مخصصة للحاوية.
+ * @param {boolean} [props.rtl] - @en Enable Right-to-Left support for layout. @ar تفعيل دعم الاتجاه من اليمين إلى اليسار للتخطيط.
  */
-export const PieChart = ({ series, width, height = 300, title, sx }) => {
+export const PieChart = ({ series, width, height = 300, title, sx, rtl }) => {
   return (
-    <Paper sx={{ p: 2, ...sx }} elevation={2}>
+    <Paper sx={{ p: 2, ...sx }} elevation={2} dir={rtl ? 'rtl' : 'ltr'}>
       {title && (
         <Typography variant="h6" gutterBottom>
           {title}
@@ -27,6 +27,13 @@ export const PieChart = ({ series, width, height = 300, title, sx }) => {
           series={series}
           width={width}
           height={height}
+          slotProps={{
+            legend: {
+              direction: 'row',
+              position: { vertical: 'bottom', horizontal: 'middle' },
+              padding: 0,
+            },
+          }}
         />
       </Box>
     </Paper>
@@ -39,4 +46,5 @@ PieChart.propTypes = {
   height: PropTypes.number,
   title: PropTypes.string,
   sx: PropTypes.object,
+  rtl: PropTypes.bool,
 };
