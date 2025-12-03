@@ -25040,7 +25040,8 @@ const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, r
         yAxis: [{ position: a ? "right" : "left" }],
         series: t,
         width: r,
-        height: o
+        height: o,
+        skipAnimation: a
       }
     ) })
   ] });

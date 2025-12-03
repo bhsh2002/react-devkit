@@ -34,6 +34,7 @@ export const LineChart = ({ xAxis, series, width, height = 300, title, sx, rtl }
           series={series}
           width={width}
           height={height}
+          skipAnimation={rtl}
         />
       </Box>
     </Paper>
