@@ -27656,10 +27656,10 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
     return s && t[s] ? t[s] : "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.";
   };
 }, sx = I$(), M$ = (e, t, r = {}) => {
-  const { data: i, error: o, isLoading: s, mutate: a, isValidating: l } = A$(e, t, {
+  const { data: i, error: o, isLoading: s, mutate: a } = A$(e, t, {
     ...r,
-    onError: (c) => {
-      r.onError && r.onError(c);
+    onError: (l) => {
+      r.onError && r.onError(l);
     }
   });
   return {
@@ -27667,8 +27667,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
     error: o,
     getTranslatedError: sx,
     isLoading: s,
-    mutate: a,
-    isValidating: l
+    mutate: a
   };
 }, aN = (e, { onSuccess: t, onError: r } = {}) => {
   const [i, o] = Ae(!1);
