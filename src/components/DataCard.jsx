@@ -80,7 +80,7 @@ export const DataCard = ({
     errorOverlay: ErrorOverlaySlot = DefaultErrorOverlay,
   } = slots;
 
-  if (loading) return <LoadingOverlaySlot />;
+  if (loading && rows.length === 0) return <LoadingOverlaySlot />;
 
   if (error) return <ErrorOverlaySlot message={error.message} onRetry={onRetry} />;
 

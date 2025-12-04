@@ -4336,7 +4336,7 @@ const zc = Zs(/* @__PURE__ */ x.jsx("path", {
             },
             R.field
           )) }) }),
-          /* @__PURE__ */ x.jsx(Yx, { children: i ? /* @__PURE__ */ x.jsx(hi, { children: /* @__PURE__ */ x.jsx(
+          /* @__PURE__ */ x.jsx(Yx, { children: i && e.length === 0 ? /* @__PURE__ */ x.jsx(hi, { children: /* @__PURE__ */ x.jsx(
             mi,
             {
               colSpan: K.length,
@@ -4459,7 +4459,7 @@ const zc = Zs(/* @__PURE__ */ x.jsx("path", {
     loadingOverlay: S = hT,
     errorOverlay: C = mT
   } = s;
-  return i ? /* @__PURE__ */ x.jsx(S, {}) : o ? /* @__PURE__ */ x.jsx(C, { message: o.message, onRetry: g }) : e.length === 0 ? /* @__PURE__ */ x.jsx(b, {}) : /* @__PURE__ */ x.jsxs(Mn, { sx: { p: 2, borderRadius: 3, ...a }, children: [
+  return i && e.length === 0 ? /* @__PURE__ */ x.jsx(S, {}) : o ? /* @__PURE__ */ x.jsx(C, { message: o.message, onRetry: g }) : e.length === 0 ? /* @__PURE__ */ x.jsx(b, {}) : /* @__PURE__ */ x.jsxs(Mn, { sx: { p: 2, borderRadius: 3, ...a }, children: [
     y && /* @__PURE__ */ x.jsx(Ie, { sx: { display: "flex", justifyContent: "flex-end", mb: 2 }, children: /* @__PURE__ */ x.jsx(
       Cn,
       {

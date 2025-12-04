@@ -245,7 +245,7 @@ export const DataTable = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {loading ? (
+              {loading && rows.length === 0 ? (
                 <TableRow>
                   <TableCell
                     colSpan={finalColumns.length}
