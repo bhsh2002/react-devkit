@@ -7,7 +7,9 @@ import {
   CircularProgress,
   FormHelperText,
   Box,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { FormContext } from "./Form";
 
 /**
@@ -94,9 +96,26 @@ export const SelectField = ({
         onChange={handleChange}
         {...rest}
         endAdornment={
-          loading ? (
-            <CircularProgress size={18} style={{ marginRight: 10 }} />
-          ) : null
+          <React.Fragment>
+            {loading ? (
+              <CircularProgress size={18} style={{ marginRight: 10 }} />
+            ) : null}
+            {!loading && (values[name] || (multiple && values[name]?.length > 0)) && (
+              <IconButton
+                size="small"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent opening the select menu
+                  setFieldValue(name, multiple ? [] : "");
+                  if (typeof customOnChange === "function") {
+                    customOnChange(e, multiple ? [] : "");
+                  }
+                }}
+                sx={{ mr: 2 }}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            )}
+          </React.Fragment>
         }
       >
         {loading && (

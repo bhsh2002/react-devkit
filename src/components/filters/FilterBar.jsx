@@ -2,9 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Box, TextField, MenuItem, Autocomplete, Grid, Button, Collapse, Switch, FormControlLabel } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { useDebounce } from '../../hooks';
 
@@ -51,15 +48,17 @@ const FilterInput = ({ filter, value, onChange }) => {
             );
         case 'date':
             return (
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                        label={filter.label}
-                        value={value || null}
-                        onChange={handleImmediateChange}
-                        renderInput={(params) => <TextField {...params} fullWidth />}
-                        sx={{ width: '100%' }}
-                    />
-                </LocalizationProvider>
+                <TextField
+                    label={filter.label}
+                    type="date"
+                    value={value || ''}
+                    onChange={(e) => handleImmediateChange(e.target.value)}
+                    variant="outlined"
+                    fullWidth
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
             );
         case 'select':
             return (
@@ -89,7 +88,7 @@ const FilterInput = ({ filter, value, onChange }) => {
                     value={value || null}
                     onChange={(event, newValue) => handleImmediateChange(newValue)}
                     renderInput={(params) => <TextField {...params} label={filter.label} />}
-                    // Add fetchOptions logic here if needed
+                // Add fetchOptions logic here if needed
                 />
             );
         case 'switch':

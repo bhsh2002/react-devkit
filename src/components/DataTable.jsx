@@ -13,8 +13,11 @@ import {
   Typography,
   CircularProgress,
   Toolbar,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const DefaultNoRowsOverlay = () => (
   <Box sx={{ textAlign: "center", py: 8, color: "text.secondary" }}>
@@ -86,21 +89,22 @@ export const DataTable = ({
   pagination = false,
   rowCount = 0,
   page = 1,
-  onPageChange = () => {},
-  onRowClick = () => {},
+  onPageChange = () => { },
+  onRowClick = () => { },
   selectedRowId: externalSelectedRowId,
-  onSelectedRowIdChange = () => {},
+  onSelectedRowIdChange = () => { },
   perPage = 10,
-  onPerPageChange = () => {},
+  onPerPageChange = () => { },
   perPageOptions = [10, 25, 100],
   sorting = false,
   sortModel = [],
-  onSortModelChange = () => {},
+  onSortModelChange = () => { },
   showRowNumber = true,
   slots = {},
   slotProps = {},
   sx,
   height = "90dvh",
+  onRefresh,
 }) => {
   const tableContainerRef = useRef(null);
   const rowRefs = useRef({});
@@ -151,14 +155,14 @@ export const DataTable = ({
   const finalColumns = [
     ...(showRowNumber
       ? [
-          {
-            field: "__rowNumber__",
-            headerName: "#",
-            width: 60,
-            align: "center",
-            renderCell: ({ index }) => (page - 1) * perPage + index + 1,
-          },
-        ]
+        {
+          field: "__rowNumber__",
+          headerName: "#",
+          width: 60,
+          align: "center",
+          renderCell: ({ index }) => (page - 1) * perPage + index + 1,
+        },
+      ]
       : []),
     ...columns,
   ];
@@ -178,6 +182,22 @@ export const DataTable = ({
       {ToolbarSlot && (
         <Toolbar>
           <ToolbarSlot {...(slotProps.toolbar || {})} />
+          {onRefresh && (
+            <Tooltip title="تحديث البيانات">
+              <IconButton onClick={onRefresh}>
+                <RefreshIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+        </Toolbar>
+      )}
+      {!ToolbarSlot && onRefresh && (
+        <Toolbar sx={{ justifyContent: "flex-end" }}>
+          <Tooltip title="تحديث البيانات">
+            <IconButton onClick={onRefresh}>
+              <RefreshIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       )}
       <Box sx={{ width: "100%", overflowX: "auto" }}>
@@ -288,11 +308,11 @@ export const DataTable = ({
                           >
                             {col.renderCell
                               ? col.renderCell({
-                                  value,
-                                  row,
-                                  id: getRowId(row),
-                                  index,
-                                })
+                                value,
+                                row,
+                                id: getRowId(row),
+                                index,
+                              })
                               : value}
                           </TableCell>
                         );

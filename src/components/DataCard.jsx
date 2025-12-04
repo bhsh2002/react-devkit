@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const DefaultNoRowsOverlay = () => (
   <Box sx={{ textAlign: 'center', py: 8, color: 'text.secondary' }}>
@@ -23,7 +24,7 @@ const DefaultNoRowsOverlay = () => (
 const DefaultLoadingOverlay = () => (
   <Grid container spacing={2}>
     {Array.from({ length: 8 }).map((_, i) => (
-        <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3}} key={i}>
+      <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={i}>
         <Card sx={{ borderRadius: 3, boxShadow: 2 }}>
           <Skeleton variant="rectangular" height={140} />
           <CardContent>
@@ -55,22 +56,22 @@ const DefaultErrorOverlay = ({ message, onRetry }) => (
 );
 
 export const DataCard = ({
-    rows = [],
-    columns = [],
-    getRowId = (row) => row.id,
-    loading = false,
-    error,
-    slots = {},
-    sx,
-    pagination = false,
-    rowCount = 0,
-    page = 1,
-    onPageChange = () => {},
-    perPage = 10,
-    onPerPageChange = () => {},
-    perPageOptions = [10, 25, 100],
-    onRetry,
-    renderCard,
+  rows = [],
+  columns = [],
+  getRowId = (row) => row.id,
+  loading = false,
+  error,
+  slots = {},
+  sx,
+  pagination = false,
+  rowCount = 0,
+  page = 1,
+  onPageChange = () => { },
+  perPage = 10,
+  onPerPageChange = () => { },
+  perPageOptions = [10, 25, 100],
+  onRetry,
+  renderCard,
 }) => {
   const {
     noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,
@@ -86,61 +87,73 @@ export const DataCard = ({
 
   return (
     <Paper sx={{ p: 2, borderRadius: 3, ...sx }}>
+      {onRefresh && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+          <Button
+            startIcon={<RefreshIcon />}
+            onClick={onRefresh}
+            variant="outlined"
+            size="small"
+          >
+            تحديث
+          </Button>
+        </Box>
+      )}
       <Grid container spacing={2}>
-          {rows.map((row) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3}} key={getRowId(row)}>
-                  {renderCard ? (
-                      renderCard(row)
-                  ) : (
-                        <Card
-                          sx={{
-                            borderRadius: 3,
-                            boxShadow: 3,
-                            height: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                          }}
-                        >
-                          {row.image ? (
-                            <CardMedia
-                              component="img"
-                              height="140"
-                              image={row.image}
-                              alt={row.title || 'Image'}
-                              sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
-                            />
-                          ) : (
-                            <Box
-                              sx={{
-                                height: 140,
-                                bgcolor: 'grey.100',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                              }}
-                            >
-                              <ImageNotSupportedIcon sx={{ color: 'grey.400', fontSize: 50 }} />
-                            </Box>
-                          )}
+        {rows.map((row) => (
+          <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={getRowId(row)}>
+            {renderCard ? (
+              renderCard(row)
+            ) : (
+              <Card
+                sx={{
+                  borderRadius: 3,
+                  boxShadow: 3,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                }}
+              >
+                {row.image ? (
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={row.image}
+                    alt={row.title || 'Image'}
+                    sx={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      height: 140,
+                      bgcolor: 'grey.100',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <ImageNotSupportedIcon sx={{ color: 'grey.400', fontSize: 50 }} />
+                  </Box>
+                )}
 
-                          <CardContent>
-                            {columns.map((col) => (
-                              <Box key={col.field} sx={{ mb: 1 }}>
-                                <Typography variant="caption" color="text.secondary">
-                                  {col.headerName}
-                                </Typography>
-                                <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                                  {col.renderCell
-                                    ? col.renderCell({ value: row[col.field], row, id: getRowId(row) })
-                                    : row[col.field]}
-                                </Typography>
-                              </Box>
-                            ))}
-                          </CardContent>
-                        </Card>
-                  )}
-              </Grid>
-          ))}
+                <CardContent>
+                  {columns.map((col) => (
+                    <Box key={col.field} sx={{ mb: 1 }}>
+                      <Typography variant="caption" color="text.secondary">
+                        {col.headerName}
+                      </Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                        {col.renderCell
+                          ? col.renderCell({ value: row[col.field], row, id: getRowId(row) })
+                          : row[col.field]}
+                      </Typography>
+                    </Box>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
+          </Grid>
+        ))}
       </Grid>
 
       {pagination && !error && rows.length > 0 && (
