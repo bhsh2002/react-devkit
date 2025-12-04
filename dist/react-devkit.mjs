@@ -25029,18 +25029,18 @@ process.env.NODE_ENV !== "production" && (ch.propTypes = {
     width: n.number
   })]).isRequired)
 });
-const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a }) => {
-  const l = a ? e.map((c) => ({ ...c, reverse: !0 })) : e;
+const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a, rtlTickLabelOffset: l = 20 }) => {
+  const c = a ? e.map((u) => ({ ...u, reverse: !0 })) : e;
   return /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, dir: a ? "rtl" : "ltr", children: [
     i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
     /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
       ch,
       {
-        xAxis: l,
+        xAxis: c,
         yAxis: [
           {
             position: a ? "right" : "left",
-            tickLabelStyle: a ? { transform: "translate(20px, 0)" } : void 0
+            tickLabelStyle: a ? { transform: `translate(${l}px, 0)` } : void 0
           }
         ],
         series: t,
@@ -25059,7 +25059,8 @@ k2.propTypes = {
   height: n.number,
   title: n.string,
   sx: n.object,
-  rtl: n.bool
+  rtl: n.bool,
+  rtlTickLabelOffset: n.number
 };
 function P2(e) {
   return ye("MuiBarElement", e);
@@ -26863,18 +26864,18 @@ process.env.NODE_ENV !== "production" && (uh.propTypes = {
     width: n.number
   })]).isRequired)
 });
-const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a }) => {
-  const l = a ? e.map((c) => ({ ...c, reverse: !0 })) : e;
+const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, rtl: a, rtlTickLabelOffset: l = 20 }) => {
+  const c = a ? e.map((u) => ({ ...u, reverse: !0 })) : e;
   return /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...s }, elevation: 2, dir: a ? "rtl" : "ltr", children: [
     i && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: i }),
     /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: o }, children: /* @__PURE__ */ x.jsx(
       uh,
       {
-        xAxis: l,
+        xAxis: c,
         yAxis: [
           {
             position: a ? "right" : "left",
-            tickLabelStyle: a ? { transform: "translate(20px, 0)" } : void 0
+            tickLabelStyle: a ? { transform: `translate(${l}px, 0)` } : void 0
           }
         ],
         series: t,
@@ -26892,7 +26893,8 @@ tV.propTypes = {
   height: n.number,
   title: n.string,
   sx: n.object,
-  rtl: n.bool
+  rtl: n.bool,
+  rtlTickLabelOffset: n.number
 };
 const nV = ["className", "classes", "color", "dataIndex", "id", "isFaded", "isHighlighted", "isFocused", "onClick", "cornerRadius", "startAngle", "endAngle", "innerRadius", "outerRadius", "paddingAngle", "skipAnimation", "stroke", "skipInteraction"];
 function rV(e) {

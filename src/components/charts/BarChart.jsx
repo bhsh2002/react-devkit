@@ -15,7 +15,7 @@ import PropTypes from 'prop-types';
  * @param {string} [props.title] - @en The title of the chart. @ar عنوان الرسم البياني.
  * @param {boolean} [props.rtl] - @en Enable Right-to-Left support (reverses X-axis and moves Y-axis to right). @ar تفعيل دعم الاتجاه من اليمين إلى اليسار (يعكس المحور السيني وينقل المحور الصادي إلى اليمين).
  */
-export const BarChart = ({ xAxis, series, width, height = 300, title, sx, rtl }) => {
+export const BarChart = ({ xAxis, series, width, height = 300, title, sx, rtl, rtlTickLabelOffset = 20 }) => {
   const processedXAxis = rtl
     ? xAxis.map((axis) => ({ ...axis, reverse: true }))
     : xAxis;
@@ -33,7 +33,7 @@ export const BarChart = ({ xAxis, series, width, height = 300, title, sx, rtl })
           yAxis={[
             {
               position: rtl ? 'right' : 'left',
-              tickLabelStyle: rtl ? { transform: 'translate(20px, 0)' } : undefined,
+              tickLabelStyle: rtl ? { transform: `translate(${rtlTickLabelOffset}px, 0)` } : undefined,
             },
           ]}
           series={series}
@@ -54,4 +54,5 @@ BarChart.propTypes = {
   title: PropTypes.string,
   sx: PropTypes.object,
   rtl: PropTypes.bool,
+  rtlTickLabelOffset: PropTypes.number,
 };
