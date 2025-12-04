@@ -25037,10 +25037,16 @@ const k2 = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, r
       ch,
       {
         xAxis: l,
-        yAxis: [{ position: a ? "right" : "left" }],
+        yAxis: [
+          {
+            position: a ? "right" : "left",
+            tickLabelStyle: a ? { transform: "translate(20px, 0)" } : void 0
+          }
+        ],
         series: t,
         width: r,
         height: o,
+        margin: { left: 50, right: 50, top: 20, bottom: 20 },
         skipAnimation: a
       }
     ) })
@@ -26865,10 +26871,16 @@ const tV = ({ xAxis: e, series: t, width: r, height: o = 300, title: i, sx: s, r
       uh,
       {
         xAxis: l,
-        yAxis: [{ position: a ? "right" : "left" }],
+        yAxis: [
+          {
+            position: a ? "right" : "left",
+            tickLabelStyle: a ? { transform: "translate(20px, 0)" } : void 0
+          }
+        ],
         series: t,
         width: r,
-        height: o
+        height: o,
+        margin: { left: 50, right: 50, top: 20, bottom: 20 }
       }
     ) })
   ] });
@@ -27774,7 +27786,7 @@ process.env.NODE_ENV !== "production" && (ph.propTypes = {
    */
   width: n.number
 });
-const OV = ({ series: e, width: t, height: r = 300, title: o, sx: i, rtl: s }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 2, ...i }, elevation: 2, dir: s ? "rtl" : "ltr", children: [
+const OV = ({ series: e, width: t, height: r = 300, title: o, sx: i, rtl: s }) => /* @__PURE__ */ x.jsxs(qr, { sx: { p: 6, ...i }, elevation: 2, dir: s ? "rtl" : "ltr", children: [
   o && /* @__PURE__ */ x.jsx(Ct, { variant: "h6", gutterBottom: !0, children: o }),
   /* @__PURE__ */ x.jsx(at, { sx: { width: "100%", height: r, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ x.jsx(
     ph,
@@ -27785,8 +27797,7 @@ const OV = ({ series: e, width: t, height: r = 300, title: o, sx: i, rtl: s }) =
       slotProps: {
         legend: {
           direction: "row",
-          position: { vertical: "bottom", horizontal: "middle" },
-          padding: 0
+          position: { vertical: "bottom", horizontal: "middle" }
         }
       }
     }

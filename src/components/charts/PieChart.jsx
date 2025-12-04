@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
  */
 export const PieChart = ({ series, width, height = 300, title, sx, rtl }) => {
   return (
-    <Paper sx={{ p: 2, ...sx }} elevation={2} dir={rtl ? 'rtl' : 'ltr'}>
+    <Paper sx={{ p: 6, ...sx }} elevation={2} dir={rtl ? 'rtl' : 'ltr'}>
       {title && (
         <Typography variant="h6" gutterBottom>
           {title}
@@ -31,7 +31,6 @@ export const PieChart = ({ series, width, height = 300, title, sx, rtl }) => {
             legend: {
               direction: 'row',
               position: { vertical: 'bottom', horizontal: 'middle' },
-              padding: 0,
             },
           }}
         />
