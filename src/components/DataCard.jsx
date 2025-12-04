@@ -9,6 +9,7 @@ import {
   TablePagination,
   Skeleton,
   Button,
+  LinearProgress,
 } from '@mui/material';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import ImageNotSupportedIcon from '@mui/icons-material/ImageNotSupported';
@@ -88,6 +89,7 @@ export const DataCard = ({
 
   return (
     <Paper sx={{ p: 2, borderRadius: 3, ...sx }}>
+      {loading && rows.length > 0 && <LinearProgress sx={{ mb: 2, borderRadius: 1 }} />}
       {onRefresh && (
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
           <Button
@@ -95,6 +97,7 @@ export const DataCard = ({
             onClick={onRefresh}
             variant="outlined"
             size="small"
+            disabled={loading}
           >
             تحديث
           </Button>

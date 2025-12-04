@@ -15,6 +15,7 @@ import {
   Toolbar,
   IconButton,
   Tooltip,
+  LinearProgress,
 } from "@mui/material";
 import ImageNotSupportedIcon from "@mui/icons-material/ImageNotSupported";
 import RefreshIcon from "@mui/icons-material/Refresh";
@@ -184,7 +185,7 @@ export const DataTable = ({
           <ToolbarSlot {...(slotProps.toolbar || {})} />
           {onRefresh && (
             <Tooltip title="تحديث البيانات">
-              <IconButton onClick={onRefresh}>
+              <IconButton onClick={onRefresh} disabled={loading}>
                 <RefreshIcon />
               </IconButton>
             </Tooltip>
@@ -194,12 +195,13 @@ export const DataTable = ({
       {!ToolbarSlot && onRefresh && (
         <Toolbar sx={{ justifyContent: "flex-end" }}>
           <Tooltip title="تحديث البيانات">
-            <IconButton onClick={onRefresh}>
+            <IconButton onClick={onRefresh} disabled={loading}>
               <RefreshIcon />
             </IconButton>
           </Tooltip>
         </Toolbar>
       )}
+      {loading && rows.length > 0 && <LinearProgress />}
       <Box sx={{ width: "100%", overflowX: "auto" }}>
         <TableContainer
           ref={tableContainerRef}
