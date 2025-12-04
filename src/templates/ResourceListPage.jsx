@@ -76,7 +76,7 @@ export const ResourceListPage = ({
 
     const apiParams = requestAdapter(baseApiParams);
 
-    const { data, isLoading, error, mutate } = useApi(
+    const { data, isLoading, error, mutate, isValidating } = useApi(
         [resourceName, apiParams],
         async () => {
             const response = await api.list(apiParams);
@@ -125,7 +125,7 @@ export const ResourceListPage = ({
                 <DataTable
                     rows={data?.items || []}
                     columns={columns}
-                    loading={isLoading}
+                    loading={isLoading || isValidating}
                     error={error}
                     pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}
@@ -144,7 +144,7 @@ export const ResourceListPage = ({
                 <DataCard
                     rows={data?.items || []}
                     columns={columns}
-                    loading={isLoading}
+                    loading={isLoading || isValidating}
                     error={error}
                     pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}

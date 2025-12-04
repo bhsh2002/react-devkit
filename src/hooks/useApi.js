@@ -2,7 +2,7 @@ import useSWR from 'swr';
 import { getTranslatedError } from '../utils/errorUtils';
 
 export const useApi = (key, fetcher, options = {}) => {
-  const { data, error, isLoading, mutate } = useSWR(key, fetcher, {
+  const { data, error, isLoading, mutate, isValidating } = useSWR(key, fetcher, {
     ...options,
     onError: (err) => {
       if (options.onError) {
@@ -17,5 +17,6 @@ export const useApi = (key, fetcher, options = {}) => {
     getTranslatedError,
     isLoading,
     mutate,
+    isValidating,
   };
 };
