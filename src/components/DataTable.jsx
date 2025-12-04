@@ -185,7 +185,7 @@ export const DataTable = ({
           <ToolbarSlot {...(slotProps.toolbar || {})} />
           {onRefresh && (
             <Tooltip title="تحديث البيانات">
-              <IconButton onClick={onRefresh} disabled={loading}>
+              <IconButton onClick={() => onRefresh()} disabled={loading}>
                 <RefreshIcon />
               </IconButton>
             </Tooltip>
@@ -195,7 +195,7 @@ export const DataTable = ({
       {!ToolbarSlot && onRefresh && (
         <Toolbar sx={{ justifyContent: "flex-end" }}>
           <Tooltip title="تحديث البيانات">
-            <IconButton onClick={onRefresh} disabled={loading}>
+            <IconButton onClick={() => onRefresh()} disabled={loading}>
               <RefreshIcon />
             </IconButton>
           </Tooltip>

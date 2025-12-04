@@ -4303,9 +4303,9 @@ const zc = Zs(/* @__PURE__ */ x.jsx("path", {
   return /* @__PURE__ */ x.jsxs(Mn, { sx: O, children: [
     M && /* @__PURE__ */ x.jsxs(Zn, { children: [
       /* @__PURE__ */ x.jsx(M, { ...v.toolbar || {} }),
-      E && /* @__PURE__ */ x.jsx(xd, { title: "تحديث البيانات", children: /* @__PURE__ */ x.jsx(ji, { onClick: E, disabled: i, children: /* @__PURE__ */ x.jsx(Bl, {}) }) })
+      E && /* @__PURE__ */ x.jsx(xd, { title: "تحديث البيانات", children: /* @__PURE__ */ x.jsx(ji, { onClick: () => E(), disabled: i, children: /* @__PURE__ */ x.jsx(Bl, {}) }) })
     ] }),
-    !M && E && /* @__PURE__ */ x.jsx(Zn, { sx: { justifyContent: "flex-end" }, children: /* @__PURE__ */ x.jsx(xd, { title: "تحديث البيانات", children: /* @__PURE__ */ x.jsx(ji, { onClick: E, disabled: i, children: /* @__PURE__ */ x.jsx(Bl, {}) }) }) }),
+    !M && E && /* @__PURE__ */ x.jsx(Zn, { sx: { justifyContent: "flex-end" }, children: /* @__PURE__ */ x.jsx(xd, { title: "تحديث البيانات", children: /* @__PURE__ */ x.jsx(ji, { onClick: () => E(), disabled: i, children: /* @__PURE__ */ x.jsx(Bl, {}) }) }) }),
     i && e.length > 0 && /* @__PURE__ */ x.jsx(_h, {}),
     /* @__PURE__ */ x.jsx(Ie, { sx: { width: "100%", overflowX: "auto" }, children: /* @__PURE__ */ x.jsx(
       Hx,
@@ -4466,7 +4466,7 @@ const zc = Zs(/* @__PURE__ */ x.jsx("path", {
       Cn,
       {
         startIcon: /* @__PURE__ */ x.jsx(Bl, {}),
-        onClick: y,
+        onClick: () => y(),
         variant: "outlined",
         size: "small",
         disabled: i,

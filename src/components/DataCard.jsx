@@ -94,7 +94,7 @@ export const DataCard = ({
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
           <Button
             startIcon={<RefreshIcon />}
-            onClick={onRefresh}
+            onClick={() => onRefresh()}
             variant="outlined"
             size="small"
             disabled={loading}
