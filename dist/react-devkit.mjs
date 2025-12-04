@@ -27915,7 +27915,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
         },
         showRowNumber: u,
         height: d,
-        onRefresh: C || G
+        onRefresh: C || (() => G())
       }
     ) : T === "card" ? /* @__PURE__ */ x.jsx(
       yT,
@@ -27933,7 +27933,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
           E(X), O(1);
         },
         renderCard: b,
-        onRefresh: C || G
+        onRefresh: C || (() => G())
       }
     ) : null
   ] });

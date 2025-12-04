@@ -145,7 +145,7 @@ export const ResourceListPage = ({
                     onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
                     showRowNumber={showRowNumber}
                     height={height}
-                    onRefresh={onRefresh || handleRefresh}
+                    onRefresh={onRefresh || (() => handleRefresh())}
                 />
             ) : view === 'card' ? (
                 <DataCard
@@ -160,7 +160,7 @@ export const ResourceListPage = ({
                     perPage={perPage}
                     onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                     renderCard={renderCard}
-                    onRefresh={onRefresh || handleRefresh}
+                    onRefresh={onRefresh || (() => handleRefresh())}
                 />
             ) : null}
         </Box>
