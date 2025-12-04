@@ -67,6 +67,7 @@ export const ResourceListPage = ({
     const [sortModel, setSortModel] = useState([]);
     const [filters, setFilters] = useState({});
     const [view, setView] = useState(defaultView);
+    const [manualLoading, setManualLoading] = useState(false);
 
     const baseApiParams = { page, per_page: perPage, ...filters };
     if (sortModel.length > 0) {
@@ -110,6 +111,12 @@ export const ResourceListPage = ({
         }
     };
 
+    const handleRefresh = async () => {
+        setManualLoading(true);
+        await mutate();
+        setManualLoading(false);
+    };
+
     const finalFilterOptions = [
         ...(searchable ? [{ name: 'q', label: searchPlaceholder, type: 'search' }] : []),
         ...filterOptions,
@@ -125,7 +132,7 @@ export const ResourceListPage = ({
                 <DataTable
                     rows={data?.items || []}
                     columns={columns}
-                    loading={isLoading}
+                    loading={isLoading || manualLoading}
                     error={error}
                     pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}
@@ -138,13 +145,13 @@ export const ResourceListPage = ({
                     onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
                     showRowNumber={showRowNumber}
                     height={height}
-                    onRefresh={onRefresh || mutate}
+                    onRefresh={onRefresh || handleRefresh}
                 />
             ) : view === 'card' ? (
                 <DataCard
                     rows={data?.items || []}
                     columns={columns}
-                    loading={isLoading}
+                    loading={isLoading || manualLoading}
                     error={error}
                     pagination={data && data.pagination}
                     rowCount={(data && data.pagination) ? data.pagination.total : 0}
@@ -153,7 +160,7 @@ export const ResourceListPage = ({
                     perPage={perPage}
                     onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                     renderCard={renderCard}
-                    onRefresh={onRefresh || mutate}
+                    onRefresh={onRefresh || handleRefresh}
                 />
             ) : null}
         </Box>
