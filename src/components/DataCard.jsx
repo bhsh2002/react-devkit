@@ -72,6 +72,7 @@ export const DataCard = ({
   perPageOptions = [10, 25, 100],
   onRetry,
   renderCard,
+  onRefresh,
 }) => {
   const {
     noRowsOverlay: NoRowsOverlaySlot = DefaultNoRowsOverlay,

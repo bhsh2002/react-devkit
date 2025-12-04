@@ -1,8 +1,8 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Box, TextField, MenuItem, Autocomplete, Grid, Button, Collapse, Switch, FormControlLabel } from '@mui/material';
-import { Search as SearchIcon } from '@mui/icons-material';
+import { Box, TextField, MenuItem, Autocomplete, Grid, Button, Collapse, Switch, FormControlLabel, IconButton } from '@mui/material';
+import { Search as SearchIcon, Close as CloseIcon } from '@mui/icons-material';
 import { useDebounce } from '../../hooks';
 
 const FilterInput = ({ filter, value, onChange }) => {
@@ -69,6 +69,20 @@ const FilterInput = ({ filter, value, onChange }) => {
                     onChange={(e) => handleImmediateChange(e.target.value)}
                     variant="outlined"
                     fullWidth
+                    InputProps={{
+                        endAdornment: value ? (
+                            <IconButton
+                                size="small"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleImmediateChange('');
+                                }}
+                                sx={{ mr: 2, visibility: 'visible' }}
+                            >
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        ) : null
+                    }}
                 >
                     {filter.options.map((option) => (
                         <MenuItem key={option.value} value={option.value}>

@@ -60,6 +60,7 @@ export const ResourceListPage = ({
     defaultView = null,
     renderCard,
     resetTrigger,
+    onRefresh,
 }) => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
@@ -83,7 +84,7 @@ export const ResourceListPage = ({
         },
         { keepPreviousData: true }
     );
-    
+
     useEffect(() => {
         const interval = autoRefresh ? setInterval(() => {
             mutate();
@@ -117,7 +118,7 @@ export const ResourceListPage = ({
     return (
         <Box>
             {renderHeader({ resourceName, createPath, createText, linkComponent, view, onViewChange: handleViewChange })}
-            
+
             <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
 
             {!view || view === 'table' ? (
@@ -137,6 +138,7 @@ export const ResourceListPage = ({
                     onSortModelChange={(model) => { setSortModel(model); setPage(1); }}
                     showRowNumber={showRowNumber}
                     height={height}
+                    onRefresh={onRefresh || mutate}
                 />
             ) : view === 'card' ? (
                 <DataCard
@@ -151,6 +153,7 @@ export const ResourceListPage = ({
                     perPage={perPage}
                     onPerPageChange={(size) => { setPerPage(size); setPage(1); }}
                     renderCard={renderCard}
+                    onRefresh={onRefresh || mutate}
                 />
             ) : null}
         </Box>
