@@ -126,7 +126,7 @@ export const ResourceListPage = ({
         <Box>
             {renderHeader({ resourceName, createPath, createText, linkComponent, view, onViewChange: handleViewChange })}
 
-            <Paper>
+            <Paper sx={{ mb: 2, p: 2 }}>
                 <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
             </Paper>
 
