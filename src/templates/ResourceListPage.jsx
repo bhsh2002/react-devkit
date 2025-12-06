@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback, useEffect, use } from 'react';
-import { Box, Button, Typography, Toolbar, ToggleButtonGroup, ToggleButton } from '@mui/material';
+import { Box, Button, Typography, Toolbar, ToggleButtonGroup, ToggleButton, Paper } from '@mui/material';
 import { Add as AddIcon, ViewList as ViewListIcon, ViewModule as ViewModuleIcon } from '@mui/icons-material';
 import { DataTable, DataCard } from '../components';
 import { FilterBar } from '../components/filters/FilterBar';
@@ -126,7 +126,9 @@ export const ResourceListPage = ({
         <Box>
             {renderHeader({ resourceName, createPath, createText, linkComponent, view, onViewChange: handleViewChange })}
 
-            <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
+            <Paper>
+                <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
+            </Paper>
 
             {!view || view === 'table' ? (
                 <DataTable
