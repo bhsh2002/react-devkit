@@ -27796,7 +27796,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
 }, $$ = ({ filterOptions: e, filters: t, onFilterChange: r, defaultShowFilters: i = !1 }) => {
   const [o, s] = Ae(i);
   return /* @__PURE__ */ x.jsxs(Ie, { children: [
-    /* @__PURE__ */ x.jsx(En, { onClick: () => s(!o), sx: { mb: 2 }, children: o ? "إخفاء الفلاتر" : "إظهار الفلاتر" }),
+    /* @__PURE__ */ x.jsx(En, { onClick: () => s(!o), sx: { mb: o ? 2 : 0 }, children: o ? "إخفاء الفلاتر" : "إظهار الفلاتر" }),
     /* @__PURE__ */ x.jsx(n0, { in: o, children: /* @__PURE__ */ x.jsx(ir, { container: !0, spacing: 2, alignItems: "center", children: e.map((a) => {
       const l = a.type === "search" ? { xs: 12, sm: 12, md: 6, lg: 6 } : { xs: 12, sm: 6, md: 3, lg: 3 };
       return /* @__PURE__ */ x.jsx(ir, { size: l, children: /* @__PURE__ */ x.jsx(
