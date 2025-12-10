@@ -122,7 +122,7 @@ export const FilterBar = ({ filterOptions, filters, onFilterChange, defaultShowF
 
     return (
         <Box sx={{ mb: 3 }}>
-            <Button onClick={() => setShowFilters(!showFilters)} sx={{ mb: showFilters ? 0 : 2 }}>
+            <Button onClick={() => setShowFilters(!showFilters)} sx={{ mb: 2 }}>
                 {showFilters ? 'إخفاء الفلاتر' : 'إظهار الفلاتر'}
             </Button>
             <Collapse in={showFilters}>
