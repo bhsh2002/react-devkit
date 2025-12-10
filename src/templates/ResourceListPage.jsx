@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useEffect, use } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Box, Button, Typography, Toolbar, ToggleButtonGroup, ToggleButton, Paper } from '@mui/material';
 import { Add as AddIcon, ViewList as ViewListIcon, ViewModule as ViewModuleIcon } from '@mui/icons-material';
 import { DataTable, DataCard } from '../components';
@@ -61,6 +61,7 @@ export const ResourceListPage = ({
     renderCard,
     resetTrigger,
     onRefresh,
+    onFilterChange,
 }) => {
     const [page, setPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
@@ -99,6 +100,17 @@ export const ResourceListPage = ({
     useEffect(() => {
         mutate();
     }, [apiParams, mutate, resetTrigger]);
+
+    const isFirstRender = useRef(true);
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        if (onFilterChange) {
+            onFilterChange(filters);
+        }
+    }, [filters, onFilterChange]);
 
     const handleFilterChange = useCallback((name, value) => {
         setPage(1);
