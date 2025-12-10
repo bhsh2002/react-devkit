@@ -58,6 +58,7 @@ export const ResourceListPage = ({
     responseAdapter = (data) => data,
     autoRefresh = false,
     defaultView = null,
+    defaultShowFilters = true,
     renderCard,
     resetTrigger,
     onRefresh,
@@ -139,7 +140,12 @@ export const ResourceListPage = ({
             {renderHeader({ resourceName, createPath, createText, linkComponent, view, onViewChange: handleViewChange })}
 
             <Paper sx={{ mb: 2, p: 2 }}>
-                <FilterBar filterOptions={finalFilterOptions} filters={filters} onFilterChange={handleFilterChange} />
+                <FilterBar
+                    filterOptions={finalFilterOptions}
+                    filters={filters}
+                    onFilterChange={handleFilterChange}
+                    defaultShowFilters={defaultShowFilters}
+                />
             </Paper>
 
             {!view || view === 'table' ? (
