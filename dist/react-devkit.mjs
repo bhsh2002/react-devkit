@@ -27795,7 +27795,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
   }
 }, $$ = ({ filterOptions: e, filters: t, onFilterChange: r, defaultShowFilters: i = !1 }) => {
   const [o, s] = Ae(i);
-  return /* @__PURE__ */ x.jsxs(Ie, { sx: { mb: 3 }, children: [
+  return /* @__PURE__ */ x.jsxs(Ie, { children: [
     /* @__PURE__ */ x.jsx(En, { onClick: () => s(!o), sx: { mb: 2 }, children: o ? "إخفاء الفلاتر" : "إظهار الفلاتر" }),
     /* @__PURE__ */ x.jsx(n0, { in: o, children: /* @__PURE__ */ x.jsx(ir, { container: !0, spacing: 2, alignItems: "center", children: e.map((a) => {
       const l = a.type === "search" ? { xs: 12, sm: 12, md: 6, lg: 6 } : { xs: 12, sm: 6, md: 3, lg: 3 };
@@ -27901,7 +27901,7 @@ const Al = lt.use || // This extra generic is to avoid TypeScript mixing up the 
   ];
   return /* @__PURE__ */ x.jsxs(Ie, { children: [
     p({ resourceName: e, createPath: i, createText: o, linkComponent: f, view: P, onViewChange: J }),
-    /* @__PURE__ */ x.jsx(gn, { sx: { mb: 2, p: b ? 2 : 0 }, children: /* @__PURE__ */ x.jsx(
+    /* @__PURE__ */ x.jsx(gn, { sx: { mb: 2, p: 2 }, children: /* @__PURE__ */ x.jsx(
       $$,
       {
         filterOptions: te,

@@ -121,7 +121,7 @@ export const FilterBar = ({ filterOptions, filters, onFilterChange, defaultShowF
     const [showFilters, setShowFilters] = useState(defaultShowFilters);
 
     return (
-        <Box sx={{ mb: 3 }}>
+        <Box>
             <Button onClick={() => setShowFilters(!showFilters)} sx={{ mb: 2 }}>
                 {showFilters ? 'إخفاء الفلاتر' : 'إظهار الفلاتر'}
             </Button>
