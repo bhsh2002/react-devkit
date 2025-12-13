@@ -29727,7 +29727,7 @@ const TD = ({ isSubmitting: e }) => /* @__PURE__ */ x.jsx(
       Ie,
       {
         component: "nav",
-        sx: { width: { sm: u ? _r : 0 }, flexShrink: { sm: 0 }, transition: "width 0.3s" },
+        sx: { width: { sm: _r }, flexShrink: { sm: 0 } },
         "aria-label": "mailbox folders",
         children: [
           /* @__PURE__ */ x.jsx(

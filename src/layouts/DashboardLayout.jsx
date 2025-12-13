@@ -97,7 +97,7 @@ export const DashboardLayout = ({
             </AppBar>
             <Box
                 component="nav"
-                sx={{ width: { sm: desktopOpen ? drawerWidth : 0 }, flexShrink: { sm: 0 }, transition: 'width 0.3s' }}
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
                 {/* Mobile Drawer */}
