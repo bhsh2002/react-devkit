@@ -29765,7 +29765,7 @@ const TD = ({ isSubmitting: e }) => /* @__PURE__ */ x.jsx(
         sx: {
           flexGrow: 1,
           p: 3,
-          width: { xs: "100%", sm: `calc(100% - ${_r}px)` },
+          width: { xs: "100%", sm: `calc(100% - ${u ? _r : 0}px)` },
           minHeight: "100vh",
           backgroundColor: (h) => h.palette.grey[100],
           transition: s.transitions.create(["width", "margin"], {
