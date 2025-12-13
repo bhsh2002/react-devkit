@@ -67,8 +67,12 @@ export const DashboardLayout = ({
             <AppBar
                 position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    width: {
+                        sm: desktopOpen ? `calc(100% - ${drawerWidth}px)` : '100%'
+                    },
+                    ml: {
+                        sm: desktopOpen ? `${drawerWidth}px` : 0
+                    },
                     transition: theme.transitions.create(['width', 'margin'], {
                         easing: theme.transitions.easing.sharp,
                         duration: theme.transitions.duration.leavingScreen,

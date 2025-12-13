@@ -29695,8 +29695,12 @@ const TD = ({ isSubmitting: e }) => /* @__PURE__ */ x.jsx(
       {
         position: "fixed",
         sx: {
-          width: { sm: `calc(100% - ${_r}px)` },
-          ml: { sm: `${_r}px` },
+          width: {
+            sm: u ? `calc(100% - ${_r}px)` : "100%"
+          },
+          ml: {
+            sm: u ? `${_r}px` : 0
+          },
           transition: s.transitions.create(["width", "margin"], {
             easing: s.transitions.easing.sharp,
             duration: s.transitions.duration.leavingScreen
