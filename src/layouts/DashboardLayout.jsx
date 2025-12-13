@@ -67,12 +67,8 @@ export const DashboardLayout = ({
             <AppBar
                 position="fixed"
                 sx={{
-                    width: {
-                        sm: desktopOpen ? `calc(100% - ${drawerWidth}px)` : '100%'
-                    },
-                    ml: {
-                        sm: desktopOpen ? `${drawerWidth}px` : 0
-                    },
+                    width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    ml: { sm: `${drawerWidth}px` },
                     transition: theme.transitions.create(['width', 'margin'], {
                         easing: theme.transitions.easing.sharp,
                         duration: theme.transitions.duration.leavingScreen,
@@ -132,8 +128,7 @@ export const DashboardLayout = ({
                 sx={{
                     flexGrow: 1,
                     p: 3,
-                    width: { sm: `calc(100% - ${desktopOpen ? drawerWidth : 0}px)` },
-                    ml: { sm: 0 },
+                    width: { xs: '100%', sm: `calc(100% - ${drawerWidth}px)` },
                     minHeight: '100vh',
                     backgroundColor: (theme) => theme.palette.grey[100],
                     transition: theme.transitions.create(['width', 'margin'], {
