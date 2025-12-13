@@ -12,6 +12,8 @@ import {
     Typography,
     IconButton,
     CssBaseline,
+    useMediaQuery,
+    useTheme,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 
@@ -24,10 +26,17 @@ export const DashboardLayout = ({
     headerActions,
     children,
 }) => {
+    const theme = useTheme();
+    const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
     const [mobileOpen, setMobileOpen] = useState(false);
+    const [desktopOpen, setDesktopOpen] = useState(true);
 
     const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
+        if (isDesktop) {
+            setDesktopOpen(!desktopOpen);
+        } else {
+            setMobileOpen(!mobileOpen);
+        }
     };
 
     const drawerContent = (
@@ -58,17 +67,25 @@ export const DashboardLayout = ({
             <AppBar
                 position="fixed"
                 sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    width: {
+                        sm: desktopOpen ? `calc(100% - ${drawerWidth}px)` : '100%'
+                    },
+                    ml: {
+                        sm: desktopOpen ? `${drawerWidth}px` : 0
+                    },
+                    transition: theme.transitions.create(['width', 'margin'], {
+                        easing: theme.transitions.easing.sharp,
+                        duration: theme.transitions.duration.leavingScreen,
+                    }),
                 }}
             >
                 <Toolbar>
                     <IconButton
-                        color="primary"
+                        color="inherit"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }} // Only show on mobile
+                        sx={{ mr: 2 }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -80,7 +97,7 @@ export const DashboardLayout = ({
             </AppBar>
             <Box
                 component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                sx={{ width: { sm: desktopOpen ? drawerWidth : 0 }, flexShrink: { sm: 0 }, transition: 'width 0.3s' }}
                 aria-label="mailbox folders"
             >
                 {/* Mobile Drawer */}
@@ -100,12 +117,12 @@ export const DashboardLayout = ({
                 </Drawer>
                 {/* Desktop Drawer */}
                 <Drawer
-                    variant="permanent"
+                    variant="persistent"
                     sx={{
                         display: { xs: 'none', sm: 'block' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
-                    open
+                    open={desktopOpen}
                 >
                     {drawerContent}
                 </Drawer>
@@ -115,9 +132,14 @@ export const DashboardLayout = ({
                 sx={{
                     flexGrow: 1,
                     p: 3,
-                    width: { xs: '100%', sm: `calc(100% - ${drawerWidth}px)` },
+                    width: { sm: `calc(100% - ${desktopOpen ? drawerWidth : 0}px)` },
+                    ml: { sm: 0 },
                     minHeight: '100vh',
                     backgroundColor: (theme) => theme.palette.grey[100],
+                    transition: theme.transitions.create(['width', 'margin'], {
+                        easing: theme.transitions.easing.sharp,
+                        duration: theme.transitions.duration.leavingScreen,
+                    }),
                 }}
             >
                 <Toolbar />
