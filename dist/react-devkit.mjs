@@ -29710,7 +29710,7 @@ const TD = ({ isSubmitting: e }) => /* @__PURE__ */ x.jsx(
           /* @__PURE__ */ x.jsx(
             ji,
             {
-              color: "inherit",
+              color: "primary",
               "aria-label": "open drawer",
               edge: "start",
               onClick: f,

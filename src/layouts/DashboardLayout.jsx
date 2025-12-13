@@ -81,7 +81,7 @@ export const DashboardLayout = ({
             >
                 <Toolbar>
                     <IconButton
-                        color="inherit"
+                        color="primary"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
